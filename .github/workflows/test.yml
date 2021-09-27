@@ -19,7 +19,7 @@ jobs:
         run: npm test
   license-check-aws-ecs:
     runs-on: ubuntu-latest
-        defaults:
+    defaults:
       run:
         working-directory: ./aws-ecs
     steps:
