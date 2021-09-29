@@ -53,6 +53,12 @@ cdk bootstrap
 
 # deploy CDK
 cdk deploy
+
+# Save secrets
+# Domain to Route53
+# env variables
+# .secrets folder
+# cdk deploy FindyAgency/CIPipeline
 ```
 
 ### Useful commands
