@@ -8,6 +8,7 @@ import {
 
 import { ImagePipeline } from './image-pipeline';
 import { PWAPipeline } from './pwa-pipeline';
+import { S3OriginConfig } from '@aws-cdk/aws-cloudfront';
 
 export interface CIPipelineStackProps extends cdk.StackProps {
   prod: boolean;
@@ -21,6 +22,8 @@ export interface CIPipelineStackProps extends cdk.StackProps {
 }
 
 export class CIPipelineStack extends cdk.Stack {
+  public readonly pwaS3Origin: S3OriginConfig;
+
   public agentImageURL(): string {
     return this.imagePipeline.agentImageURL;
   }
@@ -101,5 +104,7 @@ export class CIPipelineStack extends cdk.Stack {
       stageName: 'Deploy',
       actions: [pwaPipeline.deployAction]
     });
+
+    this.pwaS3Origin = pwaPipeline.s3Origin;
   }
 }

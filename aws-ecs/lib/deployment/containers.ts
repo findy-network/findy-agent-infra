@@ -42,15 +42,24 @@ export interface ContainerDetails {
   agent: {
     containerName: string;
     imageURL: string;
+    task?: ContainerTask;
   };
   auth: {
     containerName: string;
     imageURL: string;
+    task?: ContainerTask;
   };
   vault: {
     containerName: string;
     imageURL: string;
+    task?: ContainerTask;
   };
+}
+
+export interface ContainerTask {
+  container: ContainerDefinition;
+  efsSg?: SecurityGroup;
+  dbSg?: SecurityGroup;
 }
 
 interface ContainerProps {
@@ -86,17 +95,33 @@ const mapSecrets = (
 };
 
 export class Containers {
+  public readonly containerDetails: ContainerDetails;
   constructor(scope: cdk.Construct, id: string, props: ContainersProps) {
     const agent = this.addAgentContainer(scope, id, props);
     const auth = this.addAuthContainer(scope, id, props, agent.container);
     const vault = this.addVaultContainer(scope, id, props, agent.container);
+    this.containerDetails = {
+      ...props.containerNames,
+      agent: {
+        ...props.containerNames.agent,
+        task: agent
+      },
+      auth: {
+        ...props.containerNames.auth,
+        task: auth
+      },
+      vault: {
+        ...props.containerNames.vault,
+        task: vault
+      }
+    };
   }
 
   addAgentContainer(
     scope: cdk.Construct,
     id: string,
     props: ContainersProps
-  ): { container: ContainerDefinition; efsSg?: SecurityGroup } {
+  ): ContainerTask {
     const {
       prod,
       configBucketName,
@@ -149,7 +174,7 @@ export class Containers {
     id: string,
     props: ContainersProps,
     agentContainer: ContainerDefinition
-  ): { container: ContainerDefinition; efsSg?: SecurityGroup } {
+  ): ContainerTask {
     const {
       prod,
       configBucketName,
@@ -198,7 +223,7 @@ export class Containers {
     id: string,
     props: ContainersProps,
     agentContainer: ContainerDefinition
-  ): { container: ContainerDefinition; dbSecurityGroup: SecurityGroup } {
+  ): ContainerTask {
     const {
       prod,
       configBucketName,
@@ -269,7 +294,7 @@ export class Containers {
     };
     return {
       ...this.addContainer(scope, id, prod, containerProps),
-      dbSecurityGroup
+      dbSg: dbSecurityGroup
     };
   }
 

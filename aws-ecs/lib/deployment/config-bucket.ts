@@ -17,7 +17,9 @@ export class ConfigBucket {
   constructor(scope: cdk.Construct, id: string, props: ConfigBucketProps) {
     const { prod } = props;
 
-    const bucketName = `${id}ConfigBucket`;
+    const bucketName = `${id}ConfigBucket`
+      .replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)
+      .replace('-', '');
 
     const bucket = new Bucket(scope, bucketName, {
       bucketName: bucketName,

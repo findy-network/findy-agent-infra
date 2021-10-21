@@ -1,19 +1,39 @@
+import { HostedZone } from '@aws-cdk/aws-route53';
 import * as cdk from '@aws-cdk/core';
+import { pipeline } from 'stream';
 import { CIPipelineStack } from './ci-pipeline';
+import { DeploymentStack } from './deployment';
+import { GrpcsCertStack } from './grpcs-cert';
 
-interface FindyAgencyStackProps extends cdk.StackProps {
+export interface FindyAgencyStackProps extends cdk.StackProps {
   prod: boolean;
   githubTokenSecretName: string;
+  domainRoot: string;
   walletDomainName: string;
+  apiDomainName: string;
+  configSecretName: string;
 }
 
 export class FindyAgencyStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props: FindyAgencyStackProps) {
     super(scope, id, props);
 
-    const { env, prod, githubTokenSecretName, walletDomainName } = props;
+    const { env, prod, apiDomainName, domainRoot } = props;
 
-    const containerNames = {
+    const zone = HostedZone.fromLookup(this, `${id}HostedZone`, {
+      domainName: domainRoot
+    });
+
+    const grpcsCertStack = new GrpcsCertStack(this, id, {
+      env,
+      prod,
+      agencyAddress: apiDomainName,
+      zone
+    });
+
+    const { githubTokenSecretName, walletDomainName } = props;
+
+    const names = {
       auth: `${id}AuthContainer`,
       agent: `${id}AgentContainer`,
       vault: `${id}VaultContainer`
@@ -25,22 +45,37 @@ export class FindyAgencyStack extends cdk.Stack {
       prod,
       tokenSecretName: githubTokenSecretName,
       walletDomainName,
-      containerNames
+      containerNames: names
     });
 
-    const containerDetails = {
+    const containerNames = {
       auth: {
-        name: containerNames.auth,
-        imageURL: ciPipeline.authImageURL
+        containerName: names.auth,
+        imageURL: ciPipeline.authImageURL()
       },
       agent: {
-        name: containerNames.agent,
-        imageURL: ciPipeline.agentImageURL
+        containerName: names.agent,
+        imageURL: ciPipeline.agentImageURL()
       },
       vault: {
-        name: containerNames.vault,
-        imageURL: ciPipeline.vaultImageURL
+        containerName: names.vault,
+        imageURL: ciPipeline.vaultImageURL()
       }
     };
+
+    const { configSecretName } = props;
+
+    // Deployment
+    const deployment = new DeploymentStack(this, id, {
+      env,
+      prod,
+      containerNames,
+      agencyAddress: apiDomainName,
+      agencyCertificateArn: grpcsCertStack.certificateArn,
+      walletDomainName,
+      walletOrigin: ciPipeline.pwaS3Origin,
+      secretName: configSecretName,
+      zone
+    });
   }
 }

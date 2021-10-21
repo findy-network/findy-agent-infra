@@ -11,15 +11,19 @@ import {
 import { IBucket } from '@aws-cdk/aws-s3';
 import { ISecret, Secret } from '@aws-cdk/aws-secretsmanager';
 import { ContainerDetails, Containers } from './containers';
-import { ICluster } from '@aws-cdk/aws-ecs';
+import { IBaseService, ICluster } from '@aws-cdk/aws-ecs';
 import { ARecord, IHostedZone, RecordTarget } from '@aws-cdk/aws-route53';
 import { ApplicationMultipleTargetGroupsFargateService } from '@aws-cdk/aws-ecs-patterns';
-import { DnsValidatedCertificate } from '@aws-cdk/aws-certificatemanager';
+import {
+  DnsValidatedCertificate,
+  Certificate
+} from '@aws-cdk/aws-certificatemanager';
 import {
   ApplicationProtocol,
   ListenerAction
 } from '@aws-cdk/aws-elasticloadbalancingv2';
 import { LoadBalancerTarget } from '@aws-cdk/aws-route53-targets';
+import { Targets } from './targets';
 
 export interface ECSProps {
   env: cdk.Environment | undefined;
@@ -29,11 +33,13 @@ export interface ECSProps {
   containerNames: ContainerDetails;
   agencyAddress: string;
   walletDomainName: string;
-  hostAddress: string;
   zone: IHostedZone;
+  apiCertificateArn: string;
 }
 
 export class ECS {
+  public readonly apiPaths: string[];
+  public readonly service: IBaseService;
   constructor(scope: cdk.Construct, id: string, props: ECSProps) {
     const {
       env,
@@ -69,7 +75,26 @@ export class ECS {
       walletDomainName
     });
 
-    this.addTaskToCluster(scope, id, props, cluster, task);
+    const { service, grpcListener, httpsListener } = this.addTaskToCluster(
+      scope,
+      id,
+      props,
+      cluster,
+      task
+    );
+
+    const targets = new Targets(scope, `${id}ECSTargets`, {
+      env,
+      prod,
+      containerDetails: containers.containerDetails,
+      service,
+      grpcListener,
+      httpsListener,
+      vpc
+    });
+
+    this.apiPaths = targets.apiPaths;
+    this.service = service.service;
   }
 
   createTask(
@@ -123,11 +148,12 @@ export class ECS {
     cluster: ICluster,
     task: ecs.FargateTaskDefinition
   ) {
-    const { hostAddress, zone } = props;
-    const certificate = new DnsValidatedCertificate(scope, `${id}Certificate`, {
-      domainName: hostAddress,
-      hostedZone: zone
-    });
+    const { apiCertificateArn } = props;
+    const certificate = Certificate.fromCertificateArn(
+      scope,
+      `${id}Certificate`,
+      apiCertificateArn
+    );
 
     // TODO: No support for Service Deployment Options, need to set manually
     // Minimum healthy percent 0
@@ -162,8 +188,10 @@ export class ECS {
       certificates: [certificate]
     });
 
+    const { zone, agencyAddress } = props;
+
     new ARecord(scope, `${id}ARecord`, {
-      recordName: hostAddress,
+      recordName: agencyAddress,
       target: RecordTarget.fromAlias(new LoadBalancerTarget(loadBalancer)),
       zone
     });
