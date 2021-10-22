@@ -6,6 +6,7 @@ import {
   FindyAgencyStackProps
 } from '../lib/findy-agency-stack';
 import { existsSync } from 'fs';
+import { exit } from 'process';
 
 // TODO:
 // check existence file by file
@@ -14,21 +15,20 @@ import { existsSync } from 'fs';
 // ECS deploy action
 const missing = [
   '.secrets/agent/genesis_transactions',
-  '.secrets/agent/steward.exported',
-  '.secrets/grpc'
+  '.secrets/agent/steward.exported'
 ].find((item) => !existsSync(item));
 if (missing) {
-  console.log(
+  console.warn(
     `Create folder .secrets and copy needed agency configuration files there.`
   );
-  console.log(
-    `* .secrets/agent/genesis_transactions: Genesis transcations for ledger *`,
-    `* .secrets/agent/steward.exported: Exported steward wallet *`,
-    `* .secrets/grpc: Certificates for gRPC connections *`
+  console.warn(
+    `* .secrets/agent/genesis_transactions: Genesis transcations for ledger *\n`,
+    `* .secrets/agent/steward.exported: Exported steward wallet *\n`
   );
-  process.exit(1);
+  exit(1);
 }
 
+// TODO: use tryGetContext instead of env variables?
 const params = {
   FINDY_AWS_ECS_WALLET_DOMAIN_NAME: {
     variable: 'walletDomainName',

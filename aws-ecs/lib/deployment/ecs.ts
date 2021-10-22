@@ -120,7 +120,7 @@ export class ECS {
 
     executionRole.addToPolicy(
       new PolicyStatement({
-        resources: [secret.secretFullArn!.toString()],
+        resources: [secret.secretFullArn!],
         actions: [
           'secretsmanager:GetSecretValue',
           'secretsmanager:DescribeSecret'

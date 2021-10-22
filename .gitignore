@@ -2,3 +2,4 @@
 .secrets
 .temp
 .vscode
+output.json

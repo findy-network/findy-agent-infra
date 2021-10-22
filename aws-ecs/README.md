@@ -40,6 +40,25 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
    # AWS account number
    export CDK_DEFAULT_ACCOUNT=<xxx>
+
+   # domain root (AWS Route53 zone created in previous step)
+   export FINDY_AWS_ECS_DOMAIN_ROOT="example.com"
+
+   # desired pwa wallet domain
+   export FINDY_AWS_ECS_WALLET_DOMAIN_NAME="agency.example.comm"
+
+   # desired agency api domain
+   export FINDY_AWS_ECS_API_DOMAIN_NAME="agency-api.example.com"
+
+   # desired agency api domain
+   export FINDY_AWS_ECS_GITHUB_SECRET_NAME="FindyGithubToken"
+
+   export FINDY_AWS_ECS_CONFIG_SECRET_NAME="FindyAgencyInterop"
+
+   export FINDY_AWS_ECS_STEWARD_DID="L3n7arEgYwr1cR5UdHS89k"
+
+   export FINDY_AWS_ECS_STEWARD_WALLET_KEY="3w9D2mYB8DdskMzceuyyzBdGD33DcKcEvs7SQ3hXP925"
+
    ```
 
 ## Steps
@@ -58,14 +77,15 @@ cdk deploy
 # Domain to Route53
 # env variables
 # .secrets folder
-# cdk deploy FindyAgency/CIPipeline
+# ./save-cert.sh
+# cdk deploy
 ```
 
 ### Useful commands
 
- * `npm run build`   compile typescript to js
- * `npm run watch`   watch for changes and compile
- * `npm run test`    perform the jest unit tests
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk synth`       emits the synthesized CloudFormation template
+- `npm run build` compile typescript to js
+- `npm run watch` watch for changes and compile
+- `npm run test` perform the jest unit tests
+- `cdk deploy` deploy this stack to your default AWS account/region
+- `cdk diff` compare deployed stack with current state
+- `cdk synth` emits the synthesized CloudFormation template
