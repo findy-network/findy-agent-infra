@@ -1,3 +1,5 @@
+import { EcsDeployAction } from '@aws-cdk/aws-codepipeline-actions';
+import { BaseService, Cluster, FargateService } from '@aws-cdk/aws-ecs';
 import { HostedZone } from '@aws-cdk/aws-route53';
 import * as cdk from '@aws-cdk/core';
 import { pipeline } from 'stream';
@@ -7,7 +9,7 @@ import { GrpcsCertStack } from './grpcs-cert';
 
 export interface FindyAgencyStackProps extends cdk.StackProps {
   prod: boolean;
-  githubTokenSecretName: string;
+  githubConnectionArn: string;
   domainRoot: string;
   walletDomainName: string;
   apiDomainName: string;
@@ -31,7 +33,7 @@ export class FindyAgencyStack extends cdk.Stack {
       zone
     });
 
-    const { githubTokenSecretName, walletDomainName } = props;
+    const { githubConnectionArn, walletDomainName } = props;
 
     const names = {
       auth: `${id}AuthContainer`,
@@ -43,7 +45,7 @@ export class FindyAgencyStack extends cdk.Stack {
     const ciPipeline = new CIPipelineStack(this, id, {
       env,
       prod,
-      tokenSecretName: githubTokenSecretName,
+      githubConnectionArn,
       walletDomainName,
       containerNames: names
     });
@@ -77,5 +79,19 @@ export class FindyAgencyStack extends cdk.Stack {
       secretName: configSecretName,
       zone
     });
+
+    /*
+    TODO:
+      const deployStage = ciPipeline.deployStage;
+      const imageDefinitionsOutput = ciPipeline.imageDefinitionsOutput;
+      deployStage.addAction(
+        new EcsDeployAction({
+          actionName: `${id}-deploy-ecs`,
+          input: imageDefinitionsOutput,
+          service
+          )
+        })
+      );
+    */
   }
 }

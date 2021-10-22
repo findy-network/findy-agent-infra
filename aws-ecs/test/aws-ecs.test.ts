@@ -9,7 +9,7 @@ import * as AwsEcs from '../lib/findy-agency-stack';
 const defaultProps = {
   env: {},
   prod: false,
-  githubTokenSecretName: 'githubTokenSecretName',
+  githubConnectionArn: 'githubConnectionArn',
   walletDomainName: 'walletDomainName'
 };
 

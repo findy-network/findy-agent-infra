@@ -1,5 +1,5 @@
 import { S3OriginConfig } from '@aws-cdk/aws-cloudfront';
-import { HostedZone, IHostedZone } from '@aws-cdk/aws-route53';
+import { IHostedZone } from '@aws-cdk/aws-route53';
 import * as cdk from '@aws-cdk/core';
 import { Cloudfront } from './cloudfront';
 import { ConfigBucket } from './config-bucket';

@@ -118,16 +118,19 @@ export class ECS {
       )
     );
 
-    executionRole.addToPolicy(
-      new PolicyStatement({
-        resources: [secret.secretFullArn!],
-        actions: [
-          'secretsmanager:GetSecretValue',
-          'secretsmanager:DescribeSecret'
-        ],
-        effect: Effect.ALLOW
-      })
-    );
+    const secretArn = secret.secretFullArn;
+    if (secretArn) {
+      executionRole.addToPolicy(
+        new PolicyStatement({
+          resources: [secretArn.toString()],
+          actions: [
+            'secretsmanager:GetSecretValue',
+            'secretsmanager:DescribeSecret'
+          ],
+          effect: Effect.ALLOW
+        })
+      );
+    }
 
     const taskDefinition = new ecs.FargateTaskDefinition(
       scope,

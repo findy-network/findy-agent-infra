@@ -1,6 +1,38 @@
 # Findy Agency deployment to AWS ECS
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+This cdk script sets up agency to AWS:
+
+- microservice backend auth, vault, core to ECS with load balancer
+- pwa wallet app to s3
+- cloudfront as proxy to redirect requests from public internet to s3 or load balancer
+- pipelines to update agency codes on merge to master
+
+![overview](./docs/arch.png)
+
+**Assumptions:**
+
+- source codes are in GitHub in user owned repositories
+- steward is onboarded to ledger and its wallet is exported to file with a known key
+- genesis-file is available
+- AWS Route53 managed zone
+
+Note! This setup is intended for development time testing scenarios.
+Production setup would need another iteration with additional security, high availability and performance considerations in mind. There are some open issues with this setup (see TODO), and most probably those issues will not be solved as the direction for future solutions will be more platform-agnostic.
+
+**TODO:**
+
+- disabling default HTTP listener
+- moving a2a traffic on top of HTTPS
+- auth/core services lock bolt dbs while execution and thus updates bring currently the whole system down
+  NOTE: Due to this `Service Deployment Options` needs to be manually edited:
+
+  ```
+     Minimum healthy percent 0
+     Maximum percent 100
+  ```
+
+- load balancer has performance issues with GRPCS-listener
+- microservice traffic should be routed internally without need for tls
 
 ## Prerequisities
 
@@ -22,6 +54,8 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 1. You need AWS Account. [Create IAM user and AWS Access keys via console](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) if you don't them already.
 
 1. [Create a public hosted zone to AWS Route53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingHostedZone.html) for your domain. If your domain registrar is different from AWS Route53, you need to store the AWS nameservers to your domain settings (via the domain registrar UI).
+
+1. [Create GitHub codestar connection](https://docs.aws.amazon.com/dtconsole/latest/userguide/connections-create-github.html) for triggering automatic version updates.
 
 1. Declare following environment variables:
 
@@ -50,16 +84,21 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
    # desired agency api domain
    export FINDY_AWS_ECS_API_DOMAIN_NAME="agency-api.example.com"
 
-   # desired agency api domain
-   export FINDY_AWS_ECS_GITHUB_SECRET_NAME="FindyGithubToken"
+   # github connection arn
+   export FINDY_AWS_ECS_GITHUB_CONNECTION_ARN="arn:aws:codestar-connections:us-east-1:xxx:connection/xxx"
 
-   export FINDY_AWS_ECS_CONFIG_SECRET_NAME="FindyAgencyInterop"
+   # secret name in secretsmanager (choose freely)
+   export FINDY_AWS_ECS_CONFIG_SECRET_NAME="AgencySecrets"
 
-   export FINDY_AWS_ECS_STEWARD_DID="L3n7arEgYwr1cR5UdHS89k"
+   # steward DID registered to ledger
+   export FINDY_AWS_ECS_STEWARD_DID="xxx"
 
-   export FINDY_AWS_ECS_STEWARD_WALLET_KEY="3w9D2mYB8DdskMzceuyyzBdGD33DcKcEvs7SQ3hXP925"
+   # steward wallet key used in export
+   export FINDY_AWS_ECS_STEWARD_WALLET_KEY="xxx"
 
    ```
+
+1. Create folder `.secrets\agent` and add there genesis file: `genesis_transactions` and steward's exported wallet: `steward.exported`
 
 ## Steps
 
@@ -70,15 +109,13 @@ npm install
 # bootstrap CDK
 cdk bootstrap
 
-# deploy CDK
-cdk deploy
+# deploy and save cert
+./save-cert.sh
 
-# Save secrets
-# Domain to Route53
-# env variables
-# .secrets folder
-# ./save-cert.sh
-# cdk deploy
+# deploy rest of stacks
+cdk deploy FindyAgency/Deployment
+
+# add deploy step for ECS service manually through AWS console
 ```
 
 ### Useful commands

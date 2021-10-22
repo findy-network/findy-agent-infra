@@ -34,10 +34,10 @@ const params = {
     variable: 'walletDomainName',
     description: 'the domain name for the web wallet, e.g. wallet.example.com'
   },
-  FINDY_AWS_ECS_GITHUB_SECRET_NAME: {
-    variable: 'githubTokenSecretName',
+  FINDY_AWS_ECS_GITHUB_CONNECTION_ARN: {
+    variable: 'githubConnectionArn',
     description:
-      'the name of the secret for GitHub access, e.g. FindyAgencyGitHubAccess'
+      'the GitHub connection arn, see https://docs.aws.amazon.com/dtconsole/latest/userguide/connections-create-github.html'
   },
   FINDY_AWS_ECS_CONFIG_SECRET_NAME: {
     variable: 'configSecretName',

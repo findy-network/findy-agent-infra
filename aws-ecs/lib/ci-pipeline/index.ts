@@ -1,10 +1,7 @@
 import * as cdk from '@aws-cdk/core';
 import { Artifact, Pipeline, IStage } from '@aws-cdk/aws-codepipeline';
 
-import {
-  GitHubSourceAction,
-  GitHubTrigger
-} from '@aws-cdk/aws-codepipeline-actions';
+import { CodeStarConnectionsSourceAction } from '@aws-cdk/aws-codepipeline-actions';
 
 import { ImagePipeline } from './image-pipeline';
 import { PWAPipeline } from './pwa-pipeline';
@@ -12,7 +9,7 @@ import { S3OriginConfig } from '@aws-cdk/aws-cloudfront';
 
 export interface CIPipelineStackProps extends cdk.StackProps {
   prod: boolean;
-  tokenSecretName: string;
+  githubConnectionArn: string;
   walletDomainName: string;
   containerNames: {
     agent: string;
@@ -23,6 +20,8 @@ export interface CIPipelineStackProps extends cdk.StackProps {
 
 export class CIPipelineStack extends cdk.Stack {
   public readonly pwaS3Origin: S3OriginConfig;
+  public readonly deployStage: IStage;
+  public readonly imageDefinitionsOutput: Artifact;
 
   public agentImageURL(): string {
     return this.imagePipeline.agentImageURL;
@@ -41,9 +40,8 @@ export class CIPipelineStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props: CIPipelineStackProps) {
     super(scope, `CIPipeline`, props);
 
-    const { tokenSecretName, containerNames } = props;
+    const { githubConnectionArn, containerNames } = props;
 
-    const tokenSecret = cdk.SecretValue.secretsManager(tokenSecretName);
     const projectName = `${id}CIPipeline`;
     const pipeline = new Pipeline(this, projectName, {
       pipelineName: projectName,
@@ -59,13 +57,12 @@ export class CIPipelineStack extends cdk.Stack {
       const sources = new Artifact();
 
       sourceStage.addAction(
-        new GitHubSourceAction({
+        new CodeStarConnectionsSourceAction({
+          connectionArn: githubConnectionArn,
+          actionName: `checkout-${repositoryName}`,
           owner: githubOrganization,
           repo: repositoryName,
-          oauthToken: tokenSecret,
-          trigger: GitHubTrigger.WEBHOOK,
           branch: 'master',
-          actionName: `checkout-${repositoryName}`,
           output: sources
         })
       );
@@ -86,6 +83,7 @@ export class CIPipelineStack extends cdk.Stack {
       containerNames
     });
     this.imagePipeline = imagePipeline;
+    this.imageDefinitionsOutput = imagePipeline.imageDetails;
 
     // PWA S3 bucket + pwa pipeline
     const pwaPipeline = new PWAPipeline(this, id, {
@@ -100,7 +98,7 @@ export class CIPipelineStack extends cdk.Stack {
       actions: [imagePipeline.buildAction, pwaPipeline.buildAction]
     });
 
-    pipeline.addStage({
+    this.deployStage = pipeline.addStage({
       stageName: 'Deploy',
       actions: [pwaPipeline.deployAction]
     });

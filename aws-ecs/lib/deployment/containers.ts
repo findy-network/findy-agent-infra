@@ -152,7 +152,6 @@ export class Containers {
             'findy-agency-steward-wallet-imported-key',
           FCLI_AGENCY_STEWARD_WALLET_KEY: 'findy-agency-steward-wallet-key',
           FCLI_AGENCY_STEWARD_DID: 'findy-agency-steward-did',
-          FCLI_AGENCY_SALT: 'findy-agency-salt',
           FCLI_AGENCY_GRPC_JWT_SECRET: 'findy-agency-jwt-key',
           FCLI_AGENCY_ADMIN_ID: 'findy-agency-admin-id',
           FCLI_AGENCY_ENCLAVE_KEY: 'findy-agency-enclave-key'

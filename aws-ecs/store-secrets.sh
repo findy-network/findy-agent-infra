@@ -2,6 +2,7 @@
 
 set -e
 
+# TODO: let secrets manager create
 JWT_KEY="$(openssl rand -hex 16)"
 ADMIN_ID="admin-$(openssl rand -hex 8)"
 DB_PASSWORD="$(openssl rand -hex 16)"
