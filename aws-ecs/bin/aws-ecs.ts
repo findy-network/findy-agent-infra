@@ -17,7 +17,7 @@ const missing = [
   '.secrets/agent/genesis_transactions',
   '.secrets/agent/steward.exported'
 ].find((item) => !existsSync(item));
-if (missing) {
+if (missing != null) {
   console.warn(
     `Create folder .secrets and copy needed agency configuration files there.`
   );
@@ -56,13 +56,13 @@ const params = {
 
 const props = Object.keys(params).reduce(
   (result, item) => {
-    // @ts-ignore
-    const current = params[item];
-    if (!process.env[item]) {
+    // @ts-expect-error
+    const current = params[item] as { description: string };
+    if (process.env[item] == null) {
       console.log(`Define env variable ${item}, ${current.description}`);
       process.exit(1);
     }
-    // @ts-ignore
+    // @ts-expect-error
     result[current.variable] = process.env[item];
     return result;
   },

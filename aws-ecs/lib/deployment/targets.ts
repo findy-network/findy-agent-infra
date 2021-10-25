@@ -124,7 +124,7 @@ export class Targets {
     id: string,
     props: TargetsProps,
     containerProps: TargetProps
-  ) {
+  ): void {
     const { service, httpsListener } = props;
     const {
       containerName,
@@ -150,7 +150,7 @@ export class Targets {
       healthCheck: {
         port: containerPort.toString(),
         protocol: Protocol.HTTP,
-        path: healthCheckPath || '/'
+        path: healthCheckPath != null ? healthCheckPath : '/'
       }
     });
 
@@ -162,11 +162,11 @@ export class Targets {
 
     const serviceSg = fgService.connections.securityGroups[0];
 
-    if (efsSg) {
+    if (efsSg != null) {
       efsSg.addIngressRule(serviceSg, NFSPort);
       serviceSg.addEgressRule(efsSg, NFSPort);
     }
-    if (dbSg) {
+    if (dbSg != null) {
       dbSg.addIngressRule(serviceSg, PostgresPort);
       serviceSg.addEgressRule(dbSg, PostgresPort);
     }

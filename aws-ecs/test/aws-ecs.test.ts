@@ -1,29 +1,37 @@
-import {
-  expect as expectCDK,
-  matchTemplate,
-  MatchStyle
-} from '@aws-cdk/assert';
+/* eslint-disable jest/expect-expect */
+import { SynthUtils } from '@aws-cdk/assert';
+import { HostedZone } from '@aws-cdk/aws-route53';
 import * as cdk from '@aws-cdk/core';
-import * as AwsEcs from '../lib/findy-agency-stack';
+import { CIPipelineStack } from '../lib/ci-pipeline';
+import { DeploymentStack } from '../lib/deployment';
+
+const id = 'CIPipelineStack';
 
 const defaultProps = {
-  env: {},
+  env: {
+    region: 'us-east-1',
+    account: '123456789'
+  },
   prod: false,
   githubConnectionArn: 'githubConnectionArn',
-  walletDomainName: 'walletDomainName'
+  walletDomainName: 'agency.example.com',
+  domainRoot: 'example.com',
+  apiDomainName: 'agency-api.example.com',
+  configSecretName: 'configSecretName',
+  containerNames: {
+    auth: `${id}AuthContainer`,
+    agent: `${id}AgentContainer`,
+    vault: `${id}VaultContainer`
+  },
+  agencyAddress: 'agency-api.example.com'
 };
 
-test('Empty Stack', () => {
+test('Pipeline Stack', () => {
   const app = new cdk.App();
   // WHEN
-  const stack = new AwsEcs.FindyAgencyStack(app, 'MyTestStack', defaultProps);
+  const stack = new CIPipelineStack(app, id, defaultProps);
   // THEN
-  expectCDK(stack).to(
-    matchTemplate(
-      {
-        Resources: {}
-      },
-      MatchStyle.EXACT
-    )
-  );
+  expect(SynthUtils.toCloudFormation(stack)).toMatchSnapshot();
 });
+
+// TODO: add more tests

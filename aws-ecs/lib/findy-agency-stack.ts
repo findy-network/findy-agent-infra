@@ -1,8 +1,5 @@
-import { EcsDeployAction } from '@aws-cdk/aws-codepipeline-actions';
-import { BaseService, Cluster, FargateService } from '@aws-cdk/aws-ecs';
 import { HostedZone } from '@aws-cdk/aws-route53';
 import * as cdk from '@aws-cdk/core';
-import { pipeline } from 'stream';
 import { CIPipelineStack } from './ci-pipeline';
 import { DeploymentStack } from './deployment';
 import { GrpcsCertStack } from './grpcs-cert';
@@ -68,7 +65,7 @@ export class FindyAgencyStack extends cdk.Stack {
     const { configSecretName } = props;
 
     // Deployment
-    const deployment = new DeploymentStack(this, id, {
+    new DeploymentStack(this, id, {
       env,
       prod,
       containerNames,

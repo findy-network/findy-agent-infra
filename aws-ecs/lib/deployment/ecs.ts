@@ -14,11 +14,9 @@ import { ContainerDetails, Containers } from './containers';
 import { IBaseService, ICluster } from '@aws-cdk/aws-ecs';
 import { ARecord, IHostedZone, RecordTarget } from '@aws-cdk/aws-route53';
 import { ApplicationMultipleTargetGroupsFargateService } from '@aws-cdk/aws-ecs-patterns';
+import { Certificate } from '@aws-cdk/aws-certificatemanager';
 import {
-  DnsValidatedCertificate,
-  Certificate
-} from '@aws-cdk/aws-certificatemanager';
-import {
+  ApplicationListener,
   ApplicationProtocol,
   ListenerAction
 } from '@aws-cdk/aws-elasticloadbalancingv2';
@@ -119,7 +117,7 @@ export class ECS {
     );
 
     const secretArn = secret.secretFullArn;
-    if (secretArn) {
+    if (secretArn != null) {
       executionRole.addToPolicy(
         new PolicyStatement({
           resources: [secretArn.toString()],
@@ -150,7 +148,11 @@ export class ECS {
     props: ECSProps,
     cluster: ICluster,
     task: ecs.FargateTaskDefinition
-  ) {
+  ): {
+    service: ApplicationMultipleTargetGroupsFargateService;
+    httpsListener: ApplicationListener;
+    grpcListener: ApplicationListener;
+  } {
     const { apiCertificateArn } = props;
     const certificate = Certificate.fromCertificateArn(
       scope,
