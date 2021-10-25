@@ -81,14 +81,14 @@ interface ContainerProps {
 const mapSecrets = (
   secret: ISecret,
   envVariableMap: Record<string, string | ISecret>
-) => {
+): Record<string, Secret> => {
   return Object.keys(envVariableMap).reduce(
     (result, key) => ({
       ...result,
       [key]:
         typeof envVariableMap[key] === 'string'
-          ? Secret.fromSecretsManager(secret, <string>envVariableMap[key])
-          : Secret.fromSecretsManager(<ISecret>envVariableMap[key])
+          ? Secret.fromSecretsManager(secret, envVariableMap[key] as string)
+          : Secret.fromSecretsManager(envVariableMap[key] as ISecret)
     }),
     {}
   );
@@ -329,12 +329,12 @@ export class Containers {
     });
 
     // Add startup dependencies if any
-    if (dependencies) {
+    if (dependencies != null) {
       container.addContainerDependencies(...dependencies);
     }
 
     // Add EFS volume if any
-    if (volumeContainerPath) {
+    if (volumeContainerPath != null) {
       const {
         volumeName,
         securityGroup: efsSg,

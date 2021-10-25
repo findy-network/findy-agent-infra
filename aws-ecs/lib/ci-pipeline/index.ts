@@ -52,7 +52,7 @@ export class CIPipelineStack extends cdk.Stack {
       stageName: 'Source'
     });
 
-    const addSourceStage = (repositoryName: string) => {
+    const addSourceStage = (repositoryName: string): Artifact => {
       const githubOrganization = 'findy-network';
       const sources = new Artifact();
 

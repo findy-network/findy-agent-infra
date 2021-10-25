@@ -1,7 +1,7 @@
 import * as cdk from '@aws-cdk/core';
 import { Repository } from '@aws-cdk/aws-ecr';
 import { BuildSpec, PipelineProject } from '@aws-cdk/aws-codebuild';
-import { Artifact, IStage } from '@aws-cdk/aws-codepipeline';
+import { Artifact } from '@aws-cdk/aws-codepipeline';
 import { Action, CodeBuildAction } from '@aws-cdk/aws-codepipeline-actions';
 import { Role, ServicePrincipal, ManagedPolicy } from '@aws-cdk/aws-iam';
 
@@ -57,6 +57,7 @@ export class ImagePipeline {
         description: `Retain max ${maxImageCount} images`,
         maxImageCount
       });
+      return repo;
     });
     return repositories;
   }
@@ -66,7 +67,7 @@ export class ImagePipeline {
     id: string,
     props: ImagePipelineProps
   ): { output: Artifact; action: Action } {
-    const { buildInput, env } = props;
+    const { buildInput } = props;
     const pushRole = new Role(scope, 'BuildProjectRole', {
       assumedBy: new ServicePrincipal('codebuild.amazonaws.com')
     });
@@ -104,7 +105,7 @@ export class ImagePipeline {
     return { output, action };
   }
 
-  createCommands(props: ImagePipelineProps) {
+  createCommands(props: ImagePipelineProps): string[] {
     const { env, containerNames } = props;
     const images = [
       {
@@ -128,10 +129,13 @@ export class ImagePipeline {
       return result + (result === '' ? resItem : ',' + resItem);
     }, '');
 
+    const account = env?.account !== undefined ? env.account : '';
+    const region = env?.region !== undefined ? env.region : '';
+
     return [
       `aws ecr get-login-password --region $AWS_DEFAULT_REGION ` +
         `| docker login --username AWS ` +
-        `--password-stdin ${env?.account}.dkr.ecr.${env?.region}.amazonaws.com`,
+        `--password-stdin ${account}.dkr.ecr.${region}.amazonaws.com`,
       ...images.map(
         (item) =>
           `docker pull ${item.source}:latest\n` +

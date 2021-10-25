@@ -2,7 +2,7 @@ import { PolicyStatement, Role, ServicePrincipal } from '@aws-cdk/aws-iam';
 import { S3OriginConfig, OriginAccessIdentity } from '@aws-cdk/aws-cloudfront';
 import * as cdk from '@aws-cdk/core';
 import { Bucket, BlockPublicAccess, IBucket } from '@aws-cdk/aws-s3';
-import { Artifact, IStage } from '@aws-cdk/aws-codepipeline';
+import { Artifact } from '@aws-cdk/aws-codepipeline';
 import { Action, CodeBuildAction } from '@aws-cdk/aws-codepipeline-actions';
 import {
   BuildSpec,
