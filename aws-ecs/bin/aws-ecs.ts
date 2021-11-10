@@ -8,22 +8,15 @@ import {
 import { existsSync } from 'fs';
 import { exit } from 'process';
 
-// TODO:
-// check existence file by file
-// create cert with pipeline, arn as output?
-// parse output - put to env variable - copy certs
-// ECS deploy action
-const missing = [
-  '.secrets/agent/genesis_transactions',
-  '.secrets/agent/steward.exported'
-].find((item) => !existsSync(item));
+const missing = ['.secrets/agent/genesis_transactions'].find(
+  (item) => !existsSync(item)
+);
 if (missing != null) {
   console.warn(
     `Create folder .secrets and copy needed agency configuration files there.`
   );
   console.warn(
-    `* .secrets/agent/genesis_transactions: Genesis transcations for ledger *\n`,
-    `* .secrets/agent/steward.exported: Exported steward wallet *\n`
+    `* .secrets/agent/genesis_transactions: Genesis transcations for ledger *\n`
   );
   exit(1);
 }
