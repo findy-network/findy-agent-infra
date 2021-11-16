@@ -44,14 +44,35 @@ const params = {
   FINDY_AWS_ECS_API_DOMAIN_NAME: {
     variable: 'apiDomainName',
     description: 'the domain name for agency API, e.g. agency.example.com'
+  },
+  FINDY_AWS_ECS_VPC_NAME: {
+    variable: 'ecsVpcName',
+    description: 'the name of the VPC to use for ECS deploy action',
+    skippable: true
+  },
+  FINDY_AWS_ECS_CLUSTER_NAME: {
+    variable: 'ecsClusterName',
+    description: 'the name of the Cluster to use for ECS deploy action',
+    skippable: true
+  },
+  FINDY_AWS_ECS_SERVICE_ARN: {
+    variable: 'ecsServiceArn',
+    description: 'the name of the Service to use for ECS deploy action',
+    skippable: true
   }
 };
 
 const props = Object.keys(params).reduce(
   (result, item) => {
     // @ts-expect-error
-    const current = params[item] as { description: string };
-    if (process.env[item] == null) {
+    const current = params[item] as {
+      description: string;
+      skippable?: boolean;
+    };
+    if (
+      process.env[item] == null &&
+      (current.skippable == null || !current.skippable)
+    ) {
       console.log(`Define env variable ${item}, ${current.description}`);
       process.exit(1);
     }

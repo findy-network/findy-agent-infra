@@ -141,7 +141,8 @@ export class Containers {
         plainValues: {
           FCLI_AGENCY_HOST_PORT: '80',
           FCLI_AGENCY_HOST_ADDRESS: hostAddress,
-          FCLI_LOGGING: '-logtostderr=true -v=5',
+          FCLI_AGENCY_HOST_SCHEME: 'https',
+          FCLI_LOGGING: '-logtostderr=true -v=6',
           STARTUP_FILE_STORAGE_S3: configBucketName,
           FCLI_IMPORT_WALLET_FILE: '/agent/steward.exported',
           FCLI_POOL_GENESIS_TXN_FILE: '/agent/genesis_transactions'

@@ -3,6 +3,7 @@ import * as cdk from '@aws-cdk/core';
 import { CIPipelineStack } from './ci-pipeline';
 import { DeploymentStack } from './deployment';
 import { GrpcsCertStack } from './grpcs-cert';
+import { ECSDeployStack } from './ecs-deploy';
 
 export interface FindyAgencyStackProps extends cdk.StackProps {
   prod: boolean;
@@ -11,6 +12,9 @@ export interface FindyAgencyStackProps extends cdk.StackProps {
   walletDomainName: string;
   apiDomainName: string;
   configSecretName: string;
+  ecsVpcName: string;
+  ecsClusterName: string;
+  ecsServiceArn: string;
 }
 
 export class FindyAgencyStack extends cdk.Stack {
@@ -77,18 +81,17 @@ export class FindyAgencyStack extends cdk.Stack {
       zone
     });
 
-    /*
-    TODO:
-      const deployStage = ciPipeline.deployStage;
-      const imageDefinitionsOutput = ciPipeline.imageDefinitionsOutput;
-      deployStage.addAction(
-        new EcsDeployAction({
-          actionName: `${id}-deploy-ecs`,
-          input: imageDefinitionsOutput,
-          service
-          )
-        })
-      );
-    */
+    const { ecsServiceArn, ecsVpcName, ecsClusterName } = props;
+    if (ecsServiceArn != null) {
+      new ECSDeployStack(this, id, {
+        env,
+        prod,
+        serviceArn: ecsServiceArn,
+        vpcName: ecsVpcName,
+        clusterName: ecsClusterName,
+        deployStage: ciPipeline.deployStage,
+        actionInput: ciPipeline.imageDefinitionsOutput
+      });
+    }
   }
 }

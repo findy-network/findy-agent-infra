@@ -109,13 +109,28 @@ npm install
 # bootstrap CDK
 cdk bootstrap
 
+# save secrets
+./store-secrets.sh
+
 # deploy and save cert
 ./save-cert.sh
 
 # deploy rest of stacks
 cdk deploy FindyAgency/Deployment
 
-# add deploy step for ECS service manually through AWS console
+# use CLI or Console to check values for following and define variables:
+
+# VPC name
+export FINDY_AWS_ECS_VPC_NAME=""
+
+# Cluster name
+export FINDY_AWS_ECS_CLUSTER_NAME=""
+
+# Service ARN
+export FINDY_AWS_ECS_SERVICE_ARN=""
+
+# add deploy step for ECS service
+cdk deploy FindyAgency/CIPipeline FindyAgency/ECSDeploy
 ```
 
 ### Useful commands

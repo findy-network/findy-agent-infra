@@ -77,7 +77,7 @@ export class ImagePipeline {
       )
     );
     const name = `${id}ImagePipelinePushImages`;
-    const output = new Artifact();
+    const output = new Artifact('ImageDetails');
 
     const action = new CodeBuildAction({
       actionName: name,

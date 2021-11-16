@@ -15,7 +15,7 @@ module.exports = {
   },
   rules: {
     'tsdoc/syntax': 'warn',
-    'no-new': 'warn',
+    'no-new': 'off',
     '@typescript-eslint/no-extraneous-class': 'warn'
   }
 };
