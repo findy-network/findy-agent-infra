@@ -22,7 +22,6 @@ Production setup would need another iteration with additional security, high ava
 **TODO:**
 
 - disabling default HTTP listener
-- moving a2a traffic on top of HTTPS
 - auth/core services lock bolt dbs while execution and thus updates bring currently the whole system down
   NOTE: Due to this `Service Deployment Options` needs to be manually edited:
 
@@ -31,8 +30,9 @@ Production setup would need another iteration with additional security, high ava
      Maximum percent 100
   ```
 
-- load balancer has performance issues with GRPCS-listener
-- microservice traffic should be routed internally without need for tls
+- load balancer has performance issues with GRPC-listener TLS termination
+- microservice traffic should be routed internally without the need for tls
+- reading from EFS file system is slow
 
 ## Prerequisities
 
