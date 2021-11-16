@@ -38,7 +38,8 @@ export class DeploymentStack extends cdk.Stack {
     // ECS services config files
     const config = new ConfigBucket(this, ecsId, {
       prod,
-      env
+      env,
+      walletDomainName
     });
 
     // ECS containers and load balancing

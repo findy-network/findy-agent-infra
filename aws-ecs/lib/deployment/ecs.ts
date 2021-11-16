@@ -22,7 +22,6 @@ import {
 } from '@aws-cdk/aws-elasticloadbalancingv2';
 import { LoadBalancerTarget } from '@aws-cdk/aws-route53-targets';
 import { Targets } from './targets';
-import { Tags } from '@aws-cdk/core';
 
 export interface ECSProps {
   env: cdk.Environment | undefined;
