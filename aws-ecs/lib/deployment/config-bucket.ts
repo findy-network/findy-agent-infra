@@ -10,14 +10,15 @@ import { BucketDeployment, Source } from '@aws-cdk/aws-s3-deployment';
 export interface ConfigBucketProps {
   env: cdk.Environment | undefined;
   prod: boolean;
+  walletDomainName: string;
 }
 
 export class ConfigBucket {
   public readonly bucket: IBucket;
   constructor(scope: cdk.Construct, id: string, props: ConfigBucketProps) {
-    const { prod } = props;
+    const { prod, walletDomainName } = props;
 
-    const bucketName = `${id}ConfigBucket`
+    const bucketName = `${walletDomainName}${id}ConfigBucket`
       .replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)
       .replace('-', '');
 

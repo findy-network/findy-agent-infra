@@ -8,22 +8,15 @@ import {
 import { existsSync } from 'fs';
 import { exit } from 'process';
 
-// TODO:
-// check existence file by file
-// create cert with pipeline, arn as output?
-// parse output - put to env variable - copy certs
-// ECS deploy action
-const missing = [
-  '.secrets/agent/genesis_transactions',
-  '.secrets/agent/steward.exported'
-].find((item) => !existsSync(item));
+const missing = ['.secrets/agent/genesis_transactions'].find(
+  (item) => !existsSync(item)
+);
 if (missing != null) {
   console.warn(
     `Create folder .secrets and copy needed agency configuration files there.`
   );
   console.warn(
-    `* .secrets/agent/genesis_transactions: Genesis transcations for ledger *\n`,
-    `* .secrets/agent/steward.exported: Exported steward wallet *\n`
+    `* .secrets/agent/genesis_transactions: Genesis transcations for ledger *\n`
   );
   exit(1);
 }
@@ -51,14 +44,35 @@ const params = {
   FINDY_AWS_ECS_API_DOMAIN_NAME: {
     variable: 'apiDomainName',
     description: 'the domain name for agency API, e.g. agency.example.com'
+  },
+  FINDY_AWS_ECS_VPC_NAME: {
+    variable: 'ecsVpcName',
+    description: 'the name of the VPC to use for ECS deploy action',
+    skippable: true
+  },
+  FINDY_AWS_ECS_CLUSTER_NAME: {
+    variable: 'ecsClusterName',
+    description: 'the name of the Cluster to use for ECS deploy action',
+    skippable: true
+  },
+  FINDY_AWS_ECS_SERVICE_ARN: {
+    variable: 'ecsServiceArn',
+    description: 'the name of the Service to use for ECS deploy action',
+    skippable: true
   }
 };
 
 const props = Object.keys(params).reduce(
   (result, item) => {
     // @ts-expect-error
-    const current = params[item] as { description: string };
-    if (process.env[item] == null) {
+    const current = params[item] as {
+      description: string;
+      skippable?: boolean;
+    };
+    if (
+      process.env[item] == null &&
+      (current.skippable == null || !current.skippable)
+    ) {
       console.log(`Define env variable ${item}, ${current.description}`);
       process.exit(1);
     }

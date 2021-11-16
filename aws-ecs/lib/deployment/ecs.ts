@@ -54,7 +54,8 @@ export class ECS {
     const task = this.createTask(scope, id, props, secret);
 
     const vpc = new ec2.Vpc(scope, `${id}ECSLoadBalancerVpc`, {
-      maxAzs: 2 // Default is all AZs in region
+      maxAzs: 2, // Default is all AZs in region, at least 2 required for LB
+      natGateways: 1 // We need at least 1 NAT gateway to get outbound internet access from agency
     });
 
     const cluster = new ecs.Cluster(scope, `${id}ECSCluster`, {

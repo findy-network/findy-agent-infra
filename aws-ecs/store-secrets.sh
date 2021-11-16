@@ -10,13 +10,11 @@ SEC_KEY="$(openssl rand -hex 32)"
 ENCLAVE_KEY="$(openssl rand -hex 32)"
 
 if [ -z "$FINDY_AWS_ECS_STEWARD_WALLET_KEY" ]; then
-  echo "ERROR: Define env variable FINDY_AWS_ECS_STEWARD_WALLET_KEY"
-  exit 1
+  echo "WARN: FINDY_AWS_ECS_STEWARD_WALLET_KEY missing, installing agency as non-steward"
 fi
 
 if [ -z "$FINDY_AWS_ECS_STEWARD_DID" ]; then
-  echo "ERROR: Define env variable FINDY_AWS_ECS_STEWARD_DID"
-  exit 1
+  echo "WARN: FINDY_AWS_ECS_STEWARD_DID missing, installing agency as non-steward"
 fi
 
 if [ -z "$FINDY_AWS_ECS_CONFIG_SECRET_NAME" ]; then

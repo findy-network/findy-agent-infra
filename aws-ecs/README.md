@@ -90,15 +90,15 @@ Production setup would need another iteration with additional security, high ava
    # secret name in secretsmanager (choose freely)
    export FINDY_AWS_ECS_CONFIG_SECRET_NAME="AgencySecrets"
 
-   # steward DID registered to ledger
+   # steward DID registered to ledger (empty string if not running as steward)
    export FINDY_AWS_ECS_STEWARD_DID="xxx"
 
-   # steward wallet key used in export
+   # steward wallet key used in export (empty string if not running as steward)
    export FINDY_AWS_ECS_STEWARD_WALLET_KEY="xxx"
 
    ```
 
-1. Create folder `.secrets\agent` and add there genesis file: `genesis_transactions` and steward's exported wallet: `steward.exported`
+1. Create folder `.secrets\agent` and add there genesis file: `genesis_transactions` and steward's exported wallet (if running as steward): `steward.exported`
 
 ## Steps
 
@@ -109,13 +109,28 @@ npm install
 # bootstrap CDK
 cdk bootstrap
 
+# save secrets
+./store-secrets.sh
+
 # deploy and save cert
 ./save-cert.sh
 
 # deploy rest of stacks
 cdk deploy FindyAgency/Deployment
 
-# add deploy step for ECS service manually through AWS console
+# use CLI or Console to check values for following and define variables:
+
+# VPC name
+export FINDY_AWS_ECS_VPC_NAME=""
+
+# Cluster name
+export FINDY_AWS_ECS_CLUSTER_NAME=""
+
+# Service ARN
+export FINDY_AWS_ECS_SERVICE_ARN=""
+
+# add deploy step for ECS service
+cdk deploy FindyAgency/CIPipeline FindyAgency/ECSDeploy
 ```
 
 ### Useful commands
