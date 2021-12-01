@@ -5,6 +5,8 @@ on:
 jobs:
   pwa:
     runs-on: ubuntu-latest
+    env:
+      AGENCY_API_URL: ${{ secrets.AgencyApiUrl }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -17,13 +19,16 @@ jobs:
           curl https://raw.githubusercontent.com/findy-network/findy-agent-cli/HEAD/install.sh > install.sh
           chmod a+x install.sh
           sudo ./install.sh -b /bin
+      - name: download cert
+        run: ./e2e/dl-cert.sh
       - name: install deps
         run: npm ci
       - name: start app
         run: CI=true npm start &
+      - name: "Set cert path"
+        run: |
+          echo "AGENCY_TLS_PATH=$GITHUB_WORKSPACE/e2e/cert" >> $GITHUB_ENV
       - name: test
         run: npm run test:e2e
         env:
           AGENCY_URL: ${{ secrets.AgencyUrl }}
-          AGENCY_API_URL: ${{ secrets.AgencyApiUrl }}
-          AGENCY_TLS_PATH: "/cert"
