@@ -1,6 +1,6 @@
 {
   "name": "aws-ecs",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "bin": {
     "aws-ecs": "bin/aws-ecs.js"
   },
