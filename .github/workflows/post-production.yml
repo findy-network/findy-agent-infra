@@ -1,6 +1,7 @@
 name: e2e
 on:
   repository_dispatch:
+  workflow_dispatch:
 
 jobs:
   pwa:
