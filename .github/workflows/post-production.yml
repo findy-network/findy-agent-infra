@@ -27,7 +27,7 @@ jobs:
         run: ./e2e/dl-cert.sh
       - name: install deps
         run: |
-          npm install nightwatch --legacy-peer-deps
+          npm install nightwatch@2.1.7 --legacy-peer-deps
           full_version=$(google-chrome --product-version)
           chrome_version=$(echo "${full_version%.*.*.*}")
           npm install chromedriver@$chrome_version --legacy-peer-deps
