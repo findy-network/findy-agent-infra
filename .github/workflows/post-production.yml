@@ -27,12 +27,10 @@ jobs:
         run: ./e2e/dl-cert.sh
       - name: install deps
         run: |
-          npm ci
+          npm install nightwatch
           full_version=$(google-chrome --product-version)
           chrome_version=$(echo "${full_version%.*.*.*}")
           npm install chromedriver@$chrome_version
-      - name: start app
-        run: CI=true npm start &
       - name: "Set cert path"
         run: |
           echo "AGENCY_TLS_PATH=$GITHUB_WORKSPACE/e2e/cert" >> $GITHUB_ENV
