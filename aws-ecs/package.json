@@ -1,69 +1,32 @@
 {
-  "name": "aws-ecs",
-  "version": "0.0.15",
+  "name": "findy-agency",
+  "version": "0.1.0",
   "bin": {
-    "aws-ecs": "bin/aws-ecs.js"
+    "findy-agency": "bin/findy-agency.js"
   },
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "test": "npm run test:lint && npm run test:unit",
-    "test:unit": "jest",
-    "test:lint": "eslint ./lib && eslint ./bin",
+    "test": "jest",
     "cdk": "cdk",
-    "deps:update": "npm-outdated-to-latest",
-    "format": "prettier --config .prettierrc './**/*.ts' --write",
     "licenses:check": "node ./tools/check-licenses.js ",
-    "cli:certificate:save": "./save-cert.sh"
+    "pipeline:init": "./tools/init.sh",
+    "pipeline:context": "JSON=$(cat cdk.context.json) && aws ssm put-parameter --overwrite --name \"/findy-agency/cdk-context\" --value \"$JSON\" --type String"
   },
   "devDependencies": {
-    "@aws-cdk/assert": "^1.128.0",
-    "@types/jest": "^27.0.2",
-    "@types/node": "^16.11.0",
-    "@typescript-eslint/eslint-plugin": "^5.1.0",
-    "@typescript-eslint/parser": "^5.1.0",
-    "aws-cdk": "^1.128.0",
-    "eslint": "^8.1.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-config-standard-with-typescript": "^21.0.1",
-    "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-jest": "^25.2.2",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.1",
-    "eslint-plugin-tsdoc": "^0.2.14",
-    "jest": "^27.2.4",
+    "@types/jest": "^27.5.2",
+    "@types/node": "10.17.27",
+    "@types/prettier": "2.6.0",
+    "aws-cdk": "2.29.1",
+    "jest": "^27.5.1",
     "js-green-licenses": "^3.0.1",
-    "npm-outdated-to-latest": "^1.0.3",
-    "prettier": "^2.4.1",
-    "ts-jest": "^27.0.6",
-    "ts-node": "^10.3.0",
-    "typescript": "^4.4.4"
+    "ts-jest": "^27.1.4",
+    "ts-node": "^10.8.1",
+    "typescript": "~3.9.7"
   },
   "dependencies": {
-    "@aws-cdk/aws-certificatemanager": "^1.128.0",
-    "@aws-cdk/aws-cloudfront": "^1.128.0",
-    "@aws-cdk/aws-codebuild": "^1.128.0",
-    "@aws-cdk/aws-codepipeline-actions": "^1.124.0",
-    "@aws-cdk/aws-ec2": "^1.128.0",
-    "@aws-cdk/aws-ecr": "^1.124.0",
-    "@aws-cdk/aws-ecs": "^1.128.0",
-    "@aws-cdk/aws-ecs-patterns": "^1.125.0",
-    "@aws-cdk/aws-efs": "^1.124.0",
-    "@aws-cdk/aws-elasticloadbalancingv2": "^1.128.0",
-    "@aws-cdk/aws-iam": "^1.128.0",
-    "@aws-cdk/aws-logs": "^1.128.0",
-    "@aws-cdk/aws-rds": "^1.128.0",
-    "@aws-cdk/aws-route53": "^1.128.0",
-    "@aws-cdk/aws-route53-targets": "^1.128.0",
-    "@aws-cdk/aws-s3": "^1.128.0",
-    "@aws-cdk/aws-s3-deployment": "^1.128.0",
-    "@aws-cdk/aws-secretsmanager": "^1.128.0",
-    "@aws-cdk/core": "^1.128.0",
-    "source-map-support": "^0.5.16"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/findy-network/findy-agent-infra.git"
+    "aws-cdk-lib": "^2.35.0",
+    "constructs": "^10.0.0"
   },
   "author": "findy-network",
   "license": "Apache-2.0"

@@ -1,0 +1,2284 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Backend Created 1`] = `
+Object {
+  "Outputs": Object {
+    "MyTestBackendCertArn7C9A964B": Object {
+      "Value": Object {
+        "Fn::GetAtt": Array [
+          "MyTestBackendCertificateCertificateRequestorResource6C144387",
+          "Arn",
+        ],
+      },
+    },
+    "MyTestBackendClusterNameE66AC51F": Object {
+      "Value": Object {
+        "Ref": "MyTestBackendECSClusterD1C89047",
+      },
+    },
+    "MyTestBackendServiceArn9DF3BC94": Object {
+      "Value": Object {
+        "Ref": "MyTestBackendServiceE381563D",
+      },
+    },
+    "MyTestBackendServiceLoadBalancerDNS4A6080B8": Object {
+      "Value": Object {
+        "Fn::GetAtt": Array [
+          "MyTestBackendServiceLB9548A941",
+          "DNSName",
+        ],
+      },
+    },
+    "MyTestBackendServiceServiceURL5C837BAF": Object {
+      "Value": Object {
+        "Fn::Join": Array [
+          "",
+          Array [
+            "http://",
+            Object {
+              "Fn::GetAtt": Array [
+                "MyTestBackendServiceLB9548A941",
+                "DNSName",
+              ],
+            },
+          ],
+        ],
+      },
+    },
+  },
+  "Parameters": Object {
+    "BootstrapVersion": Object {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": Object {
+    "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536": Object {
+      "DependsOn": Array [
+        "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF",
+        "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "f98b78092dcdd31f5e6d47489beb5f804d4835ef86a8085d0a2053cb9ae711da.zip",
+        },
+        "Handler": "index.handler",
+        "Layers": Array [
+          Object {
+            "Ref": "findyagencybackendconfigDeploymentAwsCliLayer6EF7432F",
+          },
+        ],
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265",
+            "Arn",
+          ],
+        },
+        "Runtime": "python3.7",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":s3:::cdk-hnb659fds-assets-123456789012-us-east-1",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":s3:::cdk-hnb659fds-assets-123456789012-us-east-1/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "findyagencybackendconfigD2FBE825",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "findyagencybackendconfigD2FBE825",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF",
+        "Roles": Array [
+          Object {
+            "Ref": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "MyTestBackendARecordD47E249E": Object {
+      "Properties": Object {
+        "AliasTarget": Object {
+          "DNSName": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "dualstack.",
+                Object {
+                  "Fn::GetAtt": Array [
+                    "MyTestBackendServiceLB9548A941",
+                    "DNSName",
+                  ],
+                },
+              ],
+            ],
+          },
+          "HostedZoneId": Object {
+            "Fn::GetAtt": Array [
+              "MyTestBackendServiceLB9548A941",
+              "CanonicalHostedZoneID",
+            ],
+          },
+        },
+        "HostedZoneId": "DUMMY",
+        "Name": "app-api.example.com.",
+        "Type": "A",
+      },
+      "Type": "AWS::Route53::RecordSet",
+    },
+    "MyTestBackendAgentTargetsGRPCGroup6ACE64FE": Object {
+      "Properties": Object {
+        "HealthCheckPath": "/helloworld.Greeter/SayHello",
+        "HealthCheckPort": "50051",
+        "HealthCheckProtocol": "HTTP",
+        "Port": 50051,
+        "Protocol": "HTTP",
+        "ProtocolVersion": "GRPC",
+        "TargetGroupAttributes": Array [
+          Object {
+            "Key": "stickiness.enabled",
+            "Value": "false",
+          },
+        ],
+        "TargetType": "ip",
+        "VpcId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpc57B44F2B",
+        },
+      },
+      "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+    },
+    "MyTestBackendCertificateCertificateRequestorFunction9CF7EACA": Object {
+      "DependsOn": Array [
+        "MyTestBackendCertificateCertificateRequestorFunctionServiceRoleDefaultPolicy3F68C11E",
+        "MyTestBackendCertificateCertificateRequestorFunctionServiceRoleFC9915F4",
+      ],
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "8ddf29ab619460567d3cda58de2ff1bf0f6e95d8822ff630ec58a4d52ed1fa67.zip",
+        },
+        "Handler": "index.certificateRequestHandler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendCertificateCertificateRequestorFunctionServiceRoleFC9915F4",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs14.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "MyTestBackendCertificateCertificateRequestorFunctionServiceRoleDefaultPolicy3F68C11E": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "acm:RequestCertificate",
+                "acm:DescribeCertificate",
+                "acm:DeleteCertificate",
+                "acm:AddTagsToCertificate",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "route53:GetChange",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "route53:changeResourceRecordSets",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":route53:::hostedzone/DUMMY",
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "MyTestBackendCertificateCertificateRequestorFunctionServiceRoleDefaultPolicy3F68C11E",
+        "Roles": Array [
+          Object {
+            "Ref": "MyTestBackendCertificateCertificateRequestorFunctionServiceRoleFC9915F4",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "MyTestBackendCertificateCertificateRequestorFunctionServiceRoleFC9915F4": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "MyTestBackendCertificateCertificateRequestorResource6C144387": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "DomainName": "app-api.example.com",
+        "HostedZoneId": "DUMMY",
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendCertificateCertificateRequestorFunction9CF7EACA",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "AWS::CloudFormation::CustomResource",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "MyTestBackendECSClusterD1C89047": Object {
+      "Type": "AWS::ECS::Cluster",
+    },
+    "MyTestBackendECSExecutionRole247C121B": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "ecs-tasks.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "MyTestBackendECSExecutionRoleDefaultPolicyC6444DB7": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "MyTestBackendECSTaskfindyagencycoreLogGroup3E5C5D6E",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "secretsmanager:GetSecretValue",
+                "secretsmanager:DescribeSecret",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":secretsmanager:us-east-1:123456789012:secret:FindyAgency-??????",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "MyTestBackendECSTaskfindyagencyvaultLogGroupCEC62381",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "MyTestBackendECSTaskfindyagencyauthLogGroupDFE9F70D",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "MyTestBackendECSExecutionRoleDefaultPolicyC6444DB7",
+        "Roles": Array [
+          Object {
+            "Ref": "MyTestBackendECSExecutionRole247C121B",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "MyTestBackendECSLoadBalancerVpc57B44F2B": Object {
+      "Properties": Object {
+        "CidrBlock": "10.0.0.0/16",
+        "EnableDnsHostnames": true,
+        "EnableDnsSupport": true,
+        "InstanceTenancy": "default",
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "MyTestStack/MyTestBackendECSLoadBalancerVpc",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::VPC",
+    },
+    "MyTestBackendECSLoadBalancerVpcIGWC99FB8ED": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "MyTestStack/MyTestBackendECSLoadBalancerVpc",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::InternetGateway",
+    },
+    "MyTestBackendECSLoadBalancerVpcPrivateSubnet1DefaultRoute9E754D17": Object {
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpcPublicSubnet1NATGatewayF53A02EF",
+        },
+        "RouteTableId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpcPrivateSubnet1RouteTableD9EE3CEB",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "MyTestBackendECSLoadBalancerVpcPrivateSubnet1RouteTableAssociation9EEC4CD6": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpcPrivateSubnet1RouteTableD9EE3CEB",
+        },
+        "SubnetId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpcPrivateSubnet1Subnet049EA92B",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "MyTestBackendECSLoadBalancerVpcPrivateSubnet1RouteTableD9EE3CEB": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "MyTestStack/MyTestBackendECSLoadBalancerVpc/PrivateSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpc57B44F2B",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "MyTestBackendECSLoadBalancerVpcPrivateSubnet1Subnet049EA92B": Object {
+      "Properties": Object {
+        "AvailabilityZone": "dummy1a",
+        "CidrBlock": "10.0.128.0/18",
+        "MapPublicIpOnLaunch": false,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "MyTestStack/MyTestBackendECSLoadBalancerVpc/PrivateSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpc57B44F2B",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "MyTestBackendECSLoadBalancerVpcPrivateSubnet2DefaultRoute8A11931E": Object {
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpcPublicSubnet1NATGatewayF53A02EF",
+        },
+        "RouteTableId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpcPrivateSubnet2RouteTableD132BBD5",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "MyTestBackendECSLoadBalancerVpcPrivateSubnet2RouteTableAssociation4D462D68": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpcPrivateSubnet2RouteTableD132BBD5",
+        },
+        "SubnetId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpcPrivateSubnet2Subnet012A4F12",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "MyTestBackendECSLoadBalancerVpcPrivateSubnet2RouteTableD132BBD5": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "MyTestStack/MyTestBackendECSLoadBalancerVpc/PrivateSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpc57B44F2B",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "MyTestBackendECSLoadBalancerVpcPrivateSubnet2Subnet012A4F12": Object {
+      "Properties": Object {
+        "AvailabilityZone": "dummy1b",
+        "CidrBlock": "10.0.192.0/18",
+        "MapPublicIpOnLaunch": false,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "MyTestStack/MyTestBackendECSLoadBalancerVpc/PrivateSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpc57B44F2B",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "MyTestBackendECSLoadBalancerVpcPublicSubnet1DefaultRoute0B445013": Object {
+      "DependsOn": Array [
+        "MyTestBackendECSLoadBalancerVpcVPCGW21A0C7CB",
+      ],
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpcIGWC99FB8ED",
+        },
+        "RouteTableId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpcPublicSubnet1RouteTable84FFC010",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "MyTestBackendECSLoadBalancerVpcPublicSubnet1EIP3F41EB5E": Object {
+      "Properties": Object {
+        "Domain": "vpc",
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "MyTestStack/MyTestBackendECSLoadBalancerVpc/PublicSubnet1",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::EIP",
+    },
+    "MyTestBackendECSLoadBalancerVpcPublicSubnet1NATGatewayF53A02EF": Object {
+      "Properties": Object {
+        "AllocationId": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendECSLoadBalancerVpcPublicSubnet1EIP3F41EB5E",
+            "AllocationId",
+          ],
+        },
+        "SubnetId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpcPublicSubnet1Subnet8B416BD0",
+        },
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "MyTestStack/MyTestBackendECSLoadBalancerVpc/PublicSubnet1",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::NatGateway",
+    },
+    "MyTestBackendECSLoadBalancerVpcPublicSubnet1RouteTable84FFC010": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "MyTestStack/MyTestBackendECSLoadBalancerVpc/PublicSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpc57B44F2B",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "MyTestBackendECSLoadBalancerVpcPublicSubnet1RouteTableAssociation49AFFB46": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpcPublicSubnet1RouteTable84FFC010",
+        },
+        "SubnetId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpcPublicSubnet1Subnet8B416BD0",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "MyTestBackendECSLoadBalancerVpcPublicSubnet1Subnet8B416BD0": Object {
+      "Properties": Object {
+        "AvailabilityZone": "dummy1a",
+        "CidrBlock": "10.0.0.0/18",
+        "MapPublicIpOnLaunch": true,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "MyTestStack/MyTestBackendECSLoadBalancerVpc/PublicSubnet1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpc57B44F2B",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "MyTestBackendECSLoadBalancerVpcPublicSubnet2DefaultRouteFE1E078D": Object {
+      "DependsOn": Array [
+        "MyTestBackendECSLoadBalancerVpcVPCGW21A0C7CB",
+      ],
+      "Properties": Object {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpcIGWC99FB8ED",
+        },
+        "RouteTableId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpcPublicSubnet2RouteTable222F6190",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "MyTestBackendECSLoadBalancerVpcPublicSubnet2RouteTable222F6190": Object {
+      "Properties": Object {
+        "Tags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "MyTestStack/MyTestBackendECSLoadBalancerVpc/PublicSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpc57B44F2B",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "MyTestBackendECSLoadBalancerVpcPublicSubnet2RouteTableAssociation008B4DD1": Object {
+      "Properties": Object {
+        "RouteTableId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpcPublicSubnet2RouteTable222F6190",
+        },
+        "SubnetId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpcPublicSubnet2SubnetB97A46E1",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "MyTestBackendECSLoadBalancerVpcPublicSubnet2SubnetB97A46E1": Object {
+      "Properties": Object {
+        "AvailabilityZone": "dummy1b",
+        "CidrBlock": "10.0.64.0/18",
+        "MapPublicIpOnLaunch": true,
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public",
+          },
+          Object {
+            "Key": "Name",
+            "Value": "MyTestStack/MyTestBackendECSLoadBalancerVpc/PublicSubnet2",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpc57B44F2B",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "MyTestBackendECSLoadBalancerVpcVPCGW21A0C7CB": Object {
+      "Properties": Object {
+        "InternetGatewayId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpcIGWC99FB8ED",
+        },
+        "VpcId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpc57B44F2B",
+        },
+      },
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+    },
+    "MyTestBackendECSTask13F7F0B6": Object {
+      "Properties": Object {
+        "ContainerDefinitions": Array [
+          Object {
+            "Environment": Array [
+              Object {
+                "Name": "FCLI_AGENCY_HOST_PORT",
+                "Value": "80",
+              },
+              Object {
+                "Name": "FCLI_AGENCY_HOST_ADDRESS",
+                "Value": "app-api.example.com",
+              },
+              Object {
+                "Name": "FCLI_AGENCY_HOST_SCHEME",
+                "Value": "https",
+              },
+              Object {
+                "Name": "FCLI_LOGGING",
+                "Value": "-logtostderr=true -v=6",
+              },
+              Object {
+                "Name": "STARTUP_FILE_STORAGE_S3",
+                "Value": "findyagencybackendconfig",
+              },
+              Object {
+                "Name": "FCLI_IMPORT_WALLET_FILE",
+                "Value": "",
+              },
+              Object {
+                "Name": "FCLI_IMPORT_WALLET_NAME",
+                "Value": "",
+              },
+              Object {
+                "Name": "FCLI_POOL_GENESIS_TXN_FILE",
+                "Value": "/agent/genesis_transactions",
+              },
+            ],
+            "Essential": true,
+            "HealthCheck": Object {
+              "Command": Array [
+                "CMD-SHELL",
+                "curl -f http://localhost:8080/ready || exit 1",
+              ],
+              "Interval": 30,
+              "Retries": 10,
+              "Timeout": 5,
+            },
+            "Image": "ghcr.io/findy-network/findy-agent",
+            "LogConfiguration": Object {
+              "LogDriver": "awslogs",
+              "Options": Object {
+                "awslogs-group": Object {
+                  "Ref": "MyTestBackendECSTaskfindyagencycoreLogGroup3E5C5D6E",
+                },
+                "awslogs-region": "us-east-1",
+                "awslogs-stream-prefix": "findy-agency-core",
+              },
+            },
+            "MountPoints": Array [
+              Object {
+                "ContainerPath": "/root",
+                "ReadOnly": false,
+                "SourceVolume": "findy-agency-coreEFSVolume",
+              },
+            ],
+            "Name": "findy-agency-core",
+            "PortMappings": Array [
+              Object {
+                "ContainerPort": 8080,
+                "Protocol": "tcp",
+              },
+              Object {
+                "ContainerPort": 50051,
+                "Protocol": "tcp",
+              },
+            ],
+            "Secrets": Array [
+              Object {
+                "Name": "FCLI_AGENCY_STEWARD_WALLET_KEY",
+                "ValueFrom": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":secretsmanager:us-east-1:123456789012:secret:FindyAgency:findy-agency-steward-wallet-key::",
+                    ],
+                  ],
+                },
+              },
+              Object {
+                "Name": "FCLI_AGENCY_STEWARD_DID",
+                "ValueFrom": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":secretsmanager:us-east-1:123456789012:secret:FindyAgency:findy-agency-steward-did::",
+                    ],
+                  ],
+                },
+              },
+              Object {
+                "Name": "FCLI_AGENCY_STEWARD_SEED",
+                "ValueFrom": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":secretsmanager:us-east-1:123456789012:secret:FindyAgency:findy-agency-steward-seed::",
+                    ],
+                  ],
+                },
+              },
+              Object {
+                "Name": "FCLI_AGENCY_GRPC_JWT_SECRET",
+                "ValueFrom": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":secretsmanager:us-east-1:123456789012:secret:FindyAgency:findy-agency-jwt-key::",
+                    ],
+                  ],
+                },
+              },
+              Object {
+                "Name": "FCLI_AGENCY_ADMIN_ID",
+                "ValueFrom": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":secretsmanager:us-east-1:123456789012:secret:FindyAgency:findy-agency-admin-id::",
+                    ],
+                  ],
+                },
+              },
+              Object {
+                "Name": "FCLI_AGENCY_ENCLAVE_KEY",
+                "ValueFrom": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":secretsmanager:us-east-1:123456789012:secret:FindyAgency:findy-agency-enclave-key::",
+                    ],
+                  ],
+                },
+              },
+            ],
+          },
+          Object {
+            "DependsOn": Array [
+              Object {
+                "Condition": "HEALTHY",
+                "ContainerName": "findy-agency-core",
+              },
+            ],
+            "Environment": Array [
+              Object {
+                "Name": "FAV_AGENCY_HOST",
+                "Value": "localhost",
+              },
+              Object {
+                "Name": "FAV_DB_HOST",
+                "Value": Object {
+                  "Fn::GetAtt": Array [
+                    "MyTestBackendVaultRDS32FFE505",
+                    "Endpoint.Address",
+                  ],
+                },
+              },
+              Object {
+                "Name": "FAV_AGENCY_CERT_PATH",
+                "Value": "",
+              },
+              Object {
+                "Name": "FAV_AGENCY_INSECURE",
+                "Value": "true",
+              },
+            ],
+            "Essential": true,
+            "Image": "ghcr.io/findy-network/findy-agent-vault",
+            "LogConfiguration": Object {
+              "LogDriver": "awslogs",
+              "Options": Object {
+                "awslogs-group": Object {
+                  "Ref": "MyTestBackendECSTaskfindyagencyvaultLogGroupCEC62381",
+                },
+                "awslogs-region": "us-east-1",
+                "awslogs-stream-prefix": "findy-agency-vault",
+              },
+            },
+            "Name": "findy-agency-vault",
+            "PortMappings": Array [
+              Object {
+                "ContainerPort": 8085,
+                "Protocol": "tcp",
+              },
+            ],
+            "Secrets": Array [
+              Object {
+                "Name": "FAV_JWT_KEY",
+                "ValueFrom": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":secretsmanager:us-east-1:123456789012:secret:FindyAgency:findy-agency-jwt-key::",
+                    ],
+                  ],
+                },
+              },
+              Object {
+                "Name": "FAV_AGENCY_ADMIN_ID",
+                "ValueFrom": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":secretsmanager:us-east-1:123456789012:secret:FindyAgency:findy-agency-admin-id::",
+                    ],
+                  ],
+                },
+              },
+              Object {
+                "Name": "FAV_DB_PASSWORD",
+                "ValueFrom": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":secretsmanager:us-east-1:123456789012:secret:FindyAgency:findy-agency-db-password::",
+                    ],
+                  ],
+                },
+              },
+            ],
+          },
+          Object {
+            "DependsOn": Array [
+              Object {
+                "Condition": "HEALTHY",
+                "ContainerName": "findy-agency-core",
+              },
+            ],
+            "Environment": Array [
+              Object {
+                "Name": "FAA_AGENCY_ADDR",
+                "Value": "localhost",
+              },
+              Object {
+                "Name": "FAA_DOMAIN",
+                "Value": "app.example.com",
+              },
+              Object {
+                "Name": "FAA_ORIGIN",
+                "Value": "https://app.example.com",
+              },
+              Object {
+                "Name": "FAA_CERT_PATH",
+                "Value": "",
+              },
+              Object {
+                "Name": "FAA_AGENCY_INSECURE",
+                "Value": "true",
+              },
+            ],
+            "Essential": true,
+            "Image": "ghcr.io/findy-network/findy-agent-auth",
+            "LogConfiguration": Object {
+              "LogDriver": "awslogs",
+              "Options": Object {
+                "awslogs-group": Object {
+                  "Ref": "MyTestBackendECSTaskfindyagencyauthLogGroupDFE9F70D",
+                },
+                "awslogs-region": "us-east-1",
+                "awslogs-stream-prefix": "findy-agency-auth",
+              },
+            },
+            "MountPoints": Array [
+              Object {
+                "ContainerPath": "/data",
+                "ReadOnly": false,
+                "SourceVolume": "findy-agency-authEFSVolume",
+              },
+            ],
+            "Name": "findy-agency-auth",
+            "PortMappings": Array [
+              Object {
+                "ContainerPort": 8888,
+                "Protocol": "tcp",
+              },
+            ],
+            "Secrets": Array [
+              Object {
+                "Name": "FAA_JWT_VERIFICATION_KEY",
+                "ValueFrom": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":secretsmanager:us-east-1:123456789012:secret:FindyAgency:findy-agency-jwt-key::",
+                    ],
+                  ],
+                },
+              },
+              Object {
+                "Name": "FAA_SEC_KEY",
+                "ValueFrom": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":secretsmanager:us-east-1:123456789012:secret:FindyAgency:findy-agency-sec-key::",
+                    ],
+                  ],
+                },
+              },
+              Object {
+                "Name": "FAA_AGENCY_ADMIN_ID",
+                "ValueFrom": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":secretsmanager:us-east-1:123456789012:secret:FindyAgency:findy-agency-admin-id::",
+                    ],
+                  ],
+                },
+              },
+            ],
+          },
+        ],
+        "Cpu": "256",
+        "ExecutionRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendECSExecutionRole247C121B",
+            "Arn",
+          ],
+        },
+        "Family": "MyTestStackMyTestBackendECSTaskD07AB3CF",
+        "Memory": "512",
+        "NetworkMode": "awsvpc",
+        "RequiresCompatibilities": Array [
+          "FARGATE",
+        ],
+        "TaskRoleArn": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendECSTaskRole499BB4F5",
+            "Arn",
+          ],
+        },
+        "Volumes": Array [
+          Object {
+            "EFSVolumeConfiguration": Object {
+              "FilesystemId": Object {
+                "Ref": "findyagencycoreEFSEA647A5B",
+              },
+            },
+            "Name": "findy-agency-coreEFSVolume",
+          },
+          Object {
+            "EFSVolumeConfiguration": Object {
+              "FilesystemId": Object {
+                "Ref": "findyagencyauthEFSD273A2A6",
+              },
+            },
+            "Name": "findy-agency-authEFSVolume",
+          },
+        ],
+      },
+      "Type": "AWS::ECS::TaskDefinition",
+    },
+    "MyTestBackendECSTaskRole499BB4F5": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "ecs-tasks.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "MyTestBackendECSTaskRoleDefaultPolicy426957FA": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "findyagencybackendconfigD2FBE825",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "findyagencybackendconfigD2FBE825",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "MyTestBackendECSTaskRoleDefaultPolicy426957FA",
+        "Roles": Array [
+          Object {
+            "Ref": "MyTestBackendECSTaskRole499BB4F5",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "MyTestBackendECSTaskfindyagencyauthLogGroupDFE9F70D": Object {
+      "DeletionPolicy": "Retain",
+      "Properties": Object {
+        "RetentionInDays": 30,
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "MyTestBackendECSTaskfindyagencycoreLogGroup3E5C5D6E": Object {
+      "DeletionPolicy": "Retain",
+      "Properties": Object {
+        "RetentionInDays": 30,
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "MyTestBackendECSTaskfindyagencyvaultLogGroupCEC62381": Object {
+      "DeletionPolicy": "Retain",
+      "Properties": Object {
+        "RetentionInDays": 30,
+      },
+      "Type": "AWS::Logs::LogGroup",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "MyTestBackendServiceE381563D": Object {
+      "DependsOn": Array [
+        "MyTestBackendServiceLBMyTestBackendGRPCListener17A87195",
+        "MyTestBackendServiceLBMyTestBackendHTTPSListenerMyTestBackendAgentECSHTTPSTargetRule53F96772",
+        "MyTestBackendServiceLBMyTestBackendHTTPSListenerMyTestBackendAuthECSHTTPSTargetRule6BE8ED15",
+        "MyTestBackendServiceLBMyTestBackendHTTPSListenerMyTestBackendVaultECSHTTPSTargetRuleD4618BB3",
+        "MyTestBackendServiceLBPublicListenerECSGroup6776F227",
+        "MyTestBackendServiceLBPublicListener52E6BB3B",
+      ],
+      "Properties": Object {
+        "Cluster": Object {
+          "Ref": "MyTestBackendECSClusterD1C89047",
+        },
+        "DeploymentConfiguration": Object {
+          "MaximumPercent": 200,
+          "MinimumHealthyPercent": 50,
+        },
+        "DesiredCount": 1,
+        "EnableECSManagedTags": false,
+        "HealthCheckGracePeriodSeconds": 60,
+        "LaunchType": "FARGATE",
+        "LoadBalancers": Array [
+          Object {
+            "ContainerName": "findy-agency-core",
+            "ContainerPort": 8080,
+            "TargetGroupArn": Object {
+              "Ref": "MyTestBackendServiceLBPublicListenerECSGroup6776F227",
+            },
+          },
+          Object {
+            "ContainerName": "findy-agency-core",
+            "ContainerPort": 50051,
+            "TargetGroupArn": Object {
+              "Ref": "MyTestBackendAgentTargetsGRPCGroup6ACE64FE",
+            },
+          },
+          Object {
+            "ContainerName": "findy-agency-core",
+            "ContainerPort": 8080,
+            "TargetGroupArn": Object {
+              "Ref": "MyTestBackendServiceLBMyTestBackendHTTPSListenerMyTestBackendAgentECSHTTPSTargetGroup9C0669A8",
+            },
+          },
+          Object {
+            "ContainerName": "findy-agency-auth",
+            "ContainerPort": 8888,
+            "TargetGroupArn": Object {
+              "Ref": "MyTestBackendServiceLBMyTestBackendHTTPSListenerMyTestBackendAuthECSHTTPSTargetGroup0264C113",
+            },
+          },
+          Object {
+            "ContainerName": "findy-agency-vault",
+            "ContainerPort": 8085,
+            "TargetGroupArn": Object {
+              "Ref": "MyTestBackendServiceLBMyTestBackendHTTPSListenerMyTestBackendVaultECSHTTPSTargetGroup14415C5A",
+            },
+          },
+        ],
+        "NetworkConfiguration": Object {
+          "AwsvpcConfiguration": Object {
+            "AssignPublicIp": "DISABLED",
+            "SecurityGroups": Array [
+              Object {
+                "Fn::GetAtt": Array [
+                  "MyTestBackendServiceSecurityGroup364D279C",
+                  "GroupId",
+                ],
+              },
+            ],
+            "Subnets": Array [
+              Object {
+                "Ref": "MyTestBackendECSLoadBalancerVpcPrivateSubnet1Subnet049EA92B",
+              },
+              Object {
+                "Ref": "MyTestBackendECSLoadBalancerVpcPrivateSubnet2Subnet012A4F12",
+              },
+            ],
+          },
+        },
+        "TaskDefinition": Object {
+          "Ref": "MyTestBackendECSTask13F7F0B6",
+        },
+      },
+      "Type": "AWS::ECS::Service",
+    },
+    "MyTestBackendServiceLB9548A941": Object {
+      "DependsOn": Array [
+        "MyTestBackendECSLoadBalancerVpcPublicSubnet1DefaultRoute0B445013",
+        "MyTestBackendECSLoadBalancerVpcPublicSubnet2DefaultRouteFE1E078D",
+      ],
+      "Properties": Object {
+        "LoadBalancerAttributes": Array [
+          Object {
+            "Key": "deletion_protection.enabled",
+            "Value": "false",
+          },
+          Object {
+            "Key": "idle_timeout.timeout_seconds",
+            "Value": "3600",
+          },
+        ],
+        "Scheme": "internet-facing",
+        "SecurityGroups": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "MyTestBackendServiceLBSecurityGroup8030668E",
+              "GroupId",
+            ],
+          },
+        ],
+        "Subnets": Array [
+          Object {
+            "Ref": "MyTestBackendECSLoadBalancerVpcPublicSubnet1Subnet8B416BD0",
+          },
+          Object {
+            "Ref": "MyTestBackendECSLoadBalancerVpcPublicSubnet2SubnetB97A46E1",
+          },
+        ],
+        "Type": "application",
+      },
+      "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+    },
+    "MyTestBackendServiceLBMyTestBackendGRPCListener17A87195": Object {
+      "Properties": Object {
+        "Certificates": Array [
+          Object {
+            "CertificateArn": Object {
+              "Fn::GetAtt": Array [
+                "MyTestBackendCertificateCertificateRequestorResource6C144387",
+                "Arn",
+              ],
+            },
+          },
+        ],
+        "DefaultActions": Array [
+          Object {
+            "TargetGroupArn": Object {
+              "Ref": "MyTestBackendAgentTargetsGRPCGroup6ACE64FE",
+            },
+            "Type": "forward",
+          },
+        ],
+        "LoadBalancerArn": Object {
+          "Ref": "MyTestBackendServiceLB9548A941",
+        },
+        "Port": 50051,
+        "Protocol": "HTTPS",
+      },
+      "Type": "AWS::ElasticLoadBalancingV2::Listener",
+    },
+    "MyTestBackendServiceLBMyTestBackendHTTPSListener4AB7E1DE": Object {
+      "Properties": Object {
+        "Certificates": Array [
+          Object {
+            "CertificateArn": Object {
+              "Fn::GetAtt": Array [
+                "MyTestBackendCertificateCertificateRequestorResource6C144387",
+                "Arn",
+              ],
+            },
+          },
+        ],
+        "DefaultActions": Array [
+          Object {
+            "FixedResponseConfig": Object {
+              "StatusCode": "404",
+            },
+            "Type": "fixed-response",
+          },
+        ],
+        "LoadBalancerArn": Object {
+          "Ref": "MyTestBackendServiceLB9548A941",
+        },
+        "Port": 443,
+        "Protocol": "HTTPS",
+      },
+      "Type": "AWS::ElasticLoadBalancingV2::Listener",
+    },
+    "MyTestBackendServiceLBMyTestBackendHTTPSListenerMyTestBackendAgentECSHTTPSTargetGroup9C0669A8": Object {
+      "Properties": Object {
+        "HealthCheckPath": "/",
+        "HealthCheckPort": "8080",
+        "HealthCheckProtocol": "HTTP",
+        "Port": 8080,
+        "Protocol": "HTTP",
+        "TargetGroupAttributes": Array [
+          Object {
+            "Key": "stickiness.enabled",
+            "Value": "false",
+          },
+        ],
+        "TargetType": "ip",
+        "VpcId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpc57B44F2B",
+        },
+      },
+      "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+    },
+    "MyTestBackendServiceLBMyTestBackendHTTPSListenerMyTestBackendAgentECSHTTPSTargetRule53F96772": Object {
+      "Properties": Object {
+        "Actions": Array [
+          Object {
+            "TargetGroupArn": Object {
+              "Ref": "MyTestBackendServiceLBMyTestBackendHTTPSListenerMyTestBackendAgentECSHTTPSTargetGroup9C0669A8",
+            },
+            "Type": "forward",
+          },
+        ],
+        "Conditions": Array [
+          Object {
+            "Field": "path-pattern",
+            "PathPatternConfig": Object {
+              "Values": Array [
+                "/api/*",
+                "/ca-api/*",
+                "/ca-apiws/*",
+                "/a2a/*",
+              ],
+            },
+          },
+        ],
+        "ListenerArn": Object {
+          "Ref": "MyTestBackendServiceLBMyTestBackendHTTPSListener4AB7E1DE",
+        },
+        "Priority": 100,
+      },
+      "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+    },
+    "MyTestBackendServiceLBMyTestBackendHTTPSListenerMyTestBackendAuthECSHTTPSTargetGroup0264C113": Object {
+      "Properties": Object {
+        "HealthCheckPath": "/",
+        "HealthCheckPort": "8888",
+        "HealthCheckProtocol": "HTTP",
+        "Port": 8888,
+        "Protocol": "HTTP",
+        "TargetGroupAttributes": Array [
+          Object {
+            "Key": "stickiness.enabled",
+            "Value": "false",
+          },
+        ],
+        "TargetType": "ip",
+        "VpcId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpc57B44F2B",
+        },
+      },
+      "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+    },
+    "MyTestBackendServiceLBMyTestBackendHTTPSListenerMyTestBackendAuthECSHTTPSTargetRule6BE8ED15": Object {
+      "Properties": Object {
+        "Actions": Array [
+          Object {
+            "TargetGroupArn": Object {
+              "Ref": "MyTestBackendServiceLBMyTestBackendHTTPSListenerMyTestBackendAuthECSHTTPSTargetGroup0264C113",
+            },
+            "Type": "forward",
+          },
+        ],
+        "Conditions": Array [
+          Object {
+            "Field": "path-pattern",
+            "PathPatternConfig": Object {
+              "Values": Array [
+                "/register/*",
+                "/login/*",
+              ],
+            },
+          },
+        ],
+        "ListenerArn": Object {
+          "Ref": "MyTestBackendServiceLBMyTestBackendHTTPSListener4AB7E1DE",
+        },
+        "Priority": 99,
+      },
+      "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+    },
+    "MyTestBackendServiceLBMyTestBackendHTTPSListenerMyTestBackendVaultECSHTTPSTargetGroup14415C5A": Object {
+      "Properties": Object {
+        "HealthCheckPath": "/health",
+        "HealthCheckPort": "8085",
+        "HealthCheckProtocol": "HTTP",
+        "Port": 8085,
+        "Protocol": "HTTP",
+        "TargetGroupAttributes": Array [
+          Object {
+            "Key": "stickiness.enabled",
+            "Value": "false",
+          },
+        ],
+        "TargetType": "ip",
+        "VpcId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpc57B44F2B",
+        },
+      },
+      "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+    },
+    "MyTestBackendServiceLBMyTestBackendHTTPSListenerMyTestBackendVaultECSHTTPSTargetRuleD4618BB3": Object {
+      "Properties": Object {
+        "Actions": Array [
+          Object {
+            "TargetGroupArn": Object {
+              "Ref": "MyTestBackendServiceLBMyTestBackendHTTPSListenerMyTestBackendVaultECSHTTPSTargetGroup14415C5A",
+            },
+            "Type": "forward",
+          },
+        ],
+        "Conditions": Array [
+          Object {
+            "Field": "path-pattern",
+            "PathPatternConfig": Object {
+              "Values": Array [
+                "/query*",
+              ],
+            },
+          },
+        ],
+        "ListenerArn": Object {
+          "Ref": "MyTestBackendServiceLBMyTestBackendHTTPSListener4AB7E1DE",
+        },
+        "Priority": 98,
+      },
+      "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+    },
+    "MyTestBackendServiceLBPublicListener52E6BB3B": Object {
+      "Properties": Object {
+        "DefaultActions": Array [
+          Object {
+            "TargetGroupArn": Object {
+              "Ref": "MyTestBackendServiceLBPublicListenerECSGroup6776F227",
+            },
+            "Type": "forward",
+          },
+        ],
+        "LoadBalancerArn": Object {
+          "Ref": "MyTestBackendServiceLB9548A941",
+        },
+        "Port": 80,
+        "Protocol": "HTTP",
+      },
+      "Type": "AWS::ElasticLoadBalancingV2::Listener",
+    },
+    "MyTestBackendServiceLBPublicListenerECSGroup6776F227": Object {
+      "Properties": Object {
+        "Port": 8080,
+        "Protocol": "HTTP",
+        "TargetGroupAttributes": Array [
+          Object {
+            "Key": "stickiness.enabled",
+            "Value": "false",
+          },
+        ],
+        "TargetType": "ip",
+        "VpcId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpc57B44F2B",
+        },
+      },
+      "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+    },
+    "MyTestBackendServiceLBSecurityGroup8030668E": Object {
+      "Properties": Object {
+        "GroupDescription": "Automatically created Security Group for ELB MyTestStackMyTestBackendServiceLBDE78E383",
+        "SecurityGroupIngress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow from anyone on port 80",
+            "FromPort": 80,
+            "IpProtocol": "tcp",
+            "ToPort": 80,
+          },
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow from anyone on port 443",
+            "FromPort": 443,
+            "IpProtocol": "tcp",
+            "ToPort": 443,
+          },
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow from anyone on port 50051",
+            "FromPort": 50051,
+            "IpProtocol": "tcp",
+            "ToPort": 50051,
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpc57B44F2B",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "MyTestBackendServiceLBSecurityGrouptoMyTestStackMyTestBackendServiceSecurityGroupC4B716FA443E8D5B2CF": Object {
+      "Properties": Object {
+        "Description": "to MyTestStackMyTestBackendServiceSecurityGroupC4B716FA:443",
+        "DestinationSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendServiceSecurityGroup364D279C",
+            "GroupId",
+          ],
+        },
+        "FromPort": 443,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendServiceLBSecurityGroup8030668E",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "ToPort": 443,
+      },
+      "Type": "AWS::EC2::SecurityGroupEgress",
+    },
+    "MyTestBackendServiceLBSecurityGrouptoMyTestStackMyTestBackendServiceSecurityGroupC4B716FA5005139F22C8D": Object {
+      "Properties": Object {
+        "Description": "Load balancer to target",
+        "DestinationSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendServiceSecurityGroup364D279C",
+            "GroupId",
+          ],
+        },
+        "FromPort": 50051,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendServiceLBSecurityGroup8030668E",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "ToPort": 50051,
+      },
+      "Type": "AWS::EC2::SecurityGroupEgress",
+    },
+    "MyTestBackendServiceLBSecurityGrouptoMyTestStackMyTestBackendServiceSecurityGroupC4B716FA8080203827D3": Object {
+      "Properties": Object {
+        "Description": "Load balancer to target",
+        "DestinationSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendServiceSecurityGroup364D279C",
+            "GroupId",
+          ],
+        },
+        "FromPort": 8080,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendServiceLBSecurityGroup8030668E",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "ToPort": 8080,
+      },
+      "Type": "AWS::EC2::SecurityGroupEgress",
+    },
+    "MyTestBackendServiceLBSecurityGrouptoMyTestStackMyTestBackendServiceSecurityGroupC4B716FA80853D7DFC2A": Object {
+      "Properties": Object {
+        "Description": "Load balancer to target",
+        "DestinationSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendServiceSecurityGroup364D279C",
+            "GroupId",
+          ],
+        },
+        "FromPort": 8085,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendServiceLBSecurityGroup8030668E",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "ToPort": 8085,
+      },
+      "Type": "AWS::EC2::SecurityGroupEgress",
+    },
+    "MyTestBackendServiceLBSecurityGrouptoMyTestStackMyTestBackendServiceSecurityGroupC4B716FA88883A6D0190": Object {
+      "Properties": Object {
+        "Description": "Load balancer to target",
+        "DestinationSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendServiceSecurityGroup364D279C",
+            "GroupId",
+          ],
+        },
+        "FromPort": 8888,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendServiceLBSecurityGroup8030668E",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "ToPort": 8888,
+      },
+      "Type": "AWS::EC2::SecurityGroupEgress",
+    },
+    "MyTestBackendServiceSecurityGroup364D279C": Object {
+      "Properties": Object {
+        "GroupDescription": "MyTestStack/MyTestBackendService/Service/SecurityGroup",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpc57B44F2B",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "MyTestBackendServiceSecurityGroupfromMyTestStackMyTestBackendServiceLBSecurityGroupE8447E1944327FECDD5": Object {
+      "Properties": Object {
+        "Description": "from MyTestStackMyTestBackendServiceLBSecurityGroupE8447E19:443",
+        "FromPort": 443,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendServiceSecurityGroup364D279C",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "SourceSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendServiceLBSecurityGroup8030668E",
+            "GroupId",
+          ],
+        },
+        "ToPort": 443,
+      },
+      "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+    "MyTestBackendServiceSecurityGroupfromMyTestStackMyTestBackendServiceLBSecurityGroupE8447E1950051E3540DA1": Object {
+      "Properties": Object {
+        "Description": "Load balancer to target",
+        "FromPort": 50051,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendServiceSecurityGroup364D279C",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "SourceSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendServiceLBSecurityGroup8030668E",
+            "GroupId",
+          ],
+        },
+        "ToPort": 50051,
+      },
+      "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+    "MyTestBackendServiceSecurityGroupfromMyTestStackMyTestBackendServiceLBSecurityGroupE8447E1980808D43E56C": Object {
+      "Properties": Object {
+        "Description": "Load balancer to target",
+        "FromPort": 8080,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendServiceSecurityGroup364D279C",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "SourceSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendServiceLBSecurityGroup8030668E",
+            "GroupId",
+          ],
+        },
+        "ToPort": 8080,
+      },
+      "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+    "MyTestBackendServiceSecurityGroupfromMyTestStackMyTestBackendServiceLBSecurityGroupE8447E198085F019BF2B": Object {
+      "Properties": Object {
+        "Description": "Load balancer to target",
+        "FromPort": 8085,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendServiceSecurityGroup364D279C",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "SourceSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendServiceLBSecurityGroup8030668E",
+            "GroupId",
+          ],
+        },
+        "ToPort": 8085,
+      },
+      "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+    "MyTestBackendServiceSecurityGroupfromMyTestStackMyTestBackendServiceLBSecurityGroupE8447E198888F4ED204A": Object {
+      "Properties": Object {
+        "Description": "Load balancer to target",
+        "FromPort": 8888,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendServiceSecurityGroup364D279C",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "SourceSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendServiceLBSecurityGroup8030668E",
+            "GroupId",
+          ],
+        },
+        "ToPort": 8888,
+      },
+      "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+    "MyTestBackendVaultRDS32FFE505": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "AllocatedStorage": "100",
+        "CopyTagsToSnapshot": true,
+        "DBInstanceClass": "db.t3.micro",
+        "DBName": "vault",
+        "DBSubnetGroupName": Object {
+          "Ref": "MyTestBackendVaultRDSSubnetGroupB931280F",
+        },
+        "Engine": "postgres",
+        "EngineVersion": "13.6",
+        "MasterUserPassword": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "{{resolve:secretsmanager:arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":secretsmanager:us-east-1:123456789012:secret:FindyAgency:SecretString:findy-agency-db-password::}}",
+            ],
+          ],
+        },
+        "MasterUsername": "postgres",
+        "Port": "5432",
+        "StorageType": "gp2",
+        "VPCSecurityGroups": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "MyTestBackendVaultRDSSecurityGroupD68CB109",
+              "GroupId",
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::RDS::DBInstance",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "MyTestBackendVaultRDSSecurityGroupD68CB109": Object {
+      "Properties": Object {
+        "GroupDescription": "MyTestStack/MyTestBackendVaultRDSSecurityGroup",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpc57B44F2B",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "MyTestBackendVaultRDSSecurityGroupfromMyTestStackMyTestBackendServiceSecurityGroupC4B716FA5432DD0F542D": Object {
+      "Properties": Object {
+        "Description": "from MyTestStackMyTestBackendServiceSecurityGroupC4B716FA:5432",
+        "FromPort": 5432,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendVaultRDSSecurityGroupD68CB109",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "SourceSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendServiceSecurityGroup364D279C",
+            "GroupId",
+          ],
+        },
+        "ToPort": 5432,
+      },
+      "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+    "MyTestBackendVaultRDSSubnetGroupB931280F": Object {
+      "Properties": Object {
+        "DBSubnetGroupDescription": "Subnet group for MyTestBackendVaultRDS database",
+        "SubnetIds": Array [
+          Object {
+            "Ref": "MyTestBackendECSLoadBalancerVpcPrivateSubnet1Subnet049EA92B",
+          },
+          Object {
+            "Ref": "MyTestBackendECSLoadBalancerVpcPrivateSubnet2Subnet012A4F12",
+          },
+        ],
+      },
+      "Type": "AWS::RDS::DBSubnetGroup",
+    },
+    "findyagencyauthEFSD273A2A6": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "Encrypted": true,
+        "FileSystemTags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "MyTestStack/findy-agency-authEFS",
+          },
+        ],
+        "LifecyclePolicies": Array [
+          Object {
+            "TransitionToIA": "AFTER_90_DAYS",
+          },
+        ],
+        "PerformanceMode": "generalPurpose",
+      },
+      "Type": "AWS::EFS::FileSystem",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "findyagencyauthEFSEfsMountTarget1FC157FA9": Object {
+      "Properties": Object {
+        "FileSystemId": Object {
+          "Ref": "findyagencyauthEFSD273A2A6",
+        },
+        "SecurityGroups": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "findyagencyauthEFSSecurityGroupDC4829F7",
+              "GroupId",
+            ],
+          },
+        ],
+        "SubnetId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpcPrivateSubnet1Subnet049EA92B",
+        },
+      },
+      "Type": "AWS::EFS::MountTarget",
+    },
+    "findyagencyauthEFSEfsMountTarget2CCFE3F78": Object {
+      "Properties": Object {
+        "FileSystemId": Object {
+          "Ref": "findyagencyauthEFSD273A2A6",
+        },
+        "SecurityGroups": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "findyagencyauthEFSSecurityGroupDC4829F7",
+              "GroupId",
+            ],
+          },
+        ],
+        "SubnetId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpcPrivateSubnet2Subnet012A4F12",
+        },
+      },
+      "Type": "AWS::EFS::MountTarget",
+    },
+    "findyagencyauthEFSSecurityGroupDC4829F7": Object {
+      "Properties": Object {
+        "GroupDescription": "MyTestStack/findy-agency-authEFSSecurityGroup",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpc57B44F2B",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "findyagencyauthEFSSecurityGroupfromMyTestStackMyTestBackendServiceSecurityGroupC4B716FA2049A0A3EE1D": Object {
+      "Properties": Object {
+        "Description": "from MyTestStackMyTestBackendServiceSecurityGroupC4B716FA:2049",
+        "FromPort": 2049,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "findyagencyauthEFSSecurityGroupDC4829F7",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "SourceSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendServiceSecurityGroup364D279C",
+            "GroupId",
+          ],
+        },
+        "ToPort": 2049,
+      },
+      "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+    "findyagencybackendconfigD2FBE825": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "BucketEncryption": Object {
+          "ServerSideEncryptionConfiguration": Array [
+            Object {
+              "ServerSideEncryptionByDefault": Object {
+                "SSEAlgorithm": "AES256",
+              },
+            },
+          ],
+        },
+        "BucketName": "findyagencybackendconfig",
+        "PublicAccessBlockConfiguration": Object {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true,
+        },
+        "Tags": Array [
+          Object {
+            "Key": "aws-cdk:cr-owned:0db4c7e6",
+            "Value": "true",
+          },
+        ],
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "findyagencybackendconfigDeploymentAwsCliLayer6EF7432F": Object {
+      "Properties": Object {
+        "Content": Object {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "fc2a3ca6356f84129511297b00cd5cef3c7b67abdf955eb5efa75c711da7399f.zip",
+        },
+        "Description": "/opt/awscli/aws",
+      },
+      "Type": "AWS::Lambda::LayerVersion",
+    },
+    "findyagencybackendconfigDeploymentCustomResource23163330": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "DestinationBucketName": Object {
+          "Ref": "findyagencybackendconfigD2FBE825",
+        },
+        "Prune": true,
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536",
+            "Arn",
+          ],
+        },
+        "SourceBucketNames": Array [
+          "cdk-hnb659fds-assets-123456789012-us-east-1",
+        ],
+        "SourceObjectKeys": Array [
+          "30bdba971638d4a54b006172820a834e783a9eebe4f2f16a0f67c26b6603b66b.zip",
+        ],
+      },
+      "Type": "Custom::CDKBucketDeployment",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "findyagencycoreEFSEA647A5B": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "Encrypted": true,
+        "FileSystemTags": Array [
+          Object {
+            "Key": "Name",
+            "Value": "MyTestStack/findy-agency-coreEFS",
+          },
+        ],
+        "LifecyclePolicies": Array [
+          Object {
+            "TransitionToIA": "AFTER_90_DAYS",
+          },
+        ],
+        "PerformanceMode": "generalPurpose",
+      },
+      "Type": "AWS::EFS::FileSystem",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "findyagencycoreEFSEfsMountTarget114167BA5": Object {
+      "Properties": Object {
+        "FileSystemId": Object {
+          "Ref": "findyagencycoreEFSEA647A5B",
+        },
+        "SecurityGroups": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "findyagencycoreEFSSecurityGroupC949E676",
+              "GroupId",
+            ],
+          },
+        ],
+        "SubnetId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpcPrivateSubnet1Subnet049EA92B",
+        },
+      },
+      "Type": "AWS::EFS::MountTarget",
+    },
+    "findyagencycoreEFSEfsMountTarget2D3D2F69A": Object {
+      "Properties": Object {
+        "FileSystemId": Object {
+          "Ref": "findyagencycoreEFSEA647A5B",
+        },
+        "SecurityGroups": Array [
+          Object {
+            "Fn::GetAtt": Array [
+              "findyagencycoreEFSSecurityGroupC949E676",
+              "GroupId",
+            ],
+          },
+        ],
+        "SubnetId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpcPrivateSubnet2Subnet012A4F12",
+        },
+      },
+      "Type": "AWS::EFS::MountTarget",
+    },
+    "findyagencycoreEFSSecurityGroupC949E676": Object {
+      "Properties": Object {
+        "GroupDescription": "MyTestStack/findy-agency-coreEFSSecurityGroup",
+        "SecurityGroupEgress": Array [
+          Object {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": Object {
+          "Ref": "MyTestBackendECSLoadBalancerVpc57B44F2B",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "findyagencycoreEFSSecurityGroupfromMyTestStackMyTestBackendServiceSecurityGroupC4B716FA2049D687424C": Object {
+      "Properties": Object {
+        "Description": "from MyTestStackMyTestBackendServiceSecurityGroupC4B716FA:2049",
+        "FromPort": 2049,
+        "GroupId": Object {
+          "Fn::GetAtt": Array [
+            "findyagencycoreEFSSecurityGroupC949E676",
+            "GroupId",
+          ],
+        },
+        "IpProtocol": "tcp",
+        "SourceSecurityGroupId": Object {
+          "Fn::GetAtt": Array [
+            "MyTestBackendServiceSecurityGroup364D279C",
+            "GroupId",
+          ],
+        },
+        "ToPort": 2049,
+      },
+      "Type": "AWS::EC2::SecurityGroupIngress",
+    },
+  },
+  "Rules": Object {
+    "CheckBootstrapVersion": Object {
+      "Assertions": Array [
+        Object {
+          "Assert": Object {
+            "Fn::Not": Array [
+              Object {
+                "Fn::Contains": Array [
+                  Array [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  Object {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;

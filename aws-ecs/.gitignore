@@ -9,4 +9,8 @@ node_modules
 .cdk.staging
 cdk.out
 
+# ignore this for public repository -> handled via parameter store
 cdk.context.json
+
+.temp
+genesis*

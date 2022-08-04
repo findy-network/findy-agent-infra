@@ -1,0 +1,4307 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pipeline Created 1`] = `
+Object {
+  "Parameters": Object {
+    "BootstrapVersion": Object {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+    "SsmParameterValuefindyagencygithubconnectionarnC96584B6F00A464EAD1953AFF4B05118Parameter": Object {
+      "Default": "/findy-agency/github-connection-arn",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": Object {
+    "Pipeline9850B417": Object {
+      "DependsOn": Array [
+        "PipelineRoleDefaultPolicy7BDC1ABB",
+        "PipelineRoleB27FAA37",
+      ],
+      "Properties": Object {
+        "ArtifactStore": Object {
+          "Location": Object {
+            "Ref": "PipelineArtifactsBucketAEA9A052",
+          },
+          "Type": "S3",
+        },
+        "Name": "FindyAgencyPipeline",
+        "RestartExecutionOnUpdate": true,
+        "RoleArn": Object {
+          "Fn::GetAtt": Array [
+            "PipelineRoleB27FAA37",
+            "Arn",
+          ],
+        },
+        "Stages": Array [
+          Object {
+            "Actions": Array [
+              Object {
+                "ActionTypeId": Object {
+                  "Category": "Source",
+                  "Owner": "AWS",
+                  "Provider": "CodeStarSourceConnection",
+                  "Version": "1",
+                },
+                "Configuration": Object {
+                  "BranchName": "master",
+                  "ConnectionArn": Object {
+                    "Ref": "SsmParameterValuefindyagencygithubconnectionarnC96584B6F00A464EAD1953AFF4B05118Parameter",
+                  },
+                  "FullRepositoryId": "findy-network/findy-agent",
+                },
+                "Name": "findy-network_findy-agent",
+                "OutputArtifacts": Array [
+                  Object {
+                    "Name": "findy_network_findy_agent_Source",
+                  },
+                ],
+                "RoleArn": Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineSourcefindynetworkfindyagentCodePipelineActionRole552470F7",
+                    "Arn",
+                  ],
+                },
+                "RunOrder": 1,
+              },
+              Object {
+                "ActionTypeId": Object {
+                  "Category": "Source",
+                  "Owner": "AWS",
+                  "Provider": "CodeStarSourceConnection",
+                  "Version": "1",
+                },
+                "Configuration": Object {
+                  "BranchName": "master",
+                  "ConnectionArn": Object {
+                    "Ref": "SsmParameterValuefindyagencygithubconnectionarnC96584B6F00A464EAD1953AFF4B05118Parameter",
+                  },
+                  "FullRepositoryId": "findy-network/findy-agent-auth",
+                },
+                "Name": "findy-network_findy-agent-auth",
+                "OutputArtifacts": Array [
+                  Object {
+                    "Name": "findy_network_findy_agent_auth_Source",
+                  },
+                ],
+                "RoleArn": Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineSourcefindynetworkfindyagentauthCodePipelineActionRoleE26FB0BD",
+                    "Arn",
+                  ],
+                },
+                "RunOrder": 1,
+              },
+              Object {
+                "ActionTypeId": Object {
+                  "Category": "Source",
+                  "Owner": "AWS",
+                  "Provider": "CodeStarSourceConnection",
+                  "Version": "1",
+                },
+                "Configuration": Object {
+                  "BranchName": "master",
+                  "ConnectionArn": Object {
+                    "Ref": "SsmParameterValuefindyagencygithubconnectionarnC96584B6F00A464EAD1953AFF4B05118Parameter",
+                  },
+                  "FullRepositoryId": "findy-network/findy-agent-infra",
+                },
+                "Name": "findy-network_findy-agent-infra",
+                "OutputArtifacts": Array [
+                  Object {
+                    "Name": "findy_network_findy_agent_infra_Source",
+                  },
+                ],
+                "RoleArn": Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineSourcefindynetworkfindyagentinfraCodePipelineActionRoleB22D35C2",
+                    "Arn",
+                  ],
+                },
+                "RunOrder": 1,
+              },
+              Object {
+                "ActionTypeId": Object {
+                  "Category": "Source",
+                  "Owner": "AWS",
+                  "Provider": "CodeStarSourceConnection",
+                  "Version": "1",
+                },
+                "Configuration": Object {
+                  "BranchName": "master",
+                  "ConnectionArn": Object {
+                    "Ref": "SsmParameterValuefindyagencygithubconnectionarnC96584B6F00A464EAD1953AFF4B05118Parameter",
+                  },
+                  "FullRepositoryId": "findy-network/findy-agent-vault",
+                },
+                "Name": "findy-network_findy-agent-vault",
+                "OutputArtifacts": Array [
+                  Object {
+                    "Name": "findy_network_findy_agent_vault_Source",
+                  },
+                ],
+                "RoleArn": Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineSourcefindynetworkfindyagentvaultCodePipelineActionRole56520AF4",
+                    "Arn",
+                  ],
+                },
+                "RunOrder": 1,
+              },
+              Object {
+                "ActionTypeId": Object {
+                  "Category": "Source",
+                  "Owner": "AWS",
+                  "Provider": "CodeStarSourceConnection",
+                  "Version": "1",
+                },
+                "Configuration": Object {
+                  "BranchName": "master",
+                  "ConnectionArn": Object {
+                    "Ref": "SsmParameterValuefindyagencygithubconnectionarnC96584B6F00A464EAD1953AFF4B05118Parameter",
+                  },
+                  "FullRepositoryId": "findy-network/findy-wallet-pwa",
+                },
+                "Name": "findy-network_findy-wallet-pwa",
+                "OutputArtifacts": Array [
+                  Object {
+                    "Name": "findy_network_findy_wallet_pwa_Source",
+                  },
+                ],
+                "RoleArn": Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineSourcefindynetworkfindywalletpwaCodePipelineActionRoleB6CA52C0",
+                    "Arn",
+                  ],
+                },
+                "RunOrder": 1,
+              },
+            ],
+            "Name": "Source",
+          },
+          Object {
+            "Actions": Array [
+              Object {
+                "ActionTypeId": Object {
+                  "Category": "Build",
+                  "Owner": "AWS",
+                  "Provider": "CodeBuild",
+                  "Version": "1",
+                },
+                "Configuration": Object {
+                  "EnvironmentVariables": "[{\\"name\\":\\"_PROJECT_CONFIG_HASH\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"85f4f06ee4db527e34468b7dd829cd2fdc32516a66f121b82c5a11a04340b86b\\"}]",
+                  "PrimarySource": "findy_network_findy_agent_infra_Source",
+                  "ProjectName": Object {
+                    "Ref": "PipelineBuildSynthStepCdkBuildProject7FBB5116",
+                  },
+                },
+                "InputArtifacts": Array [
+                  Object {
+                    "Name": "findy_network_findy_agent_infra_Source",
+                  },
+                  Object {
+                    "Name": "findy_network_findy_wallet_pwa_Source",
+                  },
+                  Object {
+                    "Name": "findy_network_findy_agent_Source",
+                  },
+                  Object {
+                    "Name": "findy_network_findy_agent_auth_Source",
+                  },
+                  Object {
+                    "Name": "findy_network_findy_agent_vault_Source",
+                  },
+                ],
+                "Name": "SynthStep",
+                "OutputArtifacts": Array [
+                  Object {
+                    "Name": "SynthStep_Output",
+                  },
+                ],
+                "RoleArn": Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineCodeBuildActionRole226DB0CB",
+                    "Arn",
+                  ],
+                },
+                "RunOrder": 1,
+              },
+            ],
+            "Name": "Build",
+          },
+          Object {
+            "Actions": Array [
+              Object {
+                "ActionTypeId": Object {
+                  "Category": "Build",
+                  "Owner": "AWS",
+                  "Provider": "CodeBuild",
+                  "Version": "1",
+                },
+                "Configuration": Object {
+                  "EnvironmentVariables": "[{\\"name\\":\\"_PROJECT_CONFIG_HASH\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"231e9a40cda8a0fedab599d5ea450da602d27d5a892bd4a18eaf5c3c51dbebbe\\"}]",
+                  "ProjectName": Object {
+                    "Ref": "PipelineUpdatePipelineSelfMutationDAA41400",
+                  },
+                },
+                "InputArtifacts": Array [
+                  Object {
+                    "Name": "SynthStep_Output",
+                  },
+                ],
+                "Name": "SelfMutate",
+                "RoleArn": Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineCodeBuildActionRole226DB0CB",
+                    "Arn",
+                  ],
+                },
+                "RunOrder": 1,
+              },
+            ],
+            "Name": "UpdatePipeline",
+          },
+          Object {
+            "Actions": Array [
+              Object {
+                "ActionTypeId": Object {
+                  "Category": "Build",
+                  "Owner": "AWS",
+                  "Provider": "CodeBuild",
+                  "Version": "1",
+                },
+                "Configuration": Object {
+                  "ProjectName": Object {
+                    "Ref": "PipelineAssetsFileAsset185A67CB4",
+                  },
+                },
+                "InputArtifacts": Array [
+                  Object {
+                    "Name": "SynthStep_Output",
+                  },
+                ],
+                "Name": "FileAsset1",
+                "RoleArn": Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineCodeBuildActionRole226DB0CB",
+                    "Arn",
+                  ],
+                },
+                "RunOrder": 1,
+              },
+              Object {
+                "ActionTypeId": Object {
+                  "Category": "Build",
+                  "Owner": "AWS",
+                  "Provider": "CodeBuild",
+                  "Version": "1",
+                },
+                "Configuration": Object {
+                  "ProjectName": Object {
+                    "Ref": "PipelineAssetsFileAsset24D2D639B",
+                  },
+                },
+                "InputArtifacts": Array [
+                  Object {
+                    "Name": "SynthStep_Output",
+                  },
+                ],
+                "Name": "FileAsset2",
+                "RoleArn": Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineCodeBuildActionRole226DB0CB",
+                    "Arn",
+                  ],
+                },
+                "RunOrder": 1,
+              },
+              Object {
+                "ActionTypeId": Object {
+                  "Category": "Build",
+                  "Owner": "AWS",
+                  "Provider": "CodeBuild",
+                  "Version": "1",
+                },
+                "Configuration": Object {
+                  "ProjectName": Object {
+                    "Ref": "PipelineAssetsFileAsset3FE71B523",
+                  },
+                },
+                "InputArtifacts": Array [
+                  Object {
+                    "Name": "SynthStep_Output",
+                  },
+                ],
+                "Name": "FileAsset3",
+                "RoleArn": Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineCodeBuildActionRole226DB0CB",
+                    "Arn",
+                  ],
+                },
+                "RunOrder": 1,
+              },
+              Object {
+                "ActionTypeId": Object {
+                  "Category": "Build",
+                  "Owner": "AWS",
+                  "Provider": "CodeBuild",
+                  "Version": "1",
+                },
+                "Configuration": Object {
+                  "ProjectName": Object {
+                    "Ref": "PipelineAssetsFileAsset474303B7D",
+                  },
+                },
+                "InputArtifacts": Array [
+                  Object {
+                    "Name": "SynthStep_Output",
+                  },
+                ],
+                "Name": "FileAsset4",
+                "RoleArn": Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineCodeBuildActionRole226DB0CB",
+                    "Arn",
+                  ],
+                },
+                "RunOrder": 1,
+              },
+            ],
+            "Name": "Assets",
+          },
+          Object {
+            "Actions": Array [
+              Object {
+                "ActionTypeId": Object {
+                  "Category": "Deploy",
+                  "Owner": "AWS",
+                  "Provider": "CloudFormation",
+                  "Version": "1",
+                },
+                "Configuration": Object {
+                  "ActionMode": "CHANGE_SET_REPLACE",
+                  "Capabilities": "CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND",
+                  "ChangeSetName": "PipelineChange",
+                  "RoleArn": Object {
+                    "Fn::Join": Array [
+                      "",
+                      Array [
+                        "arn:",
+                        Object {
+                          "Ref": "AWS::Partition",
+                        },
+                        ":iam::123456789012:role/cdk-hnb659fds-cfn-exec-role-123456789012-us-east-1",
+                      ],
+                    ],
+                  },
+                  "StackName": "Deploy-FindyAgencyInfraStack",
+                  "TemplatePath": "SynthStep_Output::assembly-MyTestStack-Deploy/MyTestStackDeployFindyAgencyInfraStack72B2F4FE.template.json",
+                },
+                "InputArtifacts": Array [
+                  Object {
+                    "Name": "SynthStep_Output",
+                  },
+                ],
+                "Name": "FindyAgencyInfraStack.Prepare",
+                "RoleArn": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::123456789012:role/cdk-hnb659fds-deploy-role-123456789012-us-east-1",
+                    ],
+                  ],
+                },
+                "RunOrder": 1,
+              },
+              Object {
+                "ActionTypeId": Object {
+                  "Category": "Deploy",
+                  "Owner": "AWS",
+                  "Provider": "CloudFormation",
+                  "Version": "1",
+                },
+                "Configuration": Object {
+                  "ActionMode": "CHANGE_SET_EXECUTE",
+                  "ChangeSetName": "PipelineChange",
+                  "StackName": "Deploy-FindyAgencyInfraStack",
+                },
+                "Name": "FindyAgencyInfraStack.Deploy",
+                "Namespace": "MyTestStackDeployFindyAgencyInfraStack72B2F4FE",
+                "RoleArn": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::123456789012:role/cdk-hnb659fds-deploy-role-123456789012-us-east-1",
+                    ],
+                  ],
+                },
+                "RunOrder": 2,
+              },
+              Object {
+                "ActionTypeId": Object {
+                  "Category": "Build",
+                  "Owner": "AWS",
+                  "Provider": "CodeBuild",
+                  "Version": "1",
+                },
+                "Configuration": Object {
+                  "ProjectName": Object {
+                    "Ref": "PipelineDeployFindyAgencyBuildFrontendStep30F5625A",
+                  },
+                },
+                "InputArtifacts": Array [
+                  Object {
+                    "Name": "findy_network_findy_wallet_pwa_Source",
+                  },
+                ],
+                "Name": "FindyAgencyBuildFrontendStep",
+                "OutputArtifacts": Array [
+                  Object {
+                    "Name": "FindyAgencyBuildFrontendStep_Output",
+                  },
+                ],
+                "RoleArn": Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineCodeBuildActionRole226DB0CB",
+                    "Arn",
+                  ],
+                },
+                "RunOrder": 3,
+              },
+              Object {
+                "ActionTypeId": Object {
+                  "Category": "Build",
+                  "Owner": "AWS",
+                  "Provider": "CodeBuild",
+                  "Version": "1",
+                },
+                "Configuration": Object {
+                  "EnvironmentVariables": "[{\\"name\\":\\"CLUSTER_NAME\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"#{MyTestStackDeployFindyAgencyInfraStack72B2F4FE.FindyAgencyInfraStackBackendClusterNameEB45501C}\\"},{\\"name\\":\\"SERVICE_NAME\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"#{MyTestStackDeployFindyAgencyInfraStack72B2F4FE.FindyAgencyInfraStackBackendServiceArnD846C577}\\"}]",
+                  "ProjectName": Object {
+                    "Ref": "PipelineDeployFindyAgencyDeployBackendStepEA7D1D2B",
+                  },
+                },
+                "InputArtifacts": Array [
+                  Object {
+                    "Name": "findy_network_findy_agent_Source",
+                  },
+                ],
+                "Name": "FindyAgencyDeployBackendStep",
+                "OutputArtifacts": Array [
+                  Object {
+                    "Name": "FindyAgencyDeployBackendStep_Output",
+                  },
+                ],
+                "RoleArn": Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineCodeBuildActionRole226DB0CB",
+                    "Arn",
+                  ],
+                },
+                "RunOrder": 3,
+              },
+              Object {
+                "ActionTypeId": Object {
+                  "Category": "Build",
+                  "Owner": "AWS",
+                  "Provider": "CodeBuild",
+                  "Version": "1",
+                },
+                "Configuration": Object {
+                  "PrimarySource": "findy_network_findy_agent_infra_Source",
+                  "ProjectName": Object {
+                    "Ref": "PipelineDeployFindyAgencyAdminOnboardStepCB4D6B02",
+                  },
+                },
+                "InputArtifacts": Array [
+                  Object {
+                    "Name": "findy_network_findy_agent_infra_Source",
+                  },
+                  Object {
+                    "Name": "FindyAgencyDeployBackendStep_Output",
+                  },
+                ],
+                "Name": "FindyAgencyAdminOnboardStep",
+                "OutputArtifacts": Array [
+                  Object {
+                    "Name": "FindyAgencyAdminOnboardStep_Output",
+                  },
+                ],
+                "RoleArn": Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineCodeBuildActionRole226DB0CB",
+                    "Arn",
+                  ],
+                },
+                "RunOrder": 4,
+              },
+              Object {
+                "ActionTypeId": Object {
+                  "Category": "Build",
+                  "Owner": "AWS",
+                  "Provider": "CodeBuild",
+                  "Version": "1",
+                },
+                "Configuration": Object {
+                  "ProjectName": Object {
+                    "Ref": "PipelineDeployFindyAgencyDeployFrontendStep7CEDCAD4",
+                  },
+                },
+                "InputArtifacts": Array [
+                  Object {
+                    "Name": "FindyAgencyBuildFrontendStep_Output",
+                  },
+                ],
+                "Name": "FindyAgencyDeployFrontendStep",
+                "OutputArtifacts": Array [
+                  Object {
+                    "Name": "FindyAgencyDeployFrontendStep_Output",
+                  },
+                ],
+                "RoleArn": Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineCodeBuildActionRole226DB0CB",
+                    "Arn",
+                  ],
+                },
+                "RunOrder": 4,
+              },
+              Object {
+                "ActionTypeId": Object {
+                  "Category": "Build",
+                  "Owner": "AWS",
+                  "Provider": "CodeBuild",
+                  "Version": "1",
+                },
+                "Configuration": Object {
+                  "PrimarySource": "findy_network_findy_wallet_pwa_Source",
+                  "ProjectName": Object {
+                    "Ref": "PipelineDeployFindyAgencyE2ETestStepAC93020B",
+                  },
+                },
+                "InputArtifacts": Array [
+                  Object {
+                    "Name": "findy_network_findy_wallet_pwa_Source",
+                  },
+                  Object {
+                    "Name": "FindyAgencyAdminOnboardStep_Output",
+                  },
+                ],
+                "Name": "FindyAgencyE2ETestStep",
+                "OutputArtifacts": Array [
+                  Object {
+                    "Name": "FindyAgencyE2ETestStep_Output",
+                  },
+                ],
+                "RoleArn": Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineCodeBuildActionRole226DB0CB",
+                    "Arn",
+                  ],
+                },
+                "RunOrder": 5,
+              },
+            ],
+            "Name": "Deploy",
+          },
+        ],
+      },
+      "Type": "AWS::CodePipeline::Pipeline",
+    },
+    "PipelineArtifactsBucketAEA9A052": Object {
+      "DeletionPolicy": "Retain",
+      "Properties": Object {
+        "BucketEncryption": Object {
+          "ServerSideEncryptionConfiguration": Array [
+            Object {
+              "ServerSideEncryptionByDefault": Object {
+                "SSEAlgorithm": "aws:kms",
+              },
+            },
+          ],
+        },
+        "PublicAccessBlockConfiguration": Object {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true,
+        },
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "PipelineArtifactsBucketPolicyF53CCC52": Object {
+      "Properties": Object {
+        "Bucket": Object {
+          "Ref": "PipelineArtifactsBucketAEA9A052",
+        },
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "s3:*",
+              "Condition": Object {
+                "Bool": Object {
+                  "aws:SecureTransport": "false",
+                },
+              },
+              "Effect": "Deny",
+              "Principal": Object {
+                "AWS": "*",
+              },
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineArtifactsBucketAEA9A052",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "PipelineArtifactsBucketAEA9A052",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+              ],
+              "Effect": "Allow",
+              "Principal": Object {
+                "AWS": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::123456789012:role/cdk-hnb659fds-deploy-role-123456789012-us-east-1",
+                    ],
+                  ],
+                },
+              },
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineArtifactsBucketAEA9A052",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "PipelineArtifactsBucketAEA9A052",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
+    "PipelineAssetsFileAsset185A67CB4": Object {
+      "Properties": Object {
+        "Artifacts": Object {
+          "Type": "CODEPIPELINE",
+        },
+        "Cache": Object {
+          "Type": "NO_CACHE",
+        },
+        "Description": "Pipeline step MyTestStack/Pipeline/Assets/FileAsset1",
+        "EncryptionKey": "alias/aws/s3",
+        "Environment": Object {
+          "ComputeType": "BUILD_GENERAL1_SMALL",
+          "EnvironmentVariables": Array [
+            Object {
+              "Name": "DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/domain-name",
+            },
+            Object {
+              "Name": "SUB_DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/sub-domain-name",
+            },
+            Object {
+              "Name": "API_SUB_DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/api-sub-domain-name",
+            },
+            Object {
+              "Name": "GENESIS_TRANSACTIONS",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/genesis",
+            },
+            Object {
+              "Name": "ADMIN_ID",
+              "Type": "SECRETS_MANAGER",
+              "Value": "FindyAgency:findy-agency-admin-id",
+            },
+            Object {
+              "Name": "ADMIN_AUTHN_KEY",
+              "Type": "SECRETS_MANAGER",
+              "Value": "FindyAgency:findy-agency-admin-authn-key",
+            },
+          ],
+          "Image": "aws/codebuild/standard:5.0",
+          "ImagePullCredentialsType": "CODEBUILD",
+          "PrivilegedMode": false,
+          "Type": "LINUX_CONTAINER",
+        },
+        "ServiceRole": Object {
+          "Fn::GetAtt": Array [
+            "PipelineAssetsFileRole59943A77",
+            "Arn",
+          ],
+        },
+        "Source": Object {
+          "BuildSpec": "{
+  \\"version\\": \\"0.2\\",
+  \\"phases\\": {
+    \\"install\\": {
+      \\"commands\\": [
+        \\"npm install -g cdk-assets@2\\"
+      ]
+    },
+    \\"build\\": {
+      \\"commands\\": [
+        \\"cdk-assets --path \\\\\\"assembly-MyTestStack-Deploy/MyTestStackDeployFindyAgencyInfraStack72B2F4FE.assets.json\\\\\\" --verbose publish \\\\\\"8ddf29ab619460567d3cda58de2ff1bf0f6e95d8822ff630ec58a4d52ed1fa67:123456789012-us-east-1\\\\\\"\\"
+      ]
+    }
+  }
+}",
+          "Type": "CODEPIPELINE",
+        },
+      },
+      "Type": "AWS::CodeBuild::Project",
+    },
+    "PipelineAssetsFileAsset24D2D639B": Object {
+      "Properties": Object {
+        "Artifacts": Object {
+          "Type": "CODEPIPELINE",
+        },
+        "Cache": Object {
+          "Type": "NO_CACHE",
+        },
+        "Description": "Pipeline step MyTestStack/Pipeline/Assets/FileAsset2",
+        "EncryptionKey": "alias/aws/s3",
+        "Environment": Object {
+          "ComputeType": "BUILD_GENERAL1_SMALL",
+          "EnvironmentVariables": Array [
+            Object {
+              "Name": "DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/domain-name",
+            },
+            Object {
+              "Name": "SUB_DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/sub-domain-name",
+            },
+            Object {
+              "Name": "API_SUB_DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/api-sub-domain-name",
+            },
+            Object {
+              "Name": "GENESIS_TRANSACTIONS",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/genesis",
+            },
+            Object {
+              "Name": "ADMIN_ID",
+              "Type": "SECRETS_MANAGER",
+              "Value": "FindyAgency:findy-agency-admin-id",
+            },
+            Object {
+              "Name": "ADMIN_AUTHN_KEY",
+              "Type": "SECRETS_MANAGER",
+              "Value": "FindyAgency:findy-agency-admin-authn-key",
+            },
+          ],
+          "Image": "aws/codebuild/standard:5.0",
+          "ImagePullCredentialsType": "CODEBUILD",
+          "PrivilegedMode": false,
+          "Type": "LINUX_CONTAINER",
+        },
+        "ServiceRole": Object {
+          "Fn::GetAtt": Array [
+            "PipelineAssetsFileRole59943A77",
+            "Arn",
+          ],
+        },
+        "Source": Object {
+          "BuildSpec": "{
+  \\"version\\": \\"0.2\\",
+  \\"phases\\": {
+    \\"install\\": {
+      \\"commands\\": [
+        \\"npm install -g cdk-assets@2\\"
+      ]
+    },
+    \\"build\\": {
+      \\"commands\\": [
+        \\"cdk-assets --path \\\\\\"assembly-MyTestStack-Deploy/MyTestStackDeployFindyAgencyInfraStack72B2F4FE.assets.json\\\\\\" --verbose publish \\\\\\"fc2a3ca6356f84129511297b00cd5cef3c7b67abdf955eb5efa75c711da7399f:123456789012-us-east-1\\\\\\"\\"
+      ]
+    }
+  }
+}",
+          "Type": "CODEPIPELINE",
+        },
+      },
+      "Type": "AWS::CodeBuild::Project",
+    },
+    "PipelineAssetsFileAsset3FE71B523": Object {
+      "Properties": Object {
+        "Artifacts": Object {
+          "Type": "CODEPIPELINE",
+        },
+        "Cache": Object {
+          "Type": "NO_CACHE",
+        },
+        "Description": "Pipeline step MyTestStack/Pipeline/Assets/FileAsset3",
+        "EncryptionKey": "alias/aws/s3",
+        "Environment": Object {
+          "ComputeType": "BUILD_GENERAL1_SMALL",
+          "EnvironmentVariables": Array [
+            Object {
+              "Name": "DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/domain-name",
+            },
+            Object {
+              "Name": "SUB_DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/sub-domain-name",
+            },
+            Object {
+              "Name": "API_SUB_DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/api-sub-domain-name",
+            },
+            Object {
+              "Name": "GENESIS_TRANSACTIONS",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/genesis",
+            },
+            Object {
+              "Name": "ADMIN_ID",
+              "Type": "SECRETS_MANAGER",
+              "Value": "FindyAgency:findy-agency-admin-id",
+            },
+            Object {
+              "Name": "ADMIN_AUTHN_KEY",
+              "Type": "SECRETS_MANAGER",
+              "Value": "FindyAgency:findy-agency-admin-authn-key",
+            },
+          ],
+          "Image": "aws/codebuild/standard:5.0",
+          "ImagePullCredentialsType": "CODEBUILD",
+          "PrivilegedMode": false,
+          "Type": "LINUX_CONTAINER",
+        },
+        "ServiceRole": Object {
+          "Fn::GetAtt": Array [
+            "PipelineAssetsFileRole59943A77",
+            "Arn",
+          ],
+        },
+        "Source": Object {
+          "BuildSpec": "{
+  \\"version\\": \\"0.2\\",
+  \\"phases\\": {
+    \\"install\\": {
+      \\"commands\\": [
+        \\"npm install -g cdk-assets@2\\"
+      ]
+    },
+    \\"build\\": {
+      \\"commands\\": [
+        \\"cdk-assets --path \\\\\\"assembly-MyTestStack-Deploy/MyTestStackDeployFindyAgencyInfraStack72B2F4FE.assets.json\\\\\\" --verbose publish \\\\\\"f98b78092dcdd31f5e6d47489beb5f804d4835ef86a8085d0a2053cb9ae711da:123456789012-us-east-1\\\\\\"\\"
+      ]
+    }
+  }
+}",
+          "Type": "CODEPIPELINE",
+        },
+      },
+      "Type": "AWS::CodeBuild::Project",
+    },
+    "PipelineAssetsFileAsset474303B7D": Object {
+      "Properties": Object {
+        "Artifacts": Object {
+          "Type": "CODEPIPELINE",
+        },
+        "Cache": Object {
+          "Type": "NO_CACHE",
+        },
+        "Description": "Pipeline step MyTestStack/Pipeline/Assets/FileAsset4",
+        "EncryptionKey": "alias/aws/s3",
+        "Environment": Object {
+          "ComputeType": "BUILD_GENERAL1_SMALL",
+          "EnvironmentVariables": Array [
+            Object {
+              "Name": "DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/domain-name",
+            },
+            Object {
+              "Name": "SUB_DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/sub-domain-name",
+            },
+            Object {
+              "Name": "API_SUB_DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/api-sub-domain-name",
+            },
+            Object {
+              "Name": "GENESIS_TRANSACTIONS",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/genesis",
+            },
+            Object {
+              "Name": "ADMIN_ID",
+              "Type": "SECRETS_MANAGER",
+              "Value": "FindyAgency:findy-agency-admin-id",
+            },
+            Object {
+              "Name": "ADMIN_AUTHN_KEY",
+              "Type": "SECRETS_MANAGER",
+              "Value": "FindyAgency:findy-agency-admin-authn-key",
+            },
+          ],
+          "Image": "aws/codebuild/standard:5.0",
+          "ImagePullCredentialsType": "CODEBUILD",
+          "PrivilegedMode": false,
+          "Type": "LINUX_CONTAINER",
+        },
+        "ServiceRole": Object {
+          "Fn::GetAtt": Array [
+            "PipelineAssetsFileRole59943A77",
+            "Arn",
+          ],
+        },
+        "Source": Object {
+          "BuildSpec": "{
+  \\"version\\": \\"0.2\\",
+  \\"phases\\": {
+    \\"install\\": {
+      \\"commands\\": [
+        \\"npm install -g cdk-assets@2\\"
+      ]
+    },
+    \\"build\\": {
+      \\"commands\\": [
+        \\"cdk-assets --path \\\\\\"assembly-MyTestStack-Deploy/MyTestStackDeployFindyAgencyInfraStack72B2F4FE.assets.json\\\\\\" --verbose publish \\\\\\"30bdba971638d4a54b006172820a834e783a9eebe4f2f16a0f67c26b6603b66b:123456789012-us-east-1\\\\\\"\\"
+      ]
+    }
+  }
+}",
+          "Type": "CODEPIPELINE",
+        },
+      },
+      "Type": "AWS::CodeBuild::Project",
+    },
+    "PipelineAssetsFileRole59943A77": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "codebuild.amazonaws.com",
+              },
+            },
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "AWS": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::123456789012:root",
+                    ],
+                  ],
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "PipelineAssetsFileRoleDefaultPolicy14DB8755": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":logs:us-east-1:123456789012:log-group:/aws/codebuild/*",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "codebuild:CreateReportGroup",
+                "codebuild:CreateReport",
+                "codebuild:UpdateReport",
+                "codebuild:BatchPutTestCases",
+                "codebuild:BatchPutCodeCoverages",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":codebuild:us-east-1:123456789012:report-group/*",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "codebuild:BatchGetBuilds",
+                "codebuild:StartBuild",
+                "codebuild:StopBuild",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Sub": "arn:\${AWS::Partition}:iam::123456789012:role/cdk-hnb659fds-file-publishing-role-123456789012-us-east-1",
+              },
+            },
+            Object {
+              "Action": "ssm:GetParameters",
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/domain-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/sub-domain-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/api-sub-domain-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/genesis",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": "secretsmanager:GetSecretValue",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":secretsmanager:us-east-1:123456789012:secret:FindyAgency-??????",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineArtifactsBucketAEA9A052",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "PipelineArtifactsBucketAEA9A052",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "PipelineAssetsFileRoleDefaultPolicy14DB8755",
+        "Roles": Array [
+          Object {
+            "Ref": "PipelineAssetsFileRole59943A77",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "PipelineBuildSynthStepCdkBuildProject7FBB5116": Object {
+      "Properties": Object {
+        "Artifacts": Object {
+          "Type": "CODEPIPELINE",
+        },
+        "Cache": Object {
+          "Type": "NO_CACHE",
+        },
+        "Description": "Pipeline step MyTestStack/Pipeline/Build/SynthStep",
+        "EncryptionKey": "alias/aws/s3",
+        "Environment": Object {
+          "ComputeType": "BUILD_GENERAL1_SMALL",
+          "EnvironmentVariables": Array [
+            Object {
+              "Name": "DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/domain-name",
+            },
+            Object {
+              "Name": "SUB_DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/sub-domain-name",
+            },
+            Object {
+              "Name": "API_SUB_DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/api-sub-domain-name",
+            },
+            Object {
+              "Name": "GENESIS_TRANSACTIONS",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/genesis",
+            },
+            Object {
+              "Name": "ADMIN_ID",
+              "Type": "SECRETS_MANAGER",
+              "Value": "FindyAgency:findy-agency-admin-id",
+            },
+            Object {
+              "Name": "ADMIN_AUTHN_KEY",
+              "Type": "SECRETS_MANAGER",
+              "Value": "FindyAgency:findy-agency-admin-authn-key",
+            },
+            Object {
+              "Name": "CDK_CONTEXT_JSON",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/cdk-context",
+            },
+          ],
+          "Image": "aws/codebuild/standard:5.0",
+          "ImagePullCredentialsType": "CODEBUILD",
+          "PrivilegedMode": false,
+          "Type": "LINUX_CONTAINER",
+        },
+        "ServiceRole": Object {
+          "Fn::GetAtt": Array [
+            "PipelineBuildSynthStepCdkBuildProjectRole2407DBD0",
+            "Arn",
+          ],
+        },
+        "Source": Object {
+          "BuildSpec": "{
+  \\"version\\": \\"0.2\\",
+  \\"phases\\": {
+    \\"install\\": {
+      \\"commands\\": [
+        \\"[ ! -d \\\\\\"../findy-wallet-pwa\\\\\\" ] || { echo 'additionalInputs: \\\\\\"../findy-wallet-pwa\\\\\\" must not exist yet. If you want to merge multiple artifacts, use a \\\\\\"cp\\\\\\" command.'; exit 1; } && ln -s -- \\\\\\"$CODEBUILD_SRC_DIR_findy_network_findy_wallet_pwa_Source\\\\\\" \\\\\\"../findy-wallet-pwa\\\\\\"\\",
+        \\"[ ! -d \\\\\\"../findy-agent\\\\\\" ] || { echo 'additionalInputs: \\\\\\"../findy-agent\\\\\\" must not exist yet. If you want to merge multiple artifacts, use a \\\\\\"cp\\\\\\" command.'; exit 1; } && ln -s -- \\\\\\"$CODEBUILD_SRC_DIR_findy_network_findy_agent_Source\\\\\\" \\\\\\"../findy-agent\\\\\\"\\",
+        \\"[ ! -d \\\\\\"../findy-agent-auth\\\\\\" ] || { echo 'additionalInputs: \\\\\\"../findy-agent-auth\\\\\\" must not exist yet. If you want to merge multiple artifacts, use a \\\\\\"cp\\\\\\" command.'; exit 1; } && ln -s -- \\\\\\"$CODEBUILD_SRC_DIR_findy_network_findy_agent_auth_Source\\\\\\" \\\\\\"../findy-agent-auth\\\\\\"\\",
+        \\"[ ! -d \\\\\\"../findy-agent-vault\\\\\\" ] || { echo 'additionalInputs: \\\\\\"../findy-agent-vault\\\\\\" must not exist yet. If you want to merge multiple artifacts, use a \\\\\\"cp\\\\\\" command.'; exit 1; } && ln -s -- \\\\\\"$CODEBUILD_SRC_DIR_findy_network_findy_agent_vault_Source\\\\\\" \\\\\\"../findy-agent-vault\\\\\\"\\",
+        \\"npm install -g aws-cdk\\"
+      ]
+    },
+    \\"build\\": {
+      \\"commands\\": [
+        \\"cd aws-ecs\\",
+        \\"echo \\\\\\"$CDK_CONTEXT_JSON\\\\\\" > cdk.context.json\\",
+        \\"cat cdk.context.json\\",
+        \\"npm ci\\",
+        \\"npm run build\\",
+        \\"npx cdk synth\\",
+        \\"npm run pipeline:context\\"
+      ]
+    }
+  },
+  \\"artifacts\\": {
+    \\"base-directory\\": \\"aws-ecs/cdk.out\\",
+    \\"files\\": \\"**/*\\"
+  }
+}",
+          "Type": "CODEPIPELINE",
+        },
+      },
+      "Type": "AWS::CodeBuild::Project",
+    },
+    "PipelineBuildSynthStepCdkBuildProjectRole2407DBD0": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "codebuild.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "PipelineBuildSynthStepCdkBuildProjectRoleDefaultPolicy3CD6B151": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "ssm:GetParameters",
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/domain-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/sub-domain-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/api-sub-domain-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/genesis",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/cdk-context",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": "secretsmanager:GetSecretValue",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":secretsmanager:us-east-1:123456789012:secret:FindyAgency-??????",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":logs:us-east-1:123456789012:log-group:/aws/codebuild/",
+                      Object {
+                        "Ref": "PipelineBuildSynthStepCdkBuildProject7FBB5116",
+                      },
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":logs:us-east-1:123456789012:log-group:/aws/codebuild/",
+                      Object {
+                        "Ref": "PipelineBuildSynthStepCdkBuildProject7FBB5116",
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": Array [
+                "codebuild:CreateReportGroup",
+                "codebuild:CreateReport",
+                "codebuild:UpdateReport",
+                "codebuild:BatchPutTestCases",
+                "codebuild:BatchPutCodeCoverages",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":codebuild:us-east-1:123456789012:report-group/",
+                    Object {
+                      "Ref": "PipelineBuildSynthStepCdkBuildProject7FBB5116",
+                    },
+                    "-*",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": "ssm:PutParameter",
+              "Effect": "Allow",
+              "Resource": "arn:aws:ssm:us-east-1:123456789012:parameter/findy-agency*",
+            },
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineArtifactsBucketAEA9A052",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "PipelineArtifactsBucketAEA9A052",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "PipelineBuildSynthStepCdkBuildProjectRoleDefaultPolicy3CD6B151",
+        "Roles": Array [
+          Object {
+            "Ref": "PipelineBuildSynthStepCdkBuildProjectRole2407DBD0",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "PipelineCodeBuildActionRole226DB0CB": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Condition": Object {
+                "Bool": Object {
+                  "aws:ViaAWSService": "codepipeline.amazonaws.com",
+                },
+              },
+              "Effect": "Allow",
+              "Principal": Object {
+                "AWS": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::123456789012:root",
+                    ],
+                  ],
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "PipelineCodeBuildActionRoleDefaultPolicy1D62A6FE": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "codebuild:BatchGetBuilds",
+                "codebuild:StartBuild",
+                "codebuild:StopBuild",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "PipelineBuildSynthStepCdkBuildProject7FBB5116",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "codebuild:BatchGetBuilds",
+                "codebuild:StartBuild",
+                "codebuild:StopBuild",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "PipelineUpdatePipelineSelfMutationDAA41400",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "codebuild:BatchGetBuilds",
+                "codebuild:StartBuild",
+                "codebuild:StopBuild",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "PipelineAssetsFileAsset185A67CB4",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "codebuild:BatchGetBuilds",
+                "codebuild:StartBuild",
+                "codebuild:StopBuild",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "PipelineAssetsFileAsset24D2D639B",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "codebuild:BatchGetBuilds",
+                "codebuild:StartBuild",
+                "codebuild:StopBuild",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "PipelineAssetsFileAsset3FE71B523",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "codebuild:BatchGetBuilds",
+                "codebuild:StartBuild",
+                "codebuild:StopBuild",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "PipelineAssetsFileAsset474303B7D",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "codebuild:BatchGetBuilds",
+                "codebuild:StartBuild",
+                "codebuild:StopBuild",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "PipelineDeployFindyAgencyBuildFrontendStep30F5625A",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "codebuild:BatchGetBuilds",
+                "codebuild:StartBuild",
+                "codebuild:StopBuild",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "PipelineDeployFindyAgencyDeployBackendStepEA7D1D2B",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "codebuild:BatchGetBuilds",
+                "codebuild:StartBuild",
+                "codebuild:StopBuild",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "PipelineDeployFindyAgencyAdminOnboardStepCB4D6B02",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "codebuild:BatchGetBuilds",
+                "codebuild:StartBuild",
+                "codebuild:StopBuild",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "PipelineDeployFindyAgencyDeployFrontendStep7CEDCAD4",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "codebuild:BatchGetBuilds",
+                "codebuild:StartBuild",
+                "codebuild:StopBuild",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "PipelineDeployFindyAgencyE2ETestStepAC93020B",
+                  "Arn",
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "PipelineCodeBuildActionRoleDefaultPolicy1D62A6FE",
+        "Roles": Array [
+          Object {
+            "Ref": "PipelineCodeBuildActionRole226DB0CB",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "PipelineDeployFindyAgencyAdminOnboardStepCB4D6B02": Object {
+      "Properties": Object {
+        "Artifacts": Object {
+          "Type": "CODEPIPELINE",
+        },
+        "Cache": Object {
+          "Type": "NO_CACHE",
+        },
+        "Description": "Pipeline step MyTestStack/Pipeline/Deploy/FindyAgencyAdminOnboardStep",
+        "EncryptionKey": "alias/aws/s3",
+        "Environment": Object {
+          "ComputeType": "BUILD_GENERAL1_SMALL",
+          "EnvironmentVariables": Array [
+            Object {
+              "Name": "DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/domain-name",
+            },
+            Object {
+              "Name": "SUB_DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/sub-domain-name",
+            },
+            Object {
+              "Name": "API_SUB_DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/api-sub-domain-name",
+            },
+            Object {
+              "Name": "GENESIS_TRANSACTIONS",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/genesis",
+            },
+            Object {
+              "Name": "ADMIN_ID",
+              "Type": "SECRETS_MANAGER",
+              "Value": "FindyAgency:findy-agency-admin-id",
+            },
+            Object {
+              "Name": "ADMIN_AUTHN_KEY",
+              "Type": "SECRETS_MANAGER",
+              "Value": "FindyAgency:findy-agency-admin-authn-key",
+            },
+          ],
+          "Image": "aws/codebuild/standard:5.0",
+          "ImagePullCredentialsType": "CODEBUILD",
+          "PrivilegedMode": false,
+          "Type": "LINUX_CONTAINER",
+        },
+        "Name": "FindyAgencyAdminOnboard",
+        "ServiceRole": Object {
+          "Fn::GetAtt": Array [
+            "PipelineDeployFindyAgencyAdminOnboardStepRole5F4CF2B9",
+            "Arn",
+          ],
+        },
+        "Source": Object {
+          "BuildSpec": "{
+  \\"version\\": \\"0.2\\",
+  \\"phases\\": {
+    \\"install\\": {
+      \\"commands\\": [
+        \\"[ ! -d \\\\\\"ecsUpdate\\\\\\" ] || { echo 'additionalInputs: \\\\\\"ecsUpdate\\\\\\" must not exist yet. If you want to merge multiple artifacts, use a \\\\\\"cp\\\\\\" command.'; exit 1; } && ln -s -- \\\\\\"$CODEBUILD_SRC_DIR_FindyAgencyDeployBackendStep_Output\\\\\\" \\\\\\"ecsUpdate\\\\\\"\\"
+      ]
+    },
+    \\"build\\": {
+      \\"commands\\": [
+        \\"./aws-ecs/tools/wait-for-ready.sh\\",
+        \\"curl https://raw.githubusercontent.com/findy-network/findy-agent-cli/HEAD/install.sh > install.sh\\",
+        \\"chmod a+x install.sh\\",
+        \\"sudo ./install.sh -b /bin\\",
+        \\"echo Register admin $ADMIN_ID\\",
+        \\"findy-agent-cli authn register -u $ADMIN_ID --url https://$SUB_DOMAIN_NAME.$DOMAIN_NAME --origin https://$SUB_DOMAIN_NAME.$DOMAIN_NAME --key $ADMIN_AUTHN_KEY | true\\",
+        \\"findy-agent-cli authn login -u $ADMIN_ID --url https://$SUB_DOMAIN_NAME.$DOMAIN_NAME --origin https://$SUB_DOMAIN_NAME.$DOMAIN_NAME --key $ADMIN_AUTHN_KEY\\"
+      ]
+    }
+  },
+  \\"artifacts\\": {
+    \\"base-directory\\": \\"./aws-ecs/tools\\",
+    \\"files\\": \\"**/*\\"
+  }
+}",
+          "Type": "CODEPIPELINE",
+        },
+      },
+      "Type": "AWS::CodeBuild::Project",
+    },
+    "PipelineDeployFindyAgencyAdminOnboardStepRole5F4CF2B9": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "codebuild.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "PipelineDeployFindyAgencyAdminOnboardStepRoleDefaultPolicy4F668749": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "ssm:GetParameters",
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/domain-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/sub-domain-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/api-sub-domain-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/genesis",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": "secretsmanager:GetSecretValue",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":secretsmanager:us-east-1:123456789012:secret:FindyAgency-??????",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":logs:us-east-1:123456789012:log-group:/aws/codebuild/",
+                      Object {
+                        "Ref": "PipelineDeployFindyAgencyAdminOnboardStepCB4D6B02",
+                      },
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":logs:us-east-1:123456789012:log-group:/aws/codebuild/",
+                      Object {
+                        "Ref": "PipelineDeployFindyAgencyAdminOnboardStepCB4D6B02",
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": Array [
+                "codebuild:CreateReportGroup",
+                "codebuild:CreateReport",
+                "codebuild:UpdateReport",
+                "codebuild:BatchPutTestCases",
+                "codebuild:BatchPutCodeCoverages",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":codebuild:us-east-1:123456789012:report-group/",
+                    Object {
+                      "Ref": "PipelineDeployFindyAgencyAdminOnboardStepCB4D6B02",
+                    },
+                    "-*",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineArtifactsBucketAEA9A052",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "PipelineArtifactsBucketAEA9A052",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "PipelineDeployFindyAgencyAdminOnboardStepRoleDefaultPolicy4F668749",
+        "Roles": Array [
+          Object {
+            "Ref": "PipelineDeployFindyAgencyAdminOnboardStepRole5F4CF2B9",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "PipelineDeployFindyAgencyBuildFrontendStep30F5625A": Object {
+      "Properties": Object {
+        "Artifacts": Object {
+          "Type": "CODEPIPELINE",
+        },
+        "Cache": Object {
+          "Type": "NO_CACHE",
+        },
+        "Description": "Pipeline step MyTestStack/Pipeline/Deploy/FindyAgencyBuildFrontendStep",
+        "EncryptionKey": "alias/aws/s3",
+        "Environment": Object {
+          "ComputeType": "BUILD_GENERAL1_SMALL",
+          "EnvironmentVariables": Array [
+            Object {
+              "Name": "DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/domain-name",
+            },
+            Object {
+              "Name": "SUB_DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/sub-domain-name",
+            },
+            Object {
+              "Name": "API_SUB_DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/api-sub-domain-name",
+            },
+            Object {
+              "Name": "GENESIS_TRANSACTIONS",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/genesis",
+            },
+            Object {
+              "Name": "ADMIN_ID",
+              "Type": "SECRETS_MANAGER",
+              "Value": "FindyAgency:findy-agency-admin-id",
+            },
+            Object {
+              "Name": "ADMIN_AUTHN_KEY",
+              "Type": "SECRETS_MANAGER",
+              "Value": "FindyAgency:findy-agency-admin-authn-key",
+            },
+            Object {
+              "Name": "REACT_APP_GQL_HOST",
+              "Type": "PLAINTEXT",
+              "Value": "undefined.undefined",
+            },
+            Object {
+              "Name": "REACT_APP_AUTH_HOST",
+              "Type": "PLAINTEXT",
+              "Value": "undefined.undefined",
+            },
+            Object {
+              "Name": "REACT_APP_HTTP_SCHEME",
+              "Type": "PLAINTEXT",
+              "Value": "https",
+            },
+            Object {
+              "Name": "REACT_APP_WS_SCHEME",
+              "Type": "PLAINTEXT",
+              "Value": "wss",
+            },
+          ],
+          "Image": "node:16.14.2-alpine3.15",
+          "ImagePullCredentialsType": "SERVICE_ROLE",
+          "PrivilegedMode": false,
+          "Type": "LINUX_CONTAINER",
+        },
+        "Name": "FindyAgencyBuildFrontend",
+        "ServiceRole": Object {
+          "Fn::GetAtt": Array [
+            "PipelineDeployFindyAgencyBuildFrontendStepRoleA2CCE95E",
+            "Arn",
+          ],
+        },
+        "Source": Object {
+          "BuildSpec": "{
+  \\"version\\": \\"0.2\\",
+  \\"phases\\": {
+    \\"build\\": {
+      \\"commands\\": [
+        \\"apk add bash\\",
+        \\"npm ci\\",
+        \\"npm run build\\"
+      ]
+    }
+  },
+  \\"artifacts\\": {
+    \\"base-directory\\": \\"./build\\",
+    \\"files\\": \\"**/*\\"
+  }
+}",
+          "Type": "CODEPIPELINE",
+        },
+      },
+      "Type": "AWS::CodeBuild::Project",
+    },
+    "PipelineDeployFindyAgencyBuildFrontendStepRoleA2CCE95E": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "codebuild.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "PipelineDeployFindyAgencyBuildFrontendStepRoleDefaultPolicyE0B7373D": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "ssm:GetParameters",
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/domain-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/sub-domain-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/api-sub-domain-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/genesis",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": "secretsmanager:GetSecretValue",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":secretsmanager:us-east-1:123456789012:secret:FindyAgency-??????",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":logs:us-east-1:123456789012:log-group:/aws/codebuild/",
+                      Object {
+                        "Ref": "PipelineDeployFindyAgencyBuildFrontendStep30F5625A",
+                      },
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":logs:us-east-1:123456789012:log-group:/aws/codebuild/",
+                      Object {
+                        "Ref": "PipelineDeployFindyAgencyBuildFrontendStep30F5625A",
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": Array [
+                "codebuild:CreateReportGroup",
+                "codebuild:CreateReport",
+                "codebuild:UpdateReport",
+                "codebuild:BatchPutTestCases",
+                "codebuild:BatchPutCodeCoverages",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":codebuild:us-east-1:123456789012:report-group/",
+                    Object {
+                      "Ref": "PipelineDeployFindyAgencyBuildFrontendStep30F5625A",
+                    },
+                    "-*",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineArtifactsBucketAEA9A052",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "PipelineArtifactsBucketAEA9A052",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "PipelineDeployFindyAgencyBuildFrontendStepRoleDefaultPolicyE0B7373D",
+        "Roles": Array [
+          Object {
+            "Ref": "PipelineDeployFindyAgencyBuildFrontendStepRoleA2CCE95E",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "PipelineDeployFindyAgencyDeployBackendStepEA7D1D2B": Object {
+      "Properties": Object {
+        "Artifacts": Object {
+          "Type": "CODEPIPELINE",
+        },
+        "Cache": Object {
+          "Type": "NO_CACHE",
+        },
+        "Description": "Pipeline step MyTestStack/Pipeline/Deploy/FindyAgencyDeployBackendStep",
+        "EncryptionKey": "alias/aws/s3",
+        "Environment": Object {
+          "ComputeType": "BUILD_GENERAL1_SMALL",
+          "EnvironmentVariables": Array [
+            Object {
+              "Name": "DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/domain-name",
+            },
+            Object {
+              "Name": "SUB_DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/sub-domain-name",
+            },
+            Object {
+              "Name": "API_SUB_DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/api-sub-domain-name",
+            },
+            Object {
+              "Name": "GENESIS_TRANSACTIONS",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/genesis",
+            },
+            Object {
+              "Name": "ADMIN_ID",
+              "Type": "SECRETS_MANAGER",
+              "Value": "FindyAgency:findy-agency-admin-id",
+            },
+            Object {
+              "Name": "ADMIN_AUTHN_KEY",
+              "Type": "SECRETS_MANAGER",
+              "Value": "FindyAgency:findy-agency-admin-authn-key",
+            },
+          ],
+          "Image": "aws/codebuild/standard:5.0",
+          "ImagePullCredentialsType": "CODEBUILD",
+          "PrivilegedMode": false,
+          "Type": "LINUX_CONTAINER",
+        },
+        "Name": "FindyAgencyDeployBackend",
+        "ServiceRole": Object {
+          "Fn::GetAtt": Array [
+            "PipelineDeployFindyAgencyDeployBackendStepRole02450A20",
+            "Arn",
+          ],
+        },
+        "Source": Object {
+          "BuildSpec": "{
+  \\"version\\": \\"0.2\\",
+  \\"phases\\": {
+    \\"build\\": {
+      \\"commands\\": [
+        \\"aws ecs update-service --cluster \\\\\\"$CLUSTER_NAME\\\\\\" --service \\\\\\"$SERVICE_NAME\\\\\\" --force-new-deployment --deployment-configuration=\\\\\\"deploymentCircuitBreaker={enable=false,rollback=false},maximumPercent=100,minimumHealthyPercent=0\\\\\\"\\"
+      ]
+    }
+  },
+  \\"artifacts\\": {
+    \\"base-directory\\": \\".\\",
+    \\"files\\": \\"**/*\\"
+  }
+}",
+          "Type": "CODEPIPELINE",
+        },
+      },
+      "Type": "AWS::CodeBuild::Project",
+    },
+    "PipelineDeployFindyAgencyDeployBackendStepRole02450A20": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "codebuild.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "PipelineDeployFindyAgencyDeployBackendStepRoleDefaultPolicyB979A6DA": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "ssm:GetParameters",
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/domain-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/sub-domain-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/api-sub-domain-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/genesis",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": "secretsmanager:GetSecretValue",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":secretsmanager:us-east-1:123456789012:secret:FindyAgency-??????",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":logs:us-east-1:123456789012:log-group:/aws/codebuild/",
+                      Object {
+                        "Ref": "PipelineDeployFindyAgencyDeployBackendStepEA7D1D2B",
+                      },
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":logs:us-east-1:123456789012:log-group:/aws/codebuild/",
+                      Object {
+                        "Ref": "PipelineDeployFindyAgencyDeployBackendStepEA7D1D2B",
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": Array [
+                "codebuild:CreateReportGroup",
+                "codebuild:CreateReport",
+                "codebuild:UpdateReport",
+                "codebuild:BatchPutTestCases",
+                "codebuild:BatchPutCodeCoverages",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":codebuild:us-east-1:123456789012:report-group/",
+                    Object {
+                      "Ref": "PipelineDeployFindyAgencyDeployBackendStepEA7D1D2B",
+                    },
+                    "-*",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": "ecs:UpdateService",
+              "Effect": "Allow",
+              "Resource": "arn:aws:ecs:us-east-1:123456789012:service/*FindyAgency*",
+            },
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineArtifactsBucketAEA9A052",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "PipelineArtifactsBucketAEA9A052",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "PipelineDeployFindyAgencyDeployBackendStepRoleDefaultPolicyB979A6DA",
+        "Roles": Array [
+          Object {
+            "Ref": "PipelineDeployFindyAgencyDeployBackendStepRole02450A20",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "PipelineDeployFindyAgencyDeployFrontendStep7CEDCAD4": Object {
+      "Properties": Object {
+        "Artifacts": Object {
+          "Type": "CODEPIPELINE",
+        },
+        "Cache": Object {
+          "Type": "NO_CACHE",
+        },
+        "Description": "Pipeline step MyTestStack/Pipeline/Deploy/FindyAgencyDeployFrontendStep",
+        "EncryptionKey": "alias/aws/s3",
+        "Environment": Object {
+          "ComputeType": "BUILD_GENERAL1_SMALL",
+          "EnvironmentVariables": Array [
+            Object {
+              "Name": "DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/domain-name",
+            },
+            Object {
+              "Name": "SUB_DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/sub-domain-name",
+            },
+            Object {
+              "Name": "API_SUB_DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/api-sub-domain-name",
+            },
+            Object {
+              "Name": "GENESIS_TRANSACTIONS",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/genesis",
+            },
+            Object {
+              "Name": "ADMIN_ID",
+              "Type": "SECRETS_MANAGER",
+              "Value": "FindyAgency:findy-agency-admin-id",
+            },
+            Object {
+              "Name": "ADMIN_AUTHN_KEY",
+              "Type": "SECRETS_MANAGER",
+              "Value": "FindyAgency:findy-agency-admin-authn-key",
+            },
+          ],
+          "Image": "aws/codebuild/standard:5.0",
+          "ImagePullCredentialsType": "CODEBUILD",
+          "PrivilegedMode": false,
+          "Type": "LINUX_CONTAINER",
+        },
+        "Name": "FindyAgencyDeployFrontend",
+        "ServiceRole": Object {
+          "Fn::GetAtt": Array [
+            "PipelineDeployFindyAgencyDeployFrontendStepRole507DA986",
+            "Arn",
+          ],
+        },
+        "Source": Object {
+          "BuildSpec": "{
+  \\"version\\": \\"0.2\\",
+  \\"phases\\": {
+    \\"build\\": {
+      \\"commands\\": [
+        \\"V1=$(curl https://$SUB_DOMAIN_NAME.$DOMAIN_NAME/version.txt || echo \\\\\\"0\\\\\\")\\",
+        \\"V2=$(cat ./version.txt)\\",
+        \\"if [ \\\\\\"$V1\\\\\\" != \\\\\\"$V2\\\\\\" ]; then aws s3 sync --delete . s3://$SUB_DOMAIN_NAME.$DOMAIN_NAME; fi\\"
+      ]
+    }
+  },
+  \\"artifacts\\": {
+    \\"base-directory\\": \\".\\",
+    \\"files\\": \\"**/*\\"
+  }
+}",
+          "Type": "CODEPIPELINE",
+        },
+      },
+      "Type": "AWS::CodeBuild::Project",
+    },
+    "PipelineDeployFindyAgencyDeployFrontendStepRole507DA986": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "codebuild.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "PipelineDeployFindyAgencyDeployFrontendStepRoleDefaultPolicy24C850E6": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "ssm:GetParameters",
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/domain-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/sub-domain-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/api-sub-domain-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/genesis",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": "secretsmanager:GetSecretValue",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":secretsmanager:us-east-1:123456789012:secret:FindyAgency-??????",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":logs:us-east-1:123456789012:log-group:/aws/codebuild/",
+                      Object {
+                        "Ref": "PipelineDeployFindyAgencyDeployFrontendStep7CEDCAD4",
+                      },
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":logs:us-east-1:123456789012:log-group:/aws/codebuild/",
+                      Object {
+                        "Ref": "PipelineDeployFindyAgencyDeployFrontendStep7CEDCAD4",
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": Array [
+                "codebuild:CreateReportGroup",
+                "codebuild:CreateReport",
+                "codebuild:UpdateReport",
+                "codebuild:BatchPutTestCases",
+                "codebuild:BatchPutCodeCoverages",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":codebuild:us-east-1:123456789012:report-group/",
+                    Object {
+                      "Ref": "PipelineDeployFindyAgencyDeployFrontendStep7CEDCAD4",
+                    },
+                    "-*",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "s3:Put*",
+                "s3:Delete*",
+                "s3:Get*",
+                "s3:List*",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineArtifactsBucketAEA9A052",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "PipelineArtifactsBucketAEA9A052",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "PipelineDeployFindyAgencyDeployFrontendStepRoleDefaultPolicy24C850E6",
+        "Roles": Array [
+          Object {
+            "Ref": "PipelineDeployFindyAgencyDeployFrontendStepRole507DA986",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "PipelineDeployFindyAgencyE2ETestStepAC93020B": Object {
+      "Properties": Object {
+        "Artifacts": Object {
+          "Type": "CODEPIPELINE",
+        },
+        "Cache": Object {
+          "Type": "NO_CACHE",
+        },
+        "Description": "Pipeline step MyTestStack/Pipeline/Deploy/FindyAgencyE2ETestStep",
+        "EncryptionKey": "alias/aws/s3",
+        "Environment": Object {
+          "ComputeType": "BUILD_GENERAL1_SMALL",
+          "EnvironmentVariables": Array [
+            Object {
+              "Name": "DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/domain-name",
+            },
+            Object {
+              "Name": "SUB_DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/sub-domain-name",
+            },
+            Object {
+              "Name": "API_SUB_DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/api-sub-domain-name",
+            },
+            Object {
+              "Name": "GENESIS_TRANSACTIONS",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/genesis",
+            },
+            Object {
+              "Name": "ADMIN_ID",
+              "Type": "SECRETS_MANAGER",
+              "Value": "FindyAgency:findy-agency-admin-id",
+            },
+            Object {
+              "Name": "ADMIN_AUTHN_KEY",
+              "Type": "SECRETS_MANAGER",
+              "Value": "FindyAgency:findy-agency-admin-authn-key",
+            },
+            Object {
+              "Name": "AGENCY_TLS_PATH",
+              "Type": "PLAINTEXT",
+              "Value": "./e2e/cert",
+            },
+            Object {
+              "Name": "AGENCY_URL",
+              "Type": "PLAINTEXT",
+              "Value": "https://undefined.undefined",
+            },
+            Object {
+              "Name": "AGENCY_API_URL",
+              "Type": "PLAINTEXT",
+              "Value": "undefined.undefined:50051",
+            },
+            Object {
+              "Name": "AGENCY_REGISTER_WAIT_TIME",
+              "Type": "PLAINTEXT",
+              "Value": "60",
+            },
+          ],
+          "Image": "aws/codebuild/standard:5.0",
+          "ImagePullCredentialsType": "CODEBUILD",
+          "PrivilegedMode": false,
+          "Type": "LINUX_CONTAINER",
+        },
+        "Name": "FindyAgencyE2ETest",
+        "ServiceRole": Object {
+          "Fn::GetAtt": Array [
+            "PipelineDeployFindyAgencyE2ETestStepRole5C9B80C7",
+            "Arn",
+          ],
+        },
+        "Source": Object {
+          "BuildSpec": "{
+  \\"version\\": \\"0.2\\",
+  \\"phases\\": {
+    \\"install\\": {
+      \\"commands\\": [
+        \\"[ ! -d \\\\\\"waitReadyOutput\\\\\\" ] || { echo 'additionalInputs: \\\\\\"waitReadyOutput\\\\\\" must not exist yet. If you want to merge multiple artifacts, use a \\\\\\"cp\\\\\\" command.'; exit 1; } && ln -s -- \\\\\\"$CODEBUILD_SRC_DIR_FindyAgencyAdminOnboardStep_Output\\\\\\" \\\\\\"waitReadyOutput\\\\\\"\\"
+      ]
+    },
+    \\"build\\": {
+      \\"commands\\": [
+        \\"curl https://raw.githubusercontent.com/findy-network/findy-agent-cli/HEAD/install.sh > install.sh\\",
+        \\"chmod a+x install.sh\\",
+        \\"sudo ./install.sh -b /bin\\",
+        \\"echo Connecting to $AGENCY_API_URL\\",
+        \\"./e2e/dl-cert.sh\\",
+        \\"npm install nightwatch@2.1.7 --legacy-peer-deps\\",
+        \\"full_version=$(google-chrome --product-version)\\",
+        \\"chrome_version=$(echo \\\\\\"\${full_version%.*.*.*}\\\\\\")\\",
+        \\"npm install chromedriver@$chrome_version --legacy-peer-deps\\",
+        \\"npm run test:e2e\\",
+        \\"aws ssm put-parameter --name \\\\\\"/findy-agency-e2e/user-name\\\\\\" --value $(jq '.user' ./e2e/e2e.user.json) --type String 2>&1 > /dev/null | true\\",
+        \\"aws ssm put-parameter --name \\\\\\"/findy-agency-e2e/org-name\\\\\\" --value $(jq '.organisation' ./e2e/e2e.user.json) --type String 2>&1 > /dev/null | true\\",
+        \\"aws ssm put-parameter --name \\\\\\"/findy-agency-e2e/default-key\\\\\\" --value $(jq '.key' ./e2e/e2e.user.json) --type String 2>&1 > /dev/null | true\\",
+        \\"aws ssm put-parameter --name \\\\\\"/findy-agency-e2e/cred-def-id\\\\\\" --value $(jq '.credDefId' ./e2e/e2e.user.json) --type String 2>&1 > /dev/null | true\\",
+        \\"export E2E_USER=$(aws ssm get-parameter --name \\\\\\"/findy-agency-e2e/user-name\\\\\\" | jq .Parameter.Value)\\",
+        \\"export E2E_KEY=$(aws ssm get-parameter --name \\\\\\"/findy-agency-e2e/default-key\\\\\\" | jq .Parameter.Value)\\",
+        \\"npm run test:e2e\\",
+        \\"export E2E_ORG=$(aws ssm get-parameter --name \\\\\\"/findy-agency-e2e/org-name\\\\\\" | jq .Parameter.Value)\\",
+        \\"export E2E_CRED_DEF_ID=$(aws ssm get-parameter --name \\\\\\"/findy-agency-e2e/cred_def_id\\\\\\" | jq .Parameter.Value)\\",
+        \\"npm run test:e2e\\"
+      ]
+    }
+  },
+  \\"artifacts\\": {
+    \\"base-directory\\": \\"./tests_output\\",
+    \\"files\\": \\"**/*\\"
+  }
+}",
+          "Type": "CODEPIPELINE",
+        },
+      },
+      "Type": "AWS::CodeBuild::Project",
+    },
+    "PipelineDeployFindyAgencyE2ETestStepRole5C9B80C7": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "codebuild.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "PipelineDeployFindyAgencyE2ETestStepRoleDefaultPolicy4CD2BC69": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "ssm:GetParameters",
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/domain-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/sub-domain-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/api-sub-domain-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/genesis",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": "secretsmanager:GetSecretValue",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":secretsmanager:us-east-1:123456789012:secret:FindyAgency-??????",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":logs:us-east-1:123456789012:log-group:/aws/codebuild/",
+                      Object {
+                        "Ref": "PipelineDeployFindyAgencyE2ETestStepAC93020B",
+                      },
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":logs:us-east-1:123456789012:log-group:/aws/codebuild/",
+                      Object {
+                        "Ref": "PipelineDeployFindyAgencyE2ETestStepAC93020B",
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": Array [
+                "codebuild:CreateReportGroup",
+                "codebuild:CreateReport",
+                "codebuild:UpdateReport",
+                "codebuild:BatchPutTestCases",
+                "codebuild:BatchPutCodeCoverages",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":codebuild:us-east-1:123456789012:report-group/",
+                    Object {
+                      "Ref": "PipelineDeployFindyAgencyE2ETestStepAC93020B",
+                    },
+                    "-*",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "ssm:PutParameter",
+                "ssm:GetParameter",
+              ],
+              "Effect": "Allow",
+              "Resource": "arn:aws:ssm:us-east-1:123456789012:parameter/findy-agency-e2e*",
+            },
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineArtifactsBucketAEA9A052",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "PipelineArtifactsBucketAEA9A052",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "PipelineDeployFindyAgencyE2ETestStepRoleDefaultPolicy4CD2BC69",
+        "Roles": Array [
+          Object {
+            "Ref": "PipelineDeployFindyAgencyE2ETestStepRole5C9B80C7",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "PipelineRoleB27FAA37": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "codepipeline.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "PipelineRoleDefaultPolicy7BDC1ABB": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineArtifactsBucketAEA9A052",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "PipelineArtifactsBucketAEA9A052",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "PipelineSourcefindynetworkfindyagentCodePipelineActionRole552470F7",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "PipelineSourcefindynetworkfindyagentauthCodePipelineActionRoleE26FB0BD",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "PipelineSourcefindynetworkfindyagentinfraCodePipelineActionRoleB22D35C2",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "PipelineSourcefindynetworkfindyagentvaultCodePipelineActionRole56520AF4",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "PipelineSourcefindynetworkfindywalletpwaCodePipelineActionRoleB6CA52C0",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::GetAtt": Array [
+                  "PipelineCodeBuildActionRole226DB0CB",
+                  "Arn",
+                ],
+              },
+            },
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":iam::123456789012:role/cdk-hnb659fds-deploy-role-123456789012-us-east-1",
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "PipelineRoleDefaultPolicy7BDC1ABB",
+        "Roles": Array [
+          Object {
+            "Ref": "PipelineRoleB27FAA37",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "PipelineSourcefindynetworkfindyagentCodePipelineActionRole552470F7": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "AWS": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::123456789012:root",
+                    ],
+                  ],
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "PipelineSourcefindynetworkfindyagentCodePipelineActionRoleDefaultPolicy8C1146D7": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "codestar-connections:UseConnection",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Ref": "SsmParameterValuefindyagencygithubconnectionarnC96584B6F00A464EAD1953AFF4B05118Parameter",
+              },
+            },
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineArtifactsBucketAEA9A052",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "PipelineArtifactsBucketAEA9A052",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": Array [
+                "s3:PutObjectAcl",
+                "s3:PutObjectVersionAcl",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    Object {
+                      "Fn::GetAtt": Array [
+                        "PipelineArtifactsBucketAEA9A052",
+                        "Arn",
+                      ],
+                    },
+                    "/*",
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "PipelineSourcefindynetworkfindyagentCodePipelineActionRoleDefaultPolicy8C1146D7",
+        "Roles": Array [
+          Object {
+            "Ref": "PipelineSourcefindynetworkfindyagentCodePipelineActionRole552470F7",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "PipelineSourcefindynetworkfindyagentauthCodePipelineActionRoleDefaultPolicy6AFB36FA": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "codestar-connections:UseConnection",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Ref": "SsmParameterValuefindyagencygithubconnectionarnC96584B6F00A464EAD1953AFF4B05118Parameter",
+              },
+            },
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineArtifactsBucketAEA9A052",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "PipelineArtifactsBucketAEA9A052",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": Array [
+                "s3:PutObjectAcl",
+                "s3:PutObjectVersionAcl",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    Object {
+                      "Fn::GetAtt": Array [
+                        "PipelineArtifactsBucketAEA9A052",
+                        "Arn",
+                      ],
+                    },
+                    "/*",
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "PipelineSourcefindynetworkfindyagentauthCodePipelineActionRoleDefaultPolicy6AFB36FA",
+        "Roles": Array [
+          Object {
+            "Ref": "PipelineSourcefindynetworkfindyagentauthCodePipelineActionRoleE26FB0BD",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "PipelineSourcefindynetworkfindyagentauthCodePipelineActionRoleE26FB0BD": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "AWS": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::123456789012:root",
+                    ],
+                  ],
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "PipelineSourcefindynetworkfindyagentinfraCodePipelineActionRoleB22D35C2": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "AWS": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::123456789012:root",
+                    ],
+                  ],
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "PipelineSourcefindynetworkfindyagentinfraCodePipelineActionRoleDefaultPolicyEFD4E9F6": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "codestar-connections:UseConnection",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Ref": "SsmParameterValuefindyagencygithubconnectionarnC96584B6F00A464EAD1953AFF4B05118Parameter",
+              },
+            },
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineArtifactsBucketAEA9A052",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "PipelineArtifactsBucketAEA9A052",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": Array [
+                "s3:PutObjectAcl",
+                "s3:PutObjectVersionAcl",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    Object {
+                      "Fn::GetAtt": Array [
+                        "PipelineArtifactsBucketAEA9A052",
+                        "Arn",
+                      ],
+                    },
+                    "/*",
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "PipelineSourcefindynetworkfindyagentinfraCodePipelineActionRoleDefaultPolicyEFD4E9F6",
+        "Roles": Array [
+          Object {
+            "Ref": "PipelineSourcefindynetworkfindyagentinfraCodePipelineActionRoleB22D35C2",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "PipelineSourcefindynetworkfindyagentvaultCodePipelineActionRole56520AF4": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "AWS": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::123456789012:root",
+                    ],
+                  ],
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "PipelineSourcefindynetworkfindyagentvaultCodePipelineActionRoleDefaultPolicyDF4B6D8B": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "codestar-connections:UseConnection",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Ref": "SsmParameterValuefindyagencygithubconnectionarnC96584B6F00A464EAD1953AFF4B05118Parameter",
+              },
+            },
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineArtifactsBucketAEA9A052",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "PipelineArtifactsBucketAEA9A052",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": Array [
+                "s3:PutObjectAcl",
+                "s3:PutObjectVersionAcl",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    Object {
+                      "Fn::GetAtt": Array [
+                        "PipelineArtifactsBucketAEA9A052",
+                        "Arn",
+                      ],
+                    },
+                    "/*",
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "PipelineSourcefindynetworkfindyagentvaultCodePipelineActionRoleDefaultPolicyDF4B6D8B",
+        "Roles": Array [
+          Object {
+            "Ref": "PipelineSourcefindynetworkfindyagentvaultCodePipelineActionRole56520AF4",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "PipelineSourcefindynetworkfindywalletpwaCodePipelineActionRoleB6CA52C0": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "AWS": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":iam::123456789012:root",
+                    ],
+                  ],
+                },
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "PipelineSourcefindynetworkfindywalletpwaCodePipelineActionRoleDefaultPolicy731D67C7": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "codestar-connections:UseConnection",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Ref": "SsmParameterValuefindyagencygithubconnectionarnC96584B6F00A464EAD1953AFF4B05118Parameter",
+              },
+            },
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineArtifactsBucketAEA9A052",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "PipelineArtifactsBucketAEA9A052",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": Array [
+                "s3:PutObjectAcl",
+                "s3:PutObjectVersionAcl",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    Object {
+                      "Fn::GetAtt": Array [
+                        "PipelineArtifactsBucketAEA9A052",
+                        "Arn",
+                      ],
+                    },
+                    "/*",
+                  ],
+                ],
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "PipelineSourcefindynetworkfindywalletpwaCodePipelineActionRoleDefaultPolicy731D67C7",
+        "Roles": Array [
+          Object {
+            "Ref": "PipelineSourcefindynetworkfindywalletpwaCodePipelineActionRoleB6CA52C0",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "PipelineUpdatePipelineSelfMutationDAA41400": Object {
+      "Properties": Object {
+        "Artifacts": Object {
+          "Type": "CODEPIPELINE",
+        },
+        "Cache": Object {
+          "Type": "NO_CACHE",
+        },
+        "Description": "Pipeline step MyTestStack/Pipeline/UpdatePipeline/SelfMutate",
+        "EncryptionKey": "alias/aws/s3",
+        "Environment": Object {
+          "ComputeType": "BUILD_GENERAL1_SMALL",
+          "EnvironmentVariables": Array [
+            Object {
+              "Name": "DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/domain-name",
+            },
+            Object {
+              "Name": "SUB_DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/sub-domain-name",
+            },
+            Object {
+              "Name": "API_SUB_DOMAIN_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/api-sub-domain-name",
+            },
+            Object {
+              "Name": "GENESIS_TRANSACTIONS",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/genesis",
+            },
+            Object {
+              "Name": "ADMIN_ID",
+              "Type": "SECRETS_MANAGER",
+              "Value": "FindyAgency:findy-agency-admin-id",
+            },
+            Object {
+              "Name": "ADMIN_AUTHN_KEY",
+              "Type": "SECRETS_MANAGER",
+              "Value": "FindyAgency:findy-agency-admin-authn-key",
+            },
+          ],
+          "Image": "aws/codebuild/standard:5.0",
+          "ImagePullCredentialsType": "CODEBUILD",
+          "PrivilegedMode": false,
+          "Type": "LINUX_CONTAINER",
+        },
+        "Name": "FindyAgencyPipeline-selfupdate",
+        "ServiceRole": Object {
+          "Fn::GetAtt": Array [
+            "PipelineUpdatePipelineSelfMutationRole57E559E8",
+            "Arn",
+          ],
+        },
+        "Source": Object {
+          "BuildSpec": "{
+  \\"version\\": \\"0.2\\",
+  \\"phases\\": {
+    \\"install\\": {
+      \\"commands\\": [
+        \\"npm install -g aws-cdk@2\\"
+      ]
+    },
+    \\"build\\": {
+      \\"commands\\": [
+        \\"cdk -a . deploy MyTestStack --require-approval=never --verbose\\"
+      ]
+    }
+  }
+}",
+          "Type": "CODEPIPELINE",
+        },
+      },
+      "Type": "AWS::CodeBuild::Project",
+    },
+    "PipelineUpdatePipelineSelfMutationRole57E559E8": Object {
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "codebuild.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "PipelineUpdatePipelineSelfMutationRoleDefaultPolicyA225DA4E": Object {
+      "Properties": Object {
+        "PolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "ssm:GetParameters",
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/domain-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/sub-domain-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/api-sub-domain-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/genesis",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": "secretsmanager:GetSecretValue",
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":secretsmanager:us-east-1:123456789012:secret:FindyAgency-??????",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": Array [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":logs:us-east-1:123456789012:log-group:/aws/codebuild/",
+                      Object {
+                        "Ref": "PipelineUpdatePipelineSelfMutationDAA41400",
+                      },
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":logs:us-east-1:123456789012:log-group:/aws/codebuild/",
+                      Object {
+                        "Ref": "PipelineUpdatePipelineSelfMutationDAA41400",
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            Object {
+              "Action": Array [
+                "codebuild:CreateReportGroup",
+                "codebuild:CreateReport",
+                "codebuild:UpdateReport",
+                "codebuild:BatchPutTestCases",
+                "codebuild:BatchPutCodeCoverages",
+              ],
+              "Effect": "Allow",
+              "Resource": Object {
+                "Fn::Join": Array [
+                  "",
+                  Array [
+                    "arn:",
+                    Object {
+                      "Ref": "AWS::Partition",
+                    },
+                    ":codebuild:us-east-1:123456789012:report-group/",
+                    Object {
+                      "Ref": "PipelineUpdatePipelineSelfMutationDAA41400",
+                    },
+                    "-*",
+                  ],
+                ],
+              },
+            },
+            Object {
+              "Action": "sts:AssumeRole",
+              "Condition": Object {
+                "ForAnyValue:StringEquals": Object {
+                  "iam:ResourceTag/aws-cdk:bootstrap-role": Array [
+                    "image-publishing",
+                    "file-publishing",
+                    "deploy",
+                  ],
+                },
+              },
+              "Effect": "Allow",
+              "Resource": "arn:*:iam::123456789012:role/*",
+            },
+            Object {
+              "Action": "cloudformation:DescribeStacks",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": "s3:ListBucket",
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+            Object {
+              "Action": Array [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+              ],
+              "Effect": "Allow",
+              "Resource": Array [
+                Object {
+                  "Fn::GetAtt": Array [
+                    "PipelineArtifactsBucketAEA9A052",
+                    "Arn",
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      Object {
+                        "Fn::GetAtt": Array [
+                          "PipelineArtifactsBucketAEA9A052",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "PipelineUpdatePipelineSelfMutationRoleDefaultPolicyA225DA4E",
+        "Roles": Array [
+          Object {
+            "Ref": "PipelineUpdatePipelineSelfMutationRole57E559E8",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+  },
+  "Rules": Object {
+    "CheckBootstrapVersion": Object {
+      "Assertions": Array [
+        Object {
+          "Assert": Object {
+            "Fn::Not": Array [
+              Object {
+                "Fn::Contains": Array [
+                  Array [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  Object {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;
