@@ -76,7 +76,7 @@ Object {
             "Arn",
           ],
         },
-        "Runtime": "python3.7",
+        "Runtime": "python3.9",
         "Timeout": 900,
       },
       "Type": "AWS::Lambda::Function",
@@ -2128,7 +2128,7 @@ Object {
       "Properties": Object {
         "Content": Object {
           "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
-          "S3Key": "fc2a3ca6356f84129511297b00cd5cef3c7b67abdf955eb5efa75c711da7399f.zip",
+          "S3Key": "2cbb4c8a663eb2c903e9cef3ad44c9b47d48b0a2cd35dfc270a23bf93b2ecf1f.zip",
         },
         "Description": "/opt/awscli/aws",
       },
