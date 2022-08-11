@@ -15,6 +15,8 @@ import { PolicyStatement } from "aws-cdk-lib/aws-iam";
 
 import { InfraPipelineStage } from "./pipeline-stage";
 import { GRPCPortNumber } from "./constants";
+import { NotificationRule } from "aws-cdk-lib/aws-codestarnotifications";
+import { Topic } from "aws-cdk-lib/aws-sns";
 
 interface InfraPipelineProperties extends cdk.StackProps {}
 
@@ -113,19 +115,19 @@ export class InfraPipelineStack extends cdk.Stack {
     deployStage.addPost(e2eTestStep);
 
     // need this to add the notification rule
-    //pipeline.buildPipeline();
+    pipeline.buildPipeline();
 
-    // new NotificationRule(this, "FindyAgencyPipelineNotificationRule", {
-    //   source: pipeline.pipeline,
-    //   events: [
-    //     "codepipeline-pipeline-pipeline-execution-failed",
-    //     "codepipeline-pipeline-pipeline-execution-canceled",
-    //     "codepipeline-pipeline-pipeline-execution-started",
-    //     "codepipeline-pipeline-pipeline-execution-resumed",
-    //     "codepipeline-pipeline-pipeline-execution-succeeded",
-    //   ],
-    //   targets: [new Topic(this, "FindyAgencyPipelineNotificationTopic")],
-    // });
+    new NotificationRule(this, "FindyAgencyPipelineNotificationRule", {
+      source: pipeline.pipeline,
+      events: [
+        "codepipeline-pipeline-pipeline-execution-failed",
+        "codepipeline-pipeline-pipeline-execution-canceled",
+        "codepipeline-pipeline-pipeline-execution-started",
+        "codepipeline-pipeline-pipeline-execution-resumed",
+        "codepipeline-pipeline-pipeline-execution-succeeded",
+      ],
+      targets: [new Topic(this, "FindyAgencyPipelineNotificationTopic")],
+    });
 
     // manually adjust logs retention
     this.node.findAll().forEach((construct, index) => {
