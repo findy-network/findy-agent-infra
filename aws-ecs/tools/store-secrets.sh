@@ -16,6 +16,10 @@ if [ -z "$STEWARD_DID" ]; then
   echo "WARN: FINDY_AWS_ECS_STEWARD_DID missing, installing agency as non-steward"
 fi
 
+if [ -z "$E2E_ORG_SEED" ]; then
+  echo "WARN: E2E_ORG_SEED missing, should install agency with steward"
+fi
+
 if [ -z "$ADMIN_ID" ]; then
   echo "ERROR: ADMIN_ID missing, required"
   exit 1
@@ -36,6 +40,7 @@ params=(
   "\"findy-agency-admin-authn-key\":\"$ADMIN_AUTHN_KEY\""
   "\"findy-agency-sec-key\":\"$SEC_KEY\""
   "\"findy-agency-enclave-key\":\"$ENCLAVE_KEY\""
+  "\"findy-agency-e2e-org-seed\":\"$E2E_ORG_SEED\""
 )
 joined=$(printf ",%s" "${params[@]}")
 SECRET_STRING={${joined:1}}
