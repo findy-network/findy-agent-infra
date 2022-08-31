@@ -118,7 +118,7 @@ export class InfraPipelineStack extends cdk.Stack {
     pipeline.buildPipeline();
 
     new NotificationRule(this, `FindyAgencyPipelineNotificationRule`, {
-      notificationRuleName: `${`${process.env.SUB_DOMAIN_NAME}`.replace(".", "")}PipelineNotificationRule`,
+      notificationRuleName: `FindyAgencyPipelineNotificationRule${props.env?.region}`,
       source: pipeline.pipeline,
       events: [
         "codepipeline-pipeline-pipeline-execution-failed",
@@ -375,6 +375,10 @@ export class InfraPipelineStack extends cdk.Stack {
           },
           AGENCY_REGISTER_WAIT_TIME: {
             value: "60",
+          },
+          E2E_ORG_SEED: {
+            type: codebuild.BuildEnvironmentVariableType.SECRETS_MANAGER,
+            value: "FindyAgency:findy-agency-e2e-org-seed",
           },
         },
       },

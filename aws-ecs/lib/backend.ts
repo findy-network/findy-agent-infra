@@ -131,7 +131,7 @@ export class Backend extends Construct {
     super(scope, id);
 
     // Create config bucket
-    const bucketResourceName = "FindyAgencyBackendConfig";
+    const bucketResourceName = `${props.appDomainPrefix.replace(".", "").replace("-", ".")}BackendConfig`;
     const bucketName = bucketResourceName.toLowerCase();
 
     const bucket = new Bucket(scope, bucketName, {
