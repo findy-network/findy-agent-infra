@@ -117,7 +117,7 @@ cdk synth
 npm run pipeline:context
 
 # save secrets
-./store-secrets.sh
+./tools/store-secrets.sh
 
 # deploy the pipeline
 cdk deploy
