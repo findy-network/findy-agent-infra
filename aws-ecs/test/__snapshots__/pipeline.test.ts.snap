@@ -14,43 +14,6 @@ Object {
     },
   },
   "Resources": Object {
-    "FindyAgencyPipelineNotificationRule79A4B5BF": Object {
-      "Properties": Object {
-        "DetailType": "FULL",
-        "EventTypeIds": Array [
-          "codepipeline-pipeline-pipeline-execution-failed",
-          "codepipeline-pipeline-pipeline-execution-canceled",
-          "codepipeline-pipeline-pipeline-execution-started",
-          "codepipeline-pipeline-pipeline-execution-resumed",
-          "codepipeline-pipeline-pipeline-execution-succeeded",
-        ],
-        "Name": "MyTestStackFindyAgencyPipelineNotificationRuleF3EDA657",
-        "Resource": Object {
-          "Fn::Join": Array [
-            "",
-            Array [
-              "arn:",
-              Object {
-                "Ref": "AWS::Partition",
-              },
-              ":codepipeline:us-east-1:123456789012:",
-              Object {
-                "Ref": "Pipeline9850B417",
-              },
-            ],
-          ],
-        },
-        "Targets": Array [
-          Object {
-            "TargetAddress": Object {
-              "Ref": "FindyAgencyPipelineNotificationTopic8E5D7876",
-            },
-            "TargetType": "SNS",
-          },
-        ],
-      },
-      "Type": "AWS::CodeStarNotifications::NotificationRule",
-    },
     "FindyAgencyPipelineNotificationTopic8E5D7876": Object {
       "Type": "AWS::SNS::Topic",
     },
@@ -4669,6 +4632,43 @@ Object {
         ],
       },
       "Type": "AWS::IAM::Policy",
+    },
+    "undefinedPipelineNotificationRule8134A993": Object {
+      "Properties": Object {
+        "DetailType": "FULL",
+        "EventTypeIds": Array [
+          "codepipeline-pipeline-pipeline-execution-failed",
+          "codepipeline-pipeline-pipeline-execution-canceled",
+          "codepipeline-pipeline-pipeline-execution-started",
+          "codepipeline-pipeline-pipeline-execution-resumed",
+          "codepipeline-pipeline-pipeline-execution-succeeded",
+        ],
+        "Name": "MyTestStackundefinedPipelineNotificationRuleB122A261",
+        "Resource": Object {
+          "Fn::Join": Array [
+            "",
+            Array [
+              "arn:",
+              Object {
+                "Ref": "AWS::Partition",
+              },
+              ":codepipeline:us-east-1:123456789012:",
+              Object {
+                "Ref": "Pipeline9850B417",
+              },
+            ],
+          ],
+        },
+        "Targets": Array [
+          Object {
+            "TargetAddress": Object {
+              "Ref": "FindyAgencyPipelineNotificationTopic8E5D7876",
+            },
+            "TargetType": "SNS",
+          },
+        ],
+      },
+      "Type": "AWS::CodeStarNotifications::NotificationRule",
     },
   },
   "Rules": Object {
