@@ -117,7 +117,8 @@ export class InfraPipelineStack extends cdk.Stack {
     // need this to add the notification rule
     pipeline.buildPipeline();
 
-    new NotificationRule(this, `${`${process.env.SUB_DOMAIN_NAME}`.replace(".", "")}PipelineNotificationRule`, {
+    new NotificationRule(this, `FindyAgencyPipelineNotificationRule`, {
+      notificationRuleName: `${`${process.env.SUB_DOMAIN_NAME}`.replace(".", "")}PipelineNotificationRule`,
       source: pipeline.pipeline,
       events: [
         "codepipeline-pipeline-pipeline-execution-failed",
