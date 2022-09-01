@@ -25,7 +25,7 @@
     "typescript": "~4.7.4"
   },
   "dependencies": {
-    "aws-cdk-lib": "^2.37.0",
+    "aws-cdk-lib": "^2.40.0",
     "constructs": "^10.1.71"
   },
   "author": "findy-network",
