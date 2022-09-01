@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "aws-cdk-lib": "^2.37.0",
-    "constructs": "^10.1.71"
+    "constructs": "^10.1.93"
   },
   "author": "findy-network",
   "license": "Apache-2.0"
