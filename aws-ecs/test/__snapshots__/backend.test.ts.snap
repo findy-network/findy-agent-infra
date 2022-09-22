@@ -258,7 +258,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
-          "S3Key": "8ddf29ab619460567d3cda58de2ff1bf0f6e95d8822ff630ec58a4d52ed1fa67.zip",
+          "S3Key": "e85f10a8bf0e7f4f7931fce24b29d4faf6874948090a2b568b2da33a7116cf84.zip",
         },
         "Handler": "index.certificateRequestHandler",
         "Role": Object {
@@ -651,6 +651,10 @@ Object {
       "Type": "AWS::EC2::EIP",
     },
     "MyTestBackendECSLoadBalancerVpcPublicSubnet1NATGatewayF53A02EF": Object {
+      "DependsOn": Array [
+        "MyTestBackendECSLoadBalancerVpcPublicSubnet1DefaultRoute0B445013",
+        "MyTestBackendECSLoadBalancerVpcPublicSubnet1RouteTableAssociation49AFFB46",
+      ],
       "Properties": Object {
         "AllocationId": Object {
           "Fn::GetAtt": Array [
@@ -1382,7 +1386,9 @@ Object {
     "MyTestBackendServiceLB9548A941": Object {
       "DependsOn": Array [
         "MyTestBackendECSLoadBalancerVpcPublicSubnet1DefaultRoute0B445013",
+        "MyTestBackendECSLoadBalancerVpcPublicSubnet1RouteTableAssociation49AFFB46",
         "MyTestBackendECSLoadBalancerVpcPublicSubnet2DefaultRouteFE1E078D",
+        "MyTestBackendECSLoadBalancerVpcPublicSubnet2RouteTableAssociation008B4DD1",
       ],
       "Properties": Object {
         "LoadBalancerAttributes": Array [
@@ -2033,7 +2039,7 @@ Object {
       "Properties": Object {
         "Content": Object {
           "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
-          "S3Key": "2cbb4c8a663eb2c903e9cef3ad44c9b47d48b0a2cd35dfc270a23bf93b2ecf1f.zip",
+          "S3Key": "c409e6c5845f1f349df8cd84e160bf6f1c35d2b060b63e1f032f9bd39d4542cc.zip",
         },
         "Description": "/opt/awscli/aws",
       },
