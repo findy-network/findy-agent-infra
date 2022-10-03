@@ -16,7 +16,7 @@
   "devDependencies": {
     "@types/jest": "^27.5.2",
     "@types/node": "18.7.14",
-    "@types/prettier": "2.7.0",
+    "@types/prettier": "2.7.1",
     "aws-cdk": "2.43.0",
     "jest": "^27.5.1",
     "js-green-licenses": "^3.0.1",
@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "aws-cdk-lib": "^2.43.0",
-    "constructs": "^10.1.93"
+    "constructs": "^10.1.120"
   },
   "author": "findy-network",
   "license": "Apache-2.0"
