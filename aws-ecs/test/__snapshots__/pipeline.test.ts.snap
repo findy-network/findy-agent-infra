@@ -80,7 +80,7 @@ Object {
       },
       "Type": "AWS::SNS::TopicPolicy",
     },
-    "LogRetention103EB917A4C": Object {
+    "LogRetention116FE23FC8D": Object {
       "Properties": Object {
         "LogGroupName": Object {
           "Fn::Join": Array [
@@ -103,7 +103,7 @@ Object {
       },
       "Type": "Custom::LogRetention",
     },
-    "LogRetention114974DAD18": Object {
+    "LogRetention12975C710B7": Object {
       "Properties": Object {
         "LogGroupName": Object {
           "Fn::Join": Array [
@@ -126,7 +126,7 @@ Object {
       },
       "Type": "Custom::LogRetention",
     },
-    "LogRetention116FE23FC8D": Object {
+    "LogRetention131D63C0F58": Object {
       "Properties": Object {
         "LogGroupName": Object {
           "Fn::Join": Array [
@@ -149,7 +149,7 @@ Object {
       },
       "Type": "Custom::LogRetention",
     },
-    "LogRetention118F88C9BF5": Object {
+    "LogRetention133FF0FFBAE": Object {
       "Properties": Object {
         "LogGroupName": Object {
           "Fn::Join": Array [
@@ -172,7 +172,7 @@ Object {
       },
       "Type": "Custom::LogRetention",
     },
-    "LogRetention120745C3FD8": Object {
+    "LogRetention13556311920": Object {
       "Properties": Object {
         "LogGroupName": Object {
           "Fn::Join": Array [
@@ -195,7 +195,7 @@ Object {
       },
       "Type": "Custom::LogRetention",
     },
-    "LogRetention4246997DE8": Object {
+    "LogRetention4868A8D056": Object {
       "Properties": Object {
         "LogGroupName": Object {
           "Fn::Join": Array [
@@ -218,7 +218,7 @@ Object {
       },
       "Type": "Custom::LogRetention",
     },
-    "LogRetention598EA73585": Object {
+    "LogRetention66000BB784": Object {
       "Properties": Object {
         "LogGroupName": Object {
           "Fn::Join": Array [
@@ -241,7 +241,7 @@ Object {
       },
       "Type": "Custom::LogRetention",
     },
-    "LogRetention66000BB784": Object {
+    "LogRetention74214879B3": Object {
       "Properties": Object {
         "LogGroupName": Object {
           "Fn::Join": Array [
@@ -264,7 +264,7 @@ Object {
       },
       "Type": "Custom::LogRetention",
     },
-    "LogRetention73F55138E5": Object {
+    "LogRetention82BE3E71E1": Object {
       "Properties": Object {
         "LogGroupName": Object {
           "Fn::Join": Array [
@@ -287,7 +287,7 @@ Object {
       },
       "Type": "Custom::LogRetention",
     },
-    "LogRetention80C27AF516": Object {
+    "LogRetention9069FB5DE5": Object {
       "Properties": Object {
         "LogGroupName": Object {
           "Fn::Join": Array [
@@ -310,7 +310,7 @@ Object {
       },
       "Type": "Custom::LogRetention",
     },
-    "LogRetention87E8EB4231": Object {
+    "LogRetention98874A2A38": Object {
       "Properties": Object {
         "LogGroupName": Object {
           "Fn::Join": Array [
@@ -1268,7 +1268,7 @@ Object {
     },
     \\"build\\": {
       \\"commands\\": [
-        \\"cdk-assets --path \\\\\\"assembly-MyTestStack-Deploy/MyTestStackDeployFindyAgencyInfraStack72B2F4FE.assets.json\\\\\\" --verbose publish \\\\\\"c409e6c5845f1f349df8cd84e160bf6f1c35d2b060b63e1f032f9bd39d4542cc:123456789012-us-east-1\\\\\\"\\"
+        \\"cdk-assets --path \\\\\\"assembly-MyTestStack-Deploy/MyTestStackDeployFindyAgencyInfraStack72B2F4FE.assets.json\\\\\\" --verbose publish \\\\\\"5d8d1d0aacea23824c62f362e1e3c14b7dd14a31c71b53bfae4d14a6373c5510:123456789012-us-east-1\\\\\\"\\"
       ]
     }
   }
@@ -1344,7 +1344,7 @@ Object {
     },
     \\"build\\": {
       \\"commands\\": [
-        \\"cdk-assets --path \\\\\\"assembly-MyTestStack-Deploy/MyTestStackDeployFindyAgencyInfraStack72B2F4FE.assets.json\\\\\\" --verbose publish \\\\\\"6ddcf10002539818a9256eff3fb2b22aa09298d8f946e26ba121c175a600c44e:123456789012-us-east-1\\\\\\"\\"
+        \\"cdk-assets --path \\\\\\"assembly-MyTestStack-Deploy/MyTestStackDeployFindyAgencyInfraStack72B2F4FE.assets.json\\\\\\" --verbose publish \\\\\\"2bc265c5e0569aeb24a6349c15bd54e76e845892376515e036627ab0cc70bb64:123456789012-us-east-1\\\\\\"\\"
       ]
     }
   }
