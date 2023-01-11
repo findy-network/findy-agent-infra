@@ -244,7 +244,7 @@ export class InfraPipelineStack extends cdk.Stack {
       commands: ["apk add bash", "npm ci", "npm run build"],
       buildEnvironment: {
         buildImage: codebuild.LinuxBuildImage.fromDockerRegistry(
-          "node:16.14.2-alpine3.15"
+          "public.ecr.aws/docker/library/node:16.14.2-alpine3.15"
         ),
         environmentVariables: {
           REACT_APP_GQL_HOST: {
