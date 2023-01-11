@@ -2519,7 +2519,7 @@ Object {
               "Value": "wss",
             },
           ],
-          "Image": "node:16.14.2-alpine3.15",
+          "Image": "public.ecr.aws/docker/library/node:16.14.2-alpine3.15",
           "ImagePullCredentialsType": "SERVICE_ROLE",
           "PrivilegedMode": false,
           "Type": "LINUX_CONTAINER",
