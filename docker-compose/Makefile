@@ -1,6 +1,7 @@
 VON_NETWORK_VERSION:=3826aca3b69b31365b73222ad056fa748c2e0532
 
 up:  down von-up gen-cert agency
+up-d:  down von-up gen-cert agency-d
 
 down: clone
 	docker-compose down
@@ -43,6 +44,8 @@ ledger-ready:
 	curl http://localhost:9000/genesis > conf/genesis.txt
 
 agency: docker-host ledger-ready
-	docker-compose up --build
+	docker-compose up
 
+agency-d: ledger-ready
+	docker-compose up -d
 

@@ -18,35 +18,35 @@ import { GRPCPortNumber } from "./constants";
 import { NotificationRule } from "aws-cdk-lib/aws-codestarnotifications";
 import { Topic } from "aws-cdk-lib/aws-sns";
 
-interface InfraPipelineProperties extends cdk.StackProps {}
+interface InfraPipelineProperties extends cdk.StackProps { }
 
 const environmentVariables: Record<string, codebuild.BuildEnvironmentVariable> =
-  {
-    DOMAIN_NAME: {
-      type: codebuild.BuildEnvironmentVariableType.PARAMETER_STORE,
-      value: "/findy-agency/domain-name",
-    },
-    SUB_DOMAIN_NAME: {
-      type: codebuild.BuildEnvironmentVariableType.PARAMETER_STORE,
-      value: "/findy-agency/sub-domain-name",
-    },
-    API_SUB_DOMAIN_NAME: {
-      type: codebuild.BuildEnvironmentVariableType.PARAMETER_STORE,
-      value: "/findy-agency/api-sub-domain-name",
-    },
-    GENESIS_TRANSACTIONS: {
-      type: codebuild.BuildEnvironmentVariableType.PARAMETER_STORE,
-      value: "/findy-agency/genesis",
-    },
-    ADMIN_ID: {
-      type: codebuild.BuildEnvironmentVariableType.SECRETS_MANAGER,
-      value: "FindyAgency:findy-agency-admin-id",
-    },
-    ADMIN_AUTHN_KEY: {
-      type: codebuild.BuildEnvironmentVariableType.SECRETS_MANAGER,
-      value: "FindyAgency:findy-agency-admin-authn-key",
-    },
-  };
+{
+  DOMAIN_NAME: {
+    type: codebuild.BuildEnvironmentVariableType.PARAMETER_STORE,
+    value: "/findy-agency/domain-name",
+  },
+  SUB_DOMAIN_NAME: {
+    type: codebuild.BuildEnvironmentVariableType.PARAMETER_STORE,
+    value: "/findy-agency/sub-domain-name",
+  },
+  API_SUB_DOMAIN_NAME: {
+    type: codebuild.BuildEnvironmentVariableType.PARAMETER_STORE,
+    value: "/findy-agency/api-sub-domain-name",
+  },
+  GENESIS_TRANSACTIONS: {
+    type: codebuild.BuildEnvironmentVariableType.PARAMETER_STORE,
+    value: "/findy-agency/genesis",
+  },
+  ADMIN_ID: {
+    type: codebuild.BuildEnvironmentVariableType.SECRETS_MANAGER,
+    value: "FindyAgency:findy-agency-admin-id",
+  },
+  ADMIN_AUTHN_KEY: {
+    type: codebuild.BuildEnvironmentVariableType.SECRETS_MANAGER,
+    value: "FindyAgency:findy-agency-admin-authn-key",
+  },
+};
 
 export class InfraPipelineStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props: InfraPipelineProperties) {
