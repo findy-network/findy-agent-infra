@@ -63,7 +63,7 @@ jobs:
 
       - name: run tests
         run: |
-          cd findy-wallet-pwa
+          cd ../findy-wallet-pwa
           npm install nightwatch
           full_version=$(google-chrome --product-version)
           chrome_version=$(echo "${full_version%.*.*.*}")
