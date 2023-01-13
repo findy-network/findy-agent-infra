@@ -27,7 +27,7 @@ von-up: clone
 	-docker tag ghcr.io/lauravuo/von-network:latest von-network-base
 	cd .docker/von-network && ./manage up
 
-gen-cert: docker-host
+gen-cert:
 	$(eval IP_ADDRESS=$(shell ./get-cert-host.sh))
 	@echo $(IP_ADDRESS)
 	@cat ./cert/client/conf.template > ./cert/client/cert.conf
@@ -46,6 +46,6 @@ ledger-ready:
 agency: docker-host ledger-ready
 	docker-compose up
 
-agency-d: ledger-ready
+agency-d: docker-host ledger-ready
 	docker-compose up -d
 

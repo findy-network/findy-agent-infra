@@ -64,8 +64,8 @@ jobs:
       - name: run tests
         run: |
           cd ../findy-wallet-pwa
-          npm install nightwatch
+          npm install nightwatch --legacy-peer-deps
           full_version=$(google-chrome --product-version)
           chrome_version=$(echo "${full_version%.*.*.*}")
-          npm install chromedriver@$chrome_version
+          npm install chromedriver@$chrome_version --legacy-peer-deps
           npm run test:e2e
