@@ -64,6 +64,7 @@ jobs:
       - name: run tests
         run: |
           cd ../findy-wallet-pwa
+          cp -R ../docker-compose/cert ./tools/env/config/
           npm install nightwatch --legacy-peer-deps
           full_version=$(google-chrome --product-version)
           chrome_version=$(echo "${full_version%.*.*.*}")
