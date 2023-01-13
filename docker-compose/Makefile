@@ -1,7 +1,7 @@
 VON_NETWORK_VERSION:=3826aca3b69b31365b73222ad056fa748c2e0532
 
-up:  down von-up gen-cert agency
-up-d:  down von-up gen-cert agency-d
+up: down von-up agency
+up-d: down von-up agency-d
 
 down: clone
 	docker-compose down
@@ -13,7 +13,6 @@ docker-host:
 	@curl -s --raw https://raw.githubusercontent.com/bcgov/DITP-DevOps/main/code/snippets/getDockerHost >> get-docker-host.sh
 	@echo "\ngetDockerHost" >> ./get-docker-host.sh
 	@chmod a+x ./get-docker-host.sh
-export AGENGY_IP_ADDRESS="$(shell ./get-docker-host.sh)"
 
 clone:
 	mkdir -p .docker
@@ -27,7 +26,7 @@ von-up: clone
 	-docker tag ghcr.io/lauravuo/von-network:latest von-network-base
 	cd .docker/von-network && ./manage up
 
-gen-cert:
+gen-cert: docker-host
 	$(eval IP_ADDRESS=$(shell ./get-cert-host.sh))
 	@echo $(IP_ADDRESS)
 	@cat ./cert/client/conf.template > ./cert/client/cert.conf
@@ -38,14 +37,15 @@ gen-cert:
 	awk '{sub("<IP_ADDRESS>","$(IP_ADDRESS)")}1' ./cert/server/cert.conf > ./cert/server/cert.conf.tmp && \
 		mv ./cert/server/cert.conf.tmp ./cert/server/cert.conf
 	cd ./cert && ./gen.sh server
+export AGENGY_IP_ADDRESS="$(shell ./get-docker-host.sh)"
 
 ledger-ready:
 	./wait-for-ledger.sh
 	curl http://localhost:9000/genesis > conf/genesis.txt
 
-agency: docker-host ledger-ready
+agency: gen-cert ledger-ready
 	docker-compose up
 
-agency-d: docker-host ledger-ready
+agency-d: gen-cert ledger-ready
 	docker-compose up -d
 
