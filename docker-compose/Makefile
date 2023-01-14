@@ -49,3 +49,6 @@ agency: gen-cert ledger-ready
 agency-d: gen-cert ledger-ready
 	docker-compose up -d
 
+cli-login:
+	-findy-agent-cli authn register --config config.yaml
+	findy-agent-cli authn login --config config.yaml

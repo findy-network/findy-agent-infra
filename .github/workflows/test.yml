@@ -70,6 +70,8 @@ jobs:
           chrome_version=$(echo "${full_version%.*.*.*}")
           npm install chromedriver@$chrome_version --legacy-peer-deps
           npm run test:e2e
+        env:
+          AGENCY_REGISTER_WAIT_TIME: "60"
 
       - name: Collect docker logs
         if: ${{ failure() }}
