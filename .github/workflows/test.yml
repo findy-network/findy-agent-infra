@@ -65,23 +65,23 @@ jobs:
         run: |
           cd ../findy-wallet-pwa
           cp -R ../docker-compose/cert ./tools/env/config/
-          npm install nightwatch --legacy-peer-deps
+          npm ci nightwatch --legacy-peer-deps
           full_version=$(google-chrome --product-version)
           chrome_version=$(echo "${full_version%.*.*.*}")
-          npm install chromedriver@$chrome_version --legacy-peer-deps
+          npm ci chromedriver@$chrome_version --legacy-peer-deps
           npm run test:e2e
         env:
           AGENCY_REGISTER_WAIT_TIME: "60"
 
       - name: Collect docker logs
         if: ${{ failure() }}
-        uses: jwalton/gh-docker-logs@v2.0.2
+        uses: jwalton/gh-docker-logs@v2
         with:
           dest: './findy-wallet-pwa/tests_output/docker-logs'
 
       - name: archive logs
         if: ${{ failure() }}
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: e2e-logs
           path: ./findy-wallet-pwa/tests_output

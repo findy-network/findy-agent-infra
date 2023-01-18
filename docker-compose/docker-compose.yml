@@ -3,6 +3,7 @@ services:
   core:
     image: ghcr.io/findy-network/findy-agent:latest
     volumes:
+    
       - ./conf/genesis.txt:/genesis.txt
       - ./conf/steward.exported:/steward.exported
       - ./cert:/grpc
