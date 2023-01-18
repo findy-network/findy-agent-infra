@@ -3,6 +3,6 @@
 .temp
 .vscode
 output.json
-gh-action-trigger/function.zip
-gh-action-trigger/main
 .DS_Store
+
+findy-wallet-pwa

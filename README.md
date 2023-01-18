@@ -22,7 +22,7 @@ Infra scripts for deploying the Findy Agency
 
 ## Using docker-compose
 
-Coming soon...
+See [instructions](./docker-compose/README.md)
 
 ## AWS ECS
 

@@ -1,0 +1,7 @@
+get-docker-host.sh
+conf/genesis.txt
+cert/**/*.conf
+cert/**/*.crt
+cert/**/*.key
+.docker
+.data
