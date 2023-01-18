@@ -61,14 +61,19 @@ jobs:
           chmod a+x install.sh
           sudo ./install.sh -b /bin
 
+      - name: install deps
+        run: |
+          cd ../findy-wallet-pwa
+          npm install nightwatch --legacy-peer-deps --no-save
+          full_version=$(google-chrome --product-version)
+          chrome_version=$(echo "${full_version%.*.*.*}")
+          echo "Installing Chrome version $chrome_version"
+          npm install chromedriver@$chrome_version --legacy-peer-deps --no-save
+
       - name: run tests
         run: |
           cd ../findy-wallet-pwa
           cp -R ../docker-compose/cert ./tools/env/config/
-          npm ci nightwatch --legacy-peer-deps
-          full_version=$(google-chrome --product-version)
-          chrome_version=$(echo "${full_version%.*.*.*}")
-          npm ci chromedriver@$chrome_version --legacy-peer-deps
           npm run test:e2e
         env:
           AGENCY_REGISTER_WAIT_TIME: "60"
