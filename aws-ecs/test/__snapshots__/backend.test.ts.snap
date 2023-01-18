@@ -852,6 +852,14 @@ Object {
                 "Name": "FCLI_POOL_GENESIS_TXN_FILE",
                 "Value": "/agent/genesis_transactions",
               },
+              Object {
+                "Name": "FCLI_POOL_NAME",
+                "Value": "findy",
+              },
+              Object {
+                "Name": "FCLI_AGENCY_POOL_NAME",
+                "Value": "FINDY_LEDGER,findy,FINDY_MEM_LEDGER,cache",
+              },
             ],
             "Essential": true,
             "HealthCheck": Object {
@@ -2077,7 +2085,7 @@ Object {
           "cdk-hnb659fds-assets-123456789012-us-east-1",
         ],
         "SourceObjectKeys": Array [
-          "30bdba971638d4a54b006172820a834e783a9eebe4f2f16a0f67c26b6603b66b.zip",
+          "0.zip",
         ],
       },
       "Type": "Custom::CDKBucketDeployment",

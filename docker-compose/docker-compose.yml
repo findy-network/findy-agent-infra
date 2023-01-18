@@ -1,11 +1,10 @@
 version: '3.9'
 services:
+
   core:
     image: ghcr.io/findy-network/findy-agent:latest
     volumes:
-    
       - ./conf/genesis.txt:/genesis.txt
-      - ./conf/steward.exported:/steward.exported
       - ./cert:/grpc
       - .data/agent:/root
     environment:
@@ -13,7 +12,9 @@ services:
       FCLI_POOL_NAME: 'von'
       FCLI_AGENCY_POOL_NAME: 'FINDY_LEDGER,von,FINDY_MEM_LEDGER,cache'
       FCLI_AGENCY_STEWARD_DID: 'Th7MpTaRZVRYnPiabds81Y'
-      FCLI_IMPORT_WALLET_FILE: '/steward.exported'
+      FCLI_STEWARD_SEED: '000000000000000000000000Steward1'
+      FCLI_IMPORT_WALLET_FILE: ""
+      FCLI_IMPORT_WALLET_NAME: ""
       FCLI_AGENCY_GRPC_TLS: 'true'
       FCLI_AGENCY_GRPC_CERT_PATH: '/grpc'
       FCLI_AGENCY_HOST_ADDRESS: ${AGENCY_IP_ADDRESS}
@@ -23,6 +24,7 @@ services:
     ports:
       - '8080:8080'
       - '50052:50051'
+
   auth:
     image: ghcr.io/findy-network/findy-agent-auth:latest
     volumes:
@@ -36,6 +38,7 @@ services:
       FAA_AGENCY_ADDR: 'core'
     ports:
       - '8088:8888'
+
   vault:
     image: ghcr.io/findy-network/findy-agent-vault:latest
     volumes:
@@ -58,6 +61,7 @@ services:
         done;
         /start.sh;
       "
+
   vault-db:
     image: postgres:13.6-alpine
     volumes:
@@ -65,6 +69,7 @@ services:
     environment:
       POSTGRES_DB: 'vault'
       POSTGRES_PASSWORD: 'password'
+
   pwa:
     image: ghcr.io/findy-network/findy-wallet-pwa/local:latest
     ports:

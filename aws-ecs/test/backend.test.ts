@@ -27,5 +27,12 @@ test("Backend Created", () => {
     LaunchType: "FARGATE",
   });
 
-  expect(template).toMatchSnapshot();
+  // TODO: avoid SourceObjectKeys hash changes
+  const bucketDeploymentObject = template.findResources('Custom::CDKBucketDeployment');
+  const bucketDeploymentKey = Object.keys(bucketDeploymentObject)[0]
+  const json = template.toJSON()
+  json.Resources[bucketDeploymentKey].Properties.SourceObjectKeys =
+    json.Resources[bucketDeploymentKey].Properties.SourceObjectKeys.map((_: string, index: number) => `${index}.zip`)
+
+  expect(json).toMatchSnapshot();
 });

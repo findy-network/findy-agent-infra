@@ -1420,7 +1420,7 @@ Object {
     },
     \\"build\\": {
       \\"commands\\": [
-        \\"cdk-assets --path \\\\\\"assembly-MyTestStack-Deploy/MyTestStackDeployFindyAgencyInfraStack72B2F4FE.assets.json\\\\\\" --verbose publish \\\\\\"30bdba971638d4a54b006172820a834e783a9eebe4f2f16a0f67c26b6603b66b:123456789012-us-east-1\\\\\\"\\"
+        \\"cdk-assets --path \\\\\\"assembly-MyTestStack-Deploy/MyTestStackDeployFindyAgencyInfraStack72B2F4FE.assets.json\\\\\\" --verbose publish \\\\\\"ca067429698ca4114602a1c923872ab9bb16b6860ba63c0b738c4317f666a4d2:123456789012-us-east-1\\\\\\"\\"
       ]
     }
   }

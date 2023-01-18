@@ -218,7 +218,9 @@ export class Backend extends Construct {
           STARTUP_FILE_STORAGE_S3: bucketName,
           FCLI_IMPORT_WALLET_FILE: "",
           FCLI_IMPORT_WALLET_NAME: "",
-          FCLI_POOL_GENESIS_TXN_FILE: "/agent/genesis_transactions",
+          FCLI_POOL_GENESIS_TXN_FILE: props.genesisTransactions ? "/agent/genesis_transactions" : "",
+          FCLI_POOL_NAME: props.genesisTransactions ? 'findy' : 'FINDY_FILE_LEDGER',
+          FCLI_AGENCY_POOL_NAME: props.genesisTransactions ? 'FINDY_LEDGER,findy,FINDY_MEM_LEDGER,cache' : 'FINDY_FILE_LEDGER'
         },
         secretValues: {
           FCLI_AGENCY_STEWARD_WALLET_KEY: "findy-agency-steward-wallet-key",
