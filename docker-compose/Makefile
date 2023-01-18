@@ -27,6 +27,7 @@ von-up: clone
 	cd .docker/von-network && ./manage up
 
 gen-cert: docker-host
+	$(eval docker_host=$(shell ./get-docker-host.sh))
 	$(eval IP_ADDRESS=$(shell ./get-cert-host.sh))
 	@echo $(IP_ADDRESS)
 	@cat ./cert/client/conf.template > ./cert/client/cert.conf
@@ -37,7 +38,7 @@ gen-cert: docker-host
 	awk '{sub("<IP_ADDRESS>","$(IP_ADDRESS)")}1' ./cert/server/cert.conf > ./cert/server/cert.conf.tmp && \
 		mv ./cert/server/cert.conf.tmp ./cert/server/cert.conf
 	cd ./cert && ./gen.sh server
-export AGENGY_IP_ADDRESS="$(shell ./get-docker-host.sh)"
+export AGENGY_IP_ADDRESS="$(docker_host)"
 
 ledger-ready:
 	./wait-for-ledger.sh
