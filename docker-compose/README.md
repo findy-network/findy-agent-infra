@@ -19,6 +19,12 @@ File ledger is used in a single agency installation to simulate an actual decent
 using the file ledger, it is possible to execute only scenarios between agents residing in this
 Findy Agency, so it is best suited for development time usage.
 
+1. Remove the line mapping genesis file in volumes section:
+
+    ```yml
+    #       - ./conf/genesis.txt:/genesis.txt
+    ```
+
 1. Replace in docker-compose.yml following env variable values for core service as below:
 
     ```yml

@@ -5,15 +5,14 @@ This cdk script sets up agency to AWS:
 - microservice backend auth, vault, core to ECS with load balancer
 - pwa wallet app to s3
 - cloudfront as proxy to redirect requests from public internet to s3 or load balancer
-- pipelines to update agency codes on merge to master
+- pipeline to update agency deployment on new releases to agency services
 
 ![overview](./docs/arch.png)
 
 **Assumptions:**
 
-- source codes are in GitHub in user owned repositories
-- steward seed and DID is known
-- genesis-file is available
+- steward seed and DID is known (if using indy ledger)
+- genesis-file is available (if using indy ledger)
 - AWS Route53 managed zone
 
 Note! This setup is intended for development time testing scenarios.
@@ -28,7 +27,6 @@ solved as the direction for future solutions will be more platform-agnostic.
 - auth/core services lock bolt dbs while execution and thus
 updates bring currently the whole system down
 - load balancer has performance issues with GRPC-listener TLS termination
-- reading from EFS file system is slow?
 
 ## Prerequisities
 
@@ -87,20 +85,30 @@ for triggering automatic version updates.
    # github connection arn
    export GITHUB_CONNECTION_ARN="arn:aws:codestar-connections:us-east-1:xxx:connection/xxx"
 
-   # steward DID registered to ledger (empty string if not running as steward)
+   # steward DID registered to ledger
+   # (empty string if not running as steward,
+   # e.g. "Th7MpTaRZVRYnPiabds81Y" when using file ledger)
    export STEWARD_DID="xxx"
 
-   # steward wallet key used in export (empty string if not running as steward)
+   # steward seed used when registering steward DID to ledger
+   # (empty string if not running as steward,
+   # e.g. "000000000000000000000000Steward1" when using file ledger)
+   export STEWARD_SEED="xxx"
+
+   # steward wallet key
+   # note: agency core can be used to create compatible keys: findy-agent tools key create
+   # (empty string if not running as steward)
    export STEWARD_WALLET_KEY="xxx"
 
-   # agency admin id
+   # desired agency admin id
    export ADMIN_ID="xxx"
 
-   # agency admin authenticator key
+   # desired agency admin authenticator key
+   # note: agency cli can be used to create compatible keys: findy-agent-cli new-key
    export ADMIN_AUTHN_KEY="xxx"
    ```
 
-1. Make sure you know the path to ledger genesis file.
+1. Make sure you know the path to ledger genesis file (if not using file ledger).
 
 ## Steps
 
@@ -109,6 +117,7 @@ for triggering automatic version updates.
 npm install
 
 # save pipeline params
+# leave <path_to_ledger_genesis> empty if using file ledger
 ./tools/init.sh <path_to_ledger_genesis>
 
 # bootstrap, first synth and store context to AWS params
@@ -125,12 +134,3 @@ cdk deploy
 
 Open pipelines at AWS console and see that the pipeline succeeds. Following changes
 to the app or infra are deployed automatically by the pipeline.
-
-### Useful commands
-
-- `npm run build` compile typescript to js
-- `npm run watch` watch for changes and compile
-- `npm run test` perform the jest unit tests
-- `cdk deploy` deploy this stack to your default AWS account/region
-- `cdk diff` compare deployed stack with current state
-- `cdk synth` emits the synthesized CloudFormation template

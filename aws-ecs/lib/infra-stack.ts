@@ -22,7 +22,7 @@ export class InfraStack extends Stack {
       rootDomainName: process.env.DOMAIN_NAME || "example.com",
       appDomainPrefix: process.env.SUB_DOMAIN_NAME || "example",
       apiDomainPrefix: process.env.API_SUB_DOMAIN_NAME || "example-api",
-      genesisTransactions: process.env.GENESIS_TRANSACTIONS || "genesis",
+      genesisTransactions: process.env.GENESIS_TRANSACTIONS || "",
     });
 
     this.clusterName = backend.clusterName;

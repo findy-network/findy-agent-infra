@@ -2,9 +2,13 @@
 
 # Stores parameters needed for pipeline to run successfully
 
-if [ -z "$1" ]; then
-  echo "ERROR: Give path to ledger genesis file as first argument."
-  exit 1
+genesis_file_path=$1
+genesis_content=""
+
+if [ -z "$genesis_file_path" ]; then
+  echo "WARNING: Genesis file path not given, assuming FILE LEDGER in use"
+else
+  genesis_content="$(cat $genesis_file_path)"
 fi
 
 if [ -z "$GITHUB_CONNECTION_ARN" ]; then
@@ -31,4 +35,4 @@ aws ssm put-parameter --name "/findy-agency/github-connection-arn" --value "$GIT
 aws ssm put-parameter --name "/findy-agency/domain-name" --value "$DOMAIN_NAME" --type String
 aws ssm put-parameter --name "/findy-agency/sub-domain-name" --value "$SUB_DOMAIN_NAME" --type String
 aws ssm put-parameter --name "/findy-agency/api-sub-domain-name" --value "$API_SUB_DOMAIN_NAME" --type String
-aws ssm put-parameter --name "/findy-agency/genesis" --value "$(cat $1)" --type String
+aws ssm put-parameter --name "/findy-agency/genesis" --value "$genesis_content" --type String
