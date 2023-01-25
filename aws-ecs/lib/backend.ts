@@ -236,7 +236,7 @@ export class Backend extends Construct {
       ports: [8080, GRPCPortNumber],
       volumeContainerPath: "/root",
       healthCheck: {
-        command: ["CMD-SHELL", "curl -f http://localhost:8080/ready || exit 1"],
+        command: ["CMD-SHELL", "./healthcheck.sh"],
         retries: 10,
       },
     };
