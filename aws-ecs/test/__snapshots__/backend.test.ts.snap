@@ -865,7 +865,7 @@ Object {
             "HealthCheck": Object {
               "Command": Array [
                 "CMD-SHELL",
-                "./healthcheck.sh",
+                "curl -f http://localhost:8080/ready || exit 1",
               ],
               "Interval": 30,
               "Retries": 10,
