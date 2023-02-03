@@ -30,6 +30,11 @@ updates bring currently the whole system down
 
 ## Prerequisities
 
+1. Clone this repository to your own desktop.
+The initial [CDK pipeline](https://docs.aws.amazon.com/cdk/v2/guide/cdk_pipeline.html)
+creation is done from your local computer according to these instructions.
+After the creation, the pipeline automatically reconfigures itself to deploy new stages or stacks.
+
 1. `cd` to this folder: `cd aws-ecs`
 
 1. Make sure you have installed node.js, AWS CDK and Typescript:
