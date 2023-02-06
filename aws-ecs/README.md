@@ -56,7 +56,9 @@ you need to store the AWS nameservers to your domain settings
 (via the domain registrar UI).
 
 1. [Create GitHub codestar connection](https://docs.aws.amazon.com/dtconsole/latest/userguide/connections-create-github.html)
-for cloning the needed source code repositories and triggering automatic version updates.
+so that the pipeline can clone the needed source code repositories and trigger automatic version updates.
+The connection is not used to access your repositories, only the public Findy Agency repositories,
+so you can for example create a dummy repository for it (if you don't want to allow full access).
 
 1. Declare following environment variables:
 
