@@ -21,14 +21,9 @@ high availability and performance considerations in mind. There are some open
 issues with this setup (see TODO), and most probably those issues will not be
 solved as the direction for future solutions will be more platform-agnostic.
 
-**TODO:**
-
-- disabling default HTTP listener
-- auth/core services lock bolt dbs while execution and thus
-updates bring currently the whole system down
-- load balancer has performance issues with GRPC-listener TLS termination
-
 ## Prerequisities
+
+**Note that the none of the following steps are optional.**
 
 1. Clone this repository to your own desktop.
 The initial [CDK pipeline](https://docs.aws.amazon.com/cdk/v2/guide/cdk_pipeline.html)
@@ -51,7 +46,9 @@ Docker, node.js, AWS CDK, and Typescript:
    npm install -g typescript
    ```
 
-1. You need AWS Account. [Create IAM user and AWS Access keys via console](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) if you don't them already.
+1. You need AWS Account. Create IAM user with full AWS access rights,
+and [copy the AWS Access keys via console](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html)
+if you don't have them already.
 
 1. [Create a public hosted zone to AWS Route53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingHostedZone.html)
 for your domain. If your domain registrar is different from AWS Route53,
@@ -59,7 +56,7 @@ you need to store the AWS nameservers to your domain settings
 (via the domain registrar UI).
 
 1. [Create GitHub codestar connection](https://docs.aws.amazon.com/dtconsole/latest/userguide/connections-create-github.html)
-for triggering automatic version updates.
+for cloning the needed source code repositories and triggering automatic version updates.
 
 1. Declare following environment variables:
 
@@ -140,3 +137,17 @@ cdk deploy
 
 Open pipelines at AWS console and see that the pipeline succeeds. Following changes
 to the app or infra are deployed automatically by the pipeline.
+
+## Testing
+
+Navigate to URL <https://your-sub-domain-name.your-domain-name>
+
+You should see the view below. Test the user registration and login according to [these instructions](https://github.com/findy-network/findy-wallet-pwa#registerlogin).
+![wallet](./docs/wallet.png)
+
+**TODO:**
+
+- disabling default HTTP listener
+- auth/core services lock bolt dbs while execution and thus
+updates bring currently the whole system down
+- load balancer has performance issues with GRPC-listener TLS termination
