@@ -3,7 +3,7 @@
 # Stores parameters needed for pipeline to run successfully
 
 genesis_file_path=$1
-genesis_content=""
+genesis_content="no_genesis_needed"
 
 if [ -z "$genesis_file_path" ]; then
   echo "WARNING: Genesis file path not given, assuming FILE LEDGER in use"
