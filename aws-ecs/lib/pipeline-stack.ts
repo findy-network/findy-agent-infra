@@ -58,7 +58,7 @@ export class InfraPipelineStack extends cdk.Stack {
     );
     const infraInput = CodePipelineSource.connection(
       "findy-network/findy-agent-infra",
-      "fix-fileledger",
+      "master",
       {
         connectionArn: githubConnectionArn, // Created using the AWS console
       }
