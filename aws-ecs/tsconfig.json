@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES2021",
+    "target": "ES2018",
     "module": "commonjs",
     "lib": [
-      "es2021"
+      "es2018"
     ],
     "declaration": true,
     "strict": true,
