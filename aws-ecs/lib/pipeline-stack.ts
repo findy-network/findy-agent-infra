@@ -114,6 +114,9 @@ export class InfraPipelineStack extends cdk.Stack {
     );
     deployStage.addPost(e2eTestStep);
 
+    // SNS topic for pipeline notifications
+    const notificationTopic = new Topic(this, "FindyAgencyPipelineNotificationTopic");
+
     // need this to add the notification rule
     pipeline.buildPipeline();
 
@@ -127,7 +130,7 @@ export class InfraPipelineStack extends cdk.Stack {
         "codepipeline-pipeline-pipeline-execution-resumed",
         "codepipeline-pipeline-pipeline-execution-succeeded",
       ],
-      targets: [new Topic(this, "FindyAgencyPipelineNotificationTopic")],
+      targets: [notificationTopic],
     });
 
     // manually adjust logs retention
