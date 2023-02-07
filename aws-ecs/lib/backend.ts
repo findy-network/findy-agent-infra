@@ -226,6 +226,7 @@ export class Backend extends Construct {
           FCLI_AGENCY_POOL_NAME: !useFileLedger ? 'FINDY_LEDGER,findy,FINDY_MEM_LEDGER,cache' : 'FINDY_FILE_LEDGER'
         },
         secretValues: {
+          FCLI_STEWARD_WALLET_KEY: "findy-agency-steward-wallet-key",
           FCLI_AGENCY_STEWARD_WALLET_KEY: "findy-agency-steward-wallet-key",
           FCLI_AGENCY_STEWARD_DID: "findy-agency-steward-did",
           FCLI_AGENCY_STEWARD_SEED: "findy-agency-steward-seed",
