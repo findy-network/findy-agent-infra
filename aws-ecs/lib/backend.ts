@@ -132,7 +132,7 @@ export class Backend extends Construct {
 
     // Create config bucket
     const bucketUniquePrefix = `${props.appDomainPrefix}${props.rootDomainName}`;
-    const bucketResourceName = `${bucketUniquePrefix.replace(".", "").replace("-", "")}BackendConfig`;
+    const bucketResourceName = `${bucketUniquePrefix.replaceAll(".", "").replaceAll("-", "")}BackendConfig`;
     const bucketName = bucketResourceName.toLowerCase();
 
     const bucket = new Bucket(scope, bucketName, {
