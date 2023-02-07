@@ -857,6 +857,10 @@ Object {
                 "Value": "findy",
               },
               Object {
+                "Name": "FCLI_STEWARD_POOL_NAME",
+                "Value": "findy",
+              },
+              Object {
                 "Name": "FCLI_AGENCY_POOL_NAME",
                 "Value": "FINDY_LEDGER,findy,FINDY_MEM_LEDGER,cache",
               },
@@ -901,6 +905,21 @@ Object {
               },
             ],
             "Secrets": Array [
+              Object {
+                "Name": "FCLI_STEWARD_WALLET_KEY",
+                "ValueFrom": Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":secretsmanager:us-east-1:123456789012:secret:FindyAgency:findy-agency-steward-wallet-key::",
+                    ],
+                  ],
+                },
+              },
               Object {
                 "Name": "FCLI_AGENCY_STEWARD_WALLET_KEY",
                 "ValueFrom": Object {

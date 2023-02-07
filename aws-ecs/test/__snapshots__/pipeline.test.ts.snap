@@ -496,7 +496,7 @@ Object {
                   "Version": "1",
                 },
                 "Configuration": Object {
-                  "BranchName": "fix-fileledger",
+                  "BranchName": "master",
                   "ConnectionArn": Object {
                     "Ref": "SsmParameterValuefindyagencygithubconnectionarnC96584B6F00A464EAD1953AFF4B05118Parameter",
                   },
