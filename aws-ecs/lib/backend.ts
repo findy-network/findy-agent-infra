@@ -132,7 +132,7 @@ export class Backend extends Construct {
 
     // Create config bucket
     const bucketUniquePrefix = `${props.appDomainPrefix}${props.rootDomainName}`;
-    const bucketResourceName = `${bucketUniquePrefix.replaceAll(".", "").replaceAll("-", "")}BackendConfig`;
+    const bucketResourceName = `${bucketUniquePrefix.replace(/\./g, "").replace(/-/g, "")}BackendConfig`;
     const bucketName = bucketResourceName.toLowerCase();
 
     const bucket = new Bucket(scope, bucketName, {
@@ -222,9 +222,11 @@ export class Backend extends Construct {
           FCLI_IMPORT_WALLET_NAME: "",
           FCLI_POOL_GENESIS_TXN_FILE: !useFileLedger ? '/agent/genesis_transactions' : '',
           FCLI_POOL_NAME: !useFileLedger ? 'findy' : 'FINDY_FILE_LEDGER',
+          FCLI_STEWARD_POOL_NAME: !useFileLedger ? 'findy' : 'FINDY_FILE_LEDGER',
           FCLI_AGENCY_POOL_NAME: !useFileLedger ? 'FINDY_LEDGER,findy,FINDY_MEM_LEDGER,cache' : 'FINDY_FILE_LEDGER'
         },
         secretValues: {
+          FCLI_STEWARD_WALLET_KEY: "findy-agency-steward-wallet-key",
           FCLI_AGENCY_STEWARD_WALLET_KEY: "findy-agency-steward-wallet-key",
           FCLI_AGENCY_STEWARD_DID: "findy-agency-steward-did",
           FCLI_AGENCY_STEWARD_SEED: "findy-agency-steward-seed",
