@@ -50,10 +50,13 @@ Docker, node.js, AWS CDK, and Typescript:
 and [copy the AWS Access keys via console](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html)
 if you don't have them already.
 
-1. [Create a public hosted zone to AWS Route53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingHostedZone.html)
-for your domain. If your domain registrar is different from AWS Route53,
-you need to store the AWS nameservers to your domain settings
-(via the domain registrar UI).
+1. You should have a domain available for the installation
+
+    - If you have an existing domain, [create a public hosted zone to AWS Route53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingHostedZone.html),
+    and store the hosted zone nameservers to your domain settings
+      (via the domain registrar UI).
+    - If you [buy the domain via AWS](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-register.html),
+      AWS will create the needed hosted zone for you automatically.
 
 1. [Create GitHub codestar connection](https://docs.aws.amazon.com/dtconsole/latest/userguide/connections-create-github.html)
 so that the pipeline can clone the needed source code repositories and trigger automatic version updates.
@@ -146,6 +149,35 @@ Navigate to URL <https://your-sub-domain-name.your-domain-name>
 
 You should see the view below. Test the user registration and login according to [these instructions](https://github.com/findy-network/findy-wallet-pwa#registerlogin).
 ![wallet](./docs/wallet.png)
+
+You can further test the issuing and verifying with sample scripts and servers found in this repository:
+<https://github.com/findy-network/identity-hackathon-2023>.
+Make sure you [install the CLI tool](https://github.com/findy-network/findy-agent-cli#installation)
+to your testing environment.
+
+Declare needed env variables as following:
+
+```bash
+# (create new key: 'findy-agent-cli new-key')
+export FCLI_KEY=<yourkey>
+export FCLI_USER=<your-unique-issuer-username>
+
+# agency API server cert path
+export FCLI_TLS_PATH='../cert'
+
+export FCLI_URL="https://$SUB_DOMAIN_NAME.$DOMAIN_NAME"
+# agency authentication origin
+export FCLI_ORIGIN="https://$SUB_DOMAIN_NAME.$DOMAIN_NAME"
+# agency API server
+export AGENCY_API_SERVER="$API_SUB_DOMAIN_NAME.$DOMAIN_NAME"
+# agency API server port
+export AGENCY_API_SERVER_PORT='50051'
+export FCLI_SERVER="$AGENCY_API_SERVER:$AGENCY_API_SERVER_PORT"
+```
+
+Clone the repository and download the API certifcate using the script: `./tools/dl-cert.sh "$FCLI_SERVER"`
+
+Now you should be ready to run the samples.
 
 **TODO:**
 
