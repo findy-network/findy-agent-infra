@@ -341,7 +341,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
-          "S3Key": "eb5b005c858404ea0c8f68098ed5dcdf5340e02461f149751d10f59c210d5ef8.zip",
+          "S3Key": "e45ee2082d227db1b6f0292696ce5ce2b061c105d15efb341925ca040d1feb68.zip",
         },
         "Handler": "index.handler",
         "Role": Object {
@@ -1192,7 +1192,7 @@ Object {
     },
     \\"build\\": {
       \\"commands\\": [
-        \\"cdk-assets --path \\\\\\"assembly-MyTestStack-Deploy/MyTestStackDeployFindyAgencyInfraStack72B2F4FE.assets.json\\\\\\" --verbose publish \\\\\\"0affa35a9d750381b76be83ff9cedeb2e455e8903fcf4d7db4d1c1e2c9c7cd54:123456789012-us-east-1\\\\\\"\\"
+        \\"cdk-assets --path \\\\\\"assembly-MyTestStack-Deploy/MyTestStackDeployFindyAgencyInfraStack72B2F4FE.assets.json\\\\\\" --verbose publish \\\\\\"861509f9607aa6bb9fd7034fb10fe6f0c60d91dfd7f010b9ef666869dec9bbd9:123456789012-us-east-1\\\\\\"\\"
       ]
     }
   }
@@ -1268,7 +1268,7 @@ Object {
     },
     \\"build\\": {
       \\"commands\\": [
-        \\"cdk-assets --path \\\\\\"assembly-MyTestStack-Deploy/MyTestStackDeployFindyAgencyInfraStack72B2F4FE.assets.json\\\\\\" --verbose publish \\\\\\"5d8d1d0aacea23824c62f362e1e3c14b7dd14a31c71b53bfae4d14a6373c5510:123456789012-us-east-1\\\\\\"\\"
+        \\"cdk-assets --path \\\\\\"assembly-MyTestStack-Deploy/MyTestStackDeployFindyAgencyInfraStack72B2F4FE.assets.json\\\\\\" --verbose publish \\\\\\"c9455aefa243f3cd7a810b3f6df8ed37e457d3e1d046353da27c4aa13551d4dc:123456789012-us-east-1\\\\\\"\\"
       ]
     }
   }
