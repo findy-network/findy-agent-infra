@@ -33,7 +33,7 @@ After the creation, the pipeline automatically reconfigures itself to deploy new
 1. `cd` to this folder: `cd aws-ecs`
 
 1. Make sure you have installed [AWS CLI](https://aws.amazon.com/cli/),
-Docker, node.js, AWS CDK, and Typescript:
+node.js, AWS CDK, and Typescript:
 
    ```bash
    # node
