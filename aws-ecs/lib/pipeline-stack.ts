@@ -332,10 +332,10 @@ export class InfraPipelineStack extends cdk.Stack {
         "./e2e/dl-cert.sh",
 
         // install needed deps
-        "npm install nightwatch@2.1.7 --legacy-peer-deps",
+        "npm install nightwatch@2.6.15",
         "full_version=$(google-chrome --product-version)",
         'chrome_version=$(echo "${full_version%.*.*.*}")',
-        "npm install chromedriver@$chrome_version --legacy-peer-deps",
+        "npm install chromedriver@$chrome_version",
 
         // onboard new user and agent
         "npm run test:e2e",
