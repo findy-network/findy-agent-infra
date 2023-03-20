@@ -850,6 +850,7 @@ Object {
                   "Version": "1",
                 },
                 "Configuration": Object {
+                  "PrimarySource": "findy_network_findy_wallet_pwa_Source",
                   "ProjectName": Object {
                     "Ref": "PipelineDeployFindyAgencyBuildFrontendStep30F5625A",
                   },
@@ -857,6 +858,9 @@ Object {
                 "InputArtifacts": Array [
                   Object {
                     "Name": "findy_network_findy_wallet_pwa_Source",
+                  },
+                  Object {
+                    "Name": "findy_network_findy_agent_infra_Source",
                   },
                 ],
                 "Name": "FindyAgencyBuildFrontendStep",
@@ -2519,7 +2523,7 @@ Object {
               "Value": "wss",
             },
           ],
-          "Image": "public.ecr.aws/docker/library/node:16.14.2-alpine3.15",
+          "Image": "public.ecr.aws/docker/library/node:18.12-alpine3.17",
           "ImagePullCredentialsType": "SERVICE_ROLE",
           "PrivilegedMode": false,
           "Type": "LINUX_CONTAINER",
@@ -2535,11 +2539,17 @@ Object {
           "BuildSpec": "{
   \\"version\\": \\"0.2\\",
   \\"phases\\": {
+    \\"install\\": {
+      \\"commands\\": [
+        \\"[ ! -d \\\\\\"../findy-agent-infra\\\\\\" ] || { echo 'additionalInputs: \\\\\\"../findy-agent-infra\\\\\\" must not exist yet. If you want to merge multiple artifacts, use a \\\\\\"cp\\\\\\" command.'; exit 1; } && ln -s -- \\\\\\"$CODEBUILD_SRC_DIR_findy_network_findy_agent_infra_Source\\\\\\" \\\\\\"../findy-agent-infra\\\\\\"\\"
+      ]
+    },
     \\"build\\": {
       \\"commands\\": [
         \\"apk add bash\\",
         \\"npm ci\\",
-        \\"npm run build\\"
+        \\"npm run build\\",
+        \\"../findy-agent-infra/tools/create-set-env.sh \\\\\\"./tools/env-docker/set-env.sh\\\\\\" \\\\\\"undefined.undefined\\\\\\" \\\\\\"undefined.undefined\\\\\\" \\\\\\"50051\\\\\\"\\"
       ]
     }
   },
