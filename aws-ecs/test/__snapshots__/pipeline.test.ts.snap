@@ -2549,7 +2549,7 @@ Object {
         \\"apk add bash\\",
         \\"npm ci\\",
         \\"npm run build\\",
-        \\"../findy-agent-infra/tools/create-set-env.sh \\\\\\"./tools/env-docker/set-env.sh\\\\\\" \\\\\\"undefined.undefined\\\\\\" \\\\\\"undefined.undefined\\\\\\" \\\\\\"50051\\\\\\"\\"
+        \\"../findy-agent-infra/aws-ecs/tools/create-set-env.sh \\\\\\"./tools/env-docker/set-env.sh\\\\\\" \\\\\\"undefined.undefined\\\\\\" \\\\\\"undefined.undefined\\\\\\" \\\\\\"50051\\\\\\"\\"
       ]
     }
   },

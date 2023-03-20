@@ -251,7 +251,7 @@ export class InfraPipelineStack extends cdk.Stack {
         "apk add bash",
         "npm ci",
         "npm run build",
-        `../findy-agent-infra/tools/create-set-env.sh "./tools/env-docker/set-env.sh" "${host}" "${process.env.API_SUB_DOMAIN_NAME}.${process.env.DOMAIN_NAME}" "${GRPCPortNumber}"`
+        `../findy-agent-infra/aws-ecs/tools/create-set-env.sh "./tools/env-docker/set-env.sh" "${host}" "${process.env.API_SUB_DOMAIN_NAME}.${process.env.DOMAIN_NAME}" "${GRPCPortNumber}"`
       ],
       buildEnvironment: {
         buildImage: codebuild.LinuxBuildImage.fromDockerRegistry(
