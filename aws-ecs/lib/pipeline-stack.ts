@@ -91,7 +91,7 @@ export class InfraPipelineStack extends cdk.Stack {
     deployStage.addPost(ecsUpdateStep);
 
     // Add frontend build step
-    const frontBuildStep = this.createFrontendBuildStep(frontendInput);
+    const frontBuildStep = this.createFrontendBuildStep(frontendInput, infraInput);
     deployStage.addPost(frontBuildStep);
 
     // Add frontend deploy step
@@ -239,15 +239,23 @@ export class InfraPipelineStack extends cdk.Stack {
     });
   }
 
-  createFrontendBuildStep(input: CodePipelineSource) {
+  createFrontendBuildStep(frontendInput: CodePipelineSource, infraInput: CodePipelineSource) {
     const host = `${process.env.SUB_DOMAIN_NAME}.${process.env.DOMAIN_NAME}`;
     return new CodeBuildStep("FindyAgencyBuildFrontendStep", {
       projectName: "FindyAgencyBuildFrontend",
-      input,
-      commands: ["apk add bash", "npm ci", "npm run build"],
+      input: frontendInput,
+      additionalInputs: {
+        "../findy-agent-infra": infraInput
+      },
+      commands: [
+        "apk add bash",
+        "npm ci",
+        "npm run build",
+        `../findy-agent-infra/tools/create-set-env.sh "./tools/env-docker/set-env.sh" "${host}" "${process.env.API_SUB_DOMAIN_NAME}.${process.env.DOMAIN_NAME}" "${GRPCPortNumber}"`
+      ],
       buildEnvironment: {
         buildImage: codebuild.LinuxBuildImage.fromDockerRegistry(
-          "public.ecr.aws/docker/library/node:16.14.2-alpine3.15"
+          "public.ecr.aws/docker/library/node:18.12-alpine3.17"
         ),
         environmentVariables: {
           REACT_APP_GQL_HOST: {
