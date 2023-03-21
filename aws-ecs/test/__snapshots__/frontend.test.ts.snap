@@ -332,6 +332,29 @@ Object {
             },
             Object {
               "AllowedMethods": Array [
+                "GET",
+                "HEAD",
+              ],
+              "CachedMethods": Array [
+                "GET",
+                "HEAD",
+              ],
+              "Compress": true,
+              "DefaultTTL": 0,
+              "ForwardedValues": Object {
+                "Cookies": Object {
+                  "Forward": "none",
+                },
+                "QueryString": false,
+              },
+              "MaxTTL": 0,
+              "MinTTL": 0,
+              "PathPattern": "/set-env.sh",
+              "TargetOriginId": "origin1",
+              "ViewerProtocolPolicy": "redirect-to-https",
+            },
+            Object {
+              "AllowedMethods": Array [
                 "DELETE",
                 "GET",
                 "HEAD",
