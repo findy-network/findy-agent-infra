@@ -341,7 +341,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
-          "S3Key": "e45ee2082d227db1b6f0292696ce5ce2b061c105d15efb341925ca040d1feb68.zip",
+          "S3Key": "5fa1330271b8967d9254ba2d4a07144f8acefe8b77e6d6bba38261373a50d5f8.zip",
         },
         "Handler": "index.handler",
         "Role": Object {
@@ -585,7 +585,7 @@ Object {
                   "Version": "1",
                 },
                 "Configuration": Object {
-                  "EnvironmentVariables": "[{\\"name\\":\\"_PROJECT_CONFIG_HASH\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"85f4f06ee4db527e34468b7dd829cd2fdc32516a66f121b82c5a11a04340b86b\\"}]",
+                  "EnvironmentVariables": "[{\\"name\\":\\"_PROJECT_CONFIG_HASH\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"f6495e86d24f25b87ab86e87d57c9f84a24ebf85cfe38e8d762077643806f9c0\\"}]",
                   "PrimarySource": "findy_network_findy_agent_infra_Source",
                   "ProjectName": Object {
                     "Ref": "PipelineBuildSynthStepCdkBuildProject7FBB5116",
@@ -635,7 +635,7 @@ Object {
                   "Version": "1",
                 },
                 "Configuration": Object {
-                  "EnvironmentVariables": "[{\\"name\\":\\"_PROJECT_CONFIG_HASH\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"231e9a40cda8a0fedab599d5ea450da602d27d5a892bd4a18eaf5c3c51dbebbe\\"}]",
+                  "EnvironmentVariables": "[{\\"name\\":\\"_PROJECT_CONFIG_HASH\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"17cb53e892312789bf60a4e6356d5f5c11fc560e8fceab4abdda2b9ae97eea56\\"}]",
                   "ProjectName": Object {
                     "Ref": "PipelineUpdatePipelineSelfMutationDAA41400",
                   },
@@ -917,7 +917,6 @@ Object {
                   "Version": "1",
                 },
                 "Configuration": Object {
-                  "PrimarySource": "findy_network_findy_agent_infra_Source",
                   "ProjectName": Object {
                     "Ref": "PipelineDeployFindyAgencyAdminOnboardStepCB4D6B02",
                   },
@@ -925,9 +924,6 @@ Object {
                 "InputArtifacts": Array [
                   Object {
                     "Name": "findy_network_findy_agent_infra_Source",
-                  },
-                  Object {
-                    "Name": "FindyAgencyDeployBackendStep_Output",
                   },
                 ],
                 "Name": "FindyAgencyAdminOnboardStep",
@@ -993,7 +989,7 @@ Object {
                     "Name": "findy_network_findy_wallet_pwa_Source",
                   },
                   Object {
-                    "Name": "FindyAgencyAdminOnboardStep_Output",
+                    "Name": "findy_network_findy_agent_infra_Source",
                   },
                 ],
                 "Name": "FindyAgencyE2ETestStep",
@@ -1174,7 +1170,7 @@ Object {
               "Value": "FindyAgency:findy-agency-admin-authn-key",
             },
           ],
-          "Image": "aws/codebuild/standard:5.0",
+          "Image": "aws/codebuild/standard:6.0",
           "ImagePullCredentialsType": "CODEBUILD",
           "PrivilegedMode": false,
           "Type": "LINUX_CONTAINER",
@@ -1250,7 +1246,7 @@ Object {
               "Value": "FindyAgency:findy-agency-admin-authn-key",
             },
           ],
-          "Image": "aws/codebuild/standard:5.0",
+          "Image": "aws/codebuild/standard:6.0",
           "ImagePullCredentialsType": "CODEBUILD",
           "PrivilegedMode": false,
           "Type": "LINUX_CONTAINER",
@@ -1326,7 +1322,7 @@ Object {
               "Value": "FindyAgency:findy-agency-admin-authn-key",
             },
           ],
-          "Image": "aws/codebuild/standard:5.0",
+          "Image": "aws/codebuild/standard:6.0",
           "ImagePullCredentialsType": "CODEBUILD",
           "PrivilegedMode": false,
           "Type": "LINUX_CONTAINER",
@@ -1402,7 +1398,7 @@ Object {
               "Value": "FindyAgency:findy-agency-admin-authn-key",
             },
           ],
-          "Image": "aws/codebuild/standard:5.0",
+          "Image": "aws/codebuild/standard:6.0",
           "ImagePullCredentialsType": "CODEBUILD",
           "PrivilegedMode": false,
           "Type": "LINUX_CONTAINER",
@@ -1692,7 +1688,7 @@ Object {
               "Value": "/findy-agency/cdk-context",
             },
           ],
-          "Image": "aws/codebuild/standard:5.0",
+          "Image": "aws/codebuild/standard:6.0",
           "ImagePullCredentialsType": "CODEBUILD",
           "PrivilegedMode": false,
           "Type": "LINUX_CONTAINER",
@@ -2209,7 +2205,7 @@ Object {
               "Value": "FindyAgency:findy-agency-admin-authn-key",
             },
           ],
-          "Image": "aws/codebuild/standard:5.0",
+          "Image": "aws/codebuild/standard:6.0",
           "ImagePullCredentialsType": "CODEBUILD",
           "PrivilegedMode": false,
           "Type": "LINUX_CONTAINER",
@@ -2225,11 +2221,6 @@ Object {
           "BuildSpec": "{
   \\"version\\": \\"0.2\\",
   \\"phases\\": {
-    \\"install\\": {
-      \\"commands\\": [
-        \\"[ ! -d \\\\\\"ecsUpdate\\\\\\" ] || { echo 'additionalInputs: \\\\\\"ecsUpdate\\\\\\" must not exist yet. If you want to merge multiple artifacts, use a \\\\\\"cp\\\\\\" command.'; exit 1; } && ln -s -- \\\\\\"$CODEBUILD_SRC_DIR_FindyAgencyDeployBackendStep_Output\\\\\\" \\\\\\"ecsUpdate\\\\\\"\\"
-      ]
-    },
     \\"build\\": {
       \\"commands\\": [
         \\"./aws-ecs/tools/wait-for-ready.sh\\",
@@ -2814,7 +2805,7 @@ Object {
               "Value": "FindyAgency:findy-agency-admin-authn-key",
             },
           ],
-          "Image": "aws/codebuild/standard:5.0",
+          "Image": "aws/codebuild/standard:6.0",
           "ImagePullCredentialsType": "CODEBUILD",
           "PrivilegedMode": false,
           "Type": "LINUX_CONTAINER",
@@ -3102,7 +3093,7 @@ Object {
               "Value": "FindyAgency:findy-agency-admin-authn-key",
             },
           ],
-          "Image": "aws/codebuild/standard:5.0",
+          "Image": "aws/codebuild/standard:6.0",
           "ImagePullCredentialsType": "CODEBUILD",
           "PrivilegedMode": false,
           "Type": "LINUX_CONTAINER",
@@ -3422,7 +3413,7 @@ Object {
               "Value": "FindyAgency:findy-agency-e2e-org-seed",
             },
           ],
-          "Image": "aws/codebuild/standard:5.0",
+          "Image": "aws/codebuild/standard:6.0",
           "ImagePullCredentialsType": "CODEBUILD",
           "PrivilegedMode": false,
           "Type": "LINUX_CONTAINER",
@@ -3440,11 +3431,12 @@ Object {
   \\"phases\\": {
     \\"install\\": {
       \\"commands\\": [
-        \\"[ ! -d \\\\\\"waitReadyOutput\\\\\\" ] || { echo 'additionalInputs: \\\\\\"waitReadyOutput\\\\\\" must not exist yet. If you want to merge multiple artifacts, use a \\\\\\"cp\\\\\\" command.'; exit 1; } && ln -s -- \\\\\\"$CODEBUILD_SRC_DIR_FindyAgencyAdminOnboardStep_Output\\\\\\" \\\\\\"waitReadyOutput\\\\\\"\\"
+        \\"[ ! -d \\\\\\"../findy-agent-infra\\\\\\" ] || { echo 'additionalInputs: \\\\\\"../findy-agent-infra\\\\\\" must not exist yet. If you want to merge multiple artifacts, use a \\\\\\"cp\\\\\\" command.'; exit 1; } && ln -s -- \\\\\\"$CODEBUILD_SRC_DIR_findy_network_findy_agent_infra_Source\\\\\\" \\\\\\"../findy-agent-infra\\\\\\"\\"
       ]
     },
     \\"build\\": {
       \\"commands\\": [
+        \\"../findy-agent-infra/aws-ecs/tools/install-chrome.sh\\",
         \\"curl https://raw.githubusercontent.com/findy-network/findy-agent-cli/HEAD/install.sh > install.sh\\",
         \\"chmod a+x install.sh\\",
         \\"sudo ./install.sh -b /bin\\",
@@ -4428,7 +4420,7 @@ Object {
               "Value": "FindyAgency:findy-agency-admin-authn-key",
             },
           ],
-          "Image": "aws/codebuild/standard:5.0",
+          "Image": "aws/codebuild/standard:6.0",
           "ImagePullCredentialsType": "CODEBUILD",
           "PrivilegedMode": false,
           "Type": "LINUX_CONTAINER",

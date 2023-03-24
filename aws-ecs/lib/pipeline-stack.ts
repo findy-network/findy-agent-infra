@@ -102,16 +102,17 @@ export class InfraPipelineStack extends cdk.Stack {
 
     // Add admin onboard
     const adminOnboardStep = this.createAdminOnboardTestStep(
-      infraInput,
-      ecsUpdateStep.primaryOutput
+      infraInput
     );
+    adminOnboardStep.addStepDependency(ecsUpdateStep)
     deployStage.addPost(adminOnboardStep);
 
     // Add e2e test
     const e2eTestStep = this.createE2ETestStep(
       frontendInput,
-      adminOnboardStep.primaryOutput
+      infraInput
     );
+    e2eTestStep.addStepDependency(adminOnboardStep)
     deployStage.addPost(e2eTestStep);
 
     // SNS topic for pipeline notifications
@@ -296,12 +297,10 @@ export class InfraPipelineStack extends cdk.Stack {
   }
 
   createAdminOnboardTestStep(
-    input: CodePipelineSource,
-    ecsUpdateOutput: cdk.pipelines.FileSet | undefined
+    input: CodePipelineSource
   ) {
     return new CodeBuildStep("FindyAgencyAdminOnboardStep", {
       input,
-      additionalInputs: { ecsUpdate: ecsUpdateOutput! },
       projectName: "FindyAgencyAdminOnboard",
       commands: [
         // wait for backend to start
@@ -322,14 +321,19 @@ export class InfraPipelineStack extends cdk.Stack {
   }
 
   createE2ETestStep(
-    input: CodePipelineSource,
-    waitReadyOutput: cdk.pipelines.FileSet | undefined
+    frontendInput: CodePipelineSource,
+    infraInput: CodePipelineSource,
   ) {
     return new CodeBuildStep("FindyAgencyE2ETestStep", {
-      input,
-      additionalInputs: { waitReadyOutput: waitReadyOutput! },
+      input: frontendInput,
+      additionalInputs: {
+        "../findy-agent-infra": infraInput
+      },
       projectName: "FindyAgencyE2ETest",
       commands: [
+        // install chrome
+        "../findy-agent-infra/aws-ecs/tools/install-chrome.sh",
+
         // install findy-agent-cli
         "curl https://raw.githubusercontent.com/findy-network/findy-agent-cli/HEAD/install.sh > install.sh",
         "chmod a+x install.sh",
