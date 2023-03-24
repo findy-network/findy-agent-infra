@@ -1,6 +1,6 @@
 {
   "name": "findy-agency",
-  "version": "0.1.31",
+  "version": "0.1.32",
   "bin": {
     "findy-agency": "bin/findy-agency.js"
   },
