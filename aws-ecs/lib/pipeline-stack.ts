@@ -58,7 +58,7 @@ export class InfraPipelineStack extends cdk.Stack {
     );
     const infraInput = CodePipelineSource.connection(
       "findy-network/findy-agent-infra",
-      "master",
+      props.env?.region === 'eu-north-1' ? 'master' : 'use-assets-for-frontend',
       {
         connectionArn: githubConnectionArn, // Created using the AWS console
       }
