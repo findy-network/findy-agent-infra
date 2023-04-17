@@ -91,14 +91,14 @@ export class InfraPipelineStack extends cdk.Stack {
     deployStage.addPost(ecsUpdateStep);
 
     // Add frontend build step
-    // const frontBuildStep = this.createFrontendBuildStep(frontendInput, infraInput);
-    // deployStage.addPost(frontBuildStep);
+    const frontBuildStep = this.createFrontendBuildStep(frontendInput, infraInput);
+    deployStage.addPost(frontBuildStep);
 
     // Add frontend deploy step
-    // const frontDeployStep = this.createFrontendDeployStep(
-    //   frontBuildStep.primaryOutput
-    // );
-    // deployStage.addPost(frontDeployStep);
+    const frontDeployStep = this.createFrontendDeployStep(
+      frontBuildStep.primaryOutput
+    );
+    deployStage.addPost(frontDeployStep);
 
     // Add admin onboard
     const adminOnboardStep = this.createAdminOnboardTestStep(
