@@ -157,7 +157,7 @@ export class InfraPipelineStack extends cdk.Stack {
       synth: new CodeBuildStep("SynthStep", {
         input: infraInput,
         additionalInputs: {
-          "./aws-ecs/findy-wallet-pwa": frontendInput,
+          "../findy-wallet-pwa": frontendInput,
           "../findy-agent": CodePipelineSource.connection(
             "findy-network/findy-agent",
             "master",

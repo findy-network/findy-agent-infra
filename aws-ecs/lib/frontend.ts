@@ -40,7 +40,7 @@ export class Frontend extends Construct {
     });
 
     // Source bundle
-    const bundle = s3deploy.Source.asset('./findy-wallet-pwa', {
+    const bundle = s3deploy.Source.asset('../../findy-wallet-pwa', {
       bundling: {
         command: [
           'sh', '-c',
