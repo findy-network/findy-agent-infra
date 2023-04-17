@@ -140,6 +140,7 @@ export class Backend extends Construct {
       removalPolicy: RemovalPolicy.DESTROY,
       blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
       encryption: BucketEncryption.S3_MANAGED,
+      autoDeleteObjects: true
     });
 
     const targetFolder = "./.temp/agent";
