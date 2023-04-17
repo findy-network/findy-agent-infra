@@ -90,16 +90,6 @@ export class InfraPipelineStack extends cdk.Stack {
     );
     deployStage.addPost(ecsUpdateStep);
 
-    // Add frontend build step
-    const frontBuildStep = this.createFrontendBuildStep(frontendInput, infraInput);
-    deployStage.addPost(frontBuildStep);
-
-    // Add frontend deploy step
-    const frontDeployStep = this.createFrontendDeployStep(
-      frontBuildStep.primaryOutput
-    );
-    deployStage.addPost(frontDeployStep);
-
     // Add admin onboard
     const adminOnboardStep = this.createAdminOnboardTestStep(
       infraInput
@@ -249,62 +239,6 @@ export class InfraPipelineStack extends cdk.Stack {
           resources: [
             `arn:aws:ecs:${this.region}:${this.account}:service/*FindyAgency*`,
           ],
-        }),
-      ],
-      primaryOutputDirectory: ".",
-    });
-  }
-
-  createFrontendBuildStep(frontendInput: CodePipelineSource, infraInput: CodePipelineSource) {
-    const host = `${process.env.SUB_DOMAIN_NAME}.${process.env.DOMAIN_NAME}`;
-    return new CodeBuildStep("FindyAgencyBuildFrontendStep", {
-      projectName: "FindyAgencyBuildFrontend",
-      input: frontendInput,
-      additionalInputs: {
-        "../findy-agent-infra": infraInput
-      },
-      commands: [
-        "apk add bash",
-        "npm ci",
-        "npm run build",
-        `../findy-agent-infra/aws-ecs/tools/create-set-env.sh "./tools/env-docker/set-env.sh" "${host}" "${process.env.API_SUB_DOMAIN_NAME}.${process.env.DOMAIN_NAME}" "${GRPCPortNumber}"`
-      ],
-      buildEnvironment: {
-        buildImage: codebuild.LinuxBuildImage.fromDockerRegistry(
-          "public.ecr.aws/docker/library/node:18.12-alpine3.17"
-        ),
-        environmentVariables: {
-          REACT_APP_GQL_HOST: {
-            value: host,
-          },
-          REACT_APP_AUTH_HOST: {
-            value: host,
-          },
-          REACT_APP_HTTP_SCHEME: {
-            value: "https",
-          },
-          REACT_APP_WS_SCHEME: {
-            value: "wss",
-          },
-        },
-      },
-      primaryOutputDirectory: "./build",
-    });
-  }
-
-  createFrontendDeployStep(input: cdk.pipelines.FileSet | undefined) {
-    return new CodeBuildStep("FindyAgencyDeployFrontendStep", {
-      input,
-      projectName: "FindyAgencyDeployFrontend",
-      commands: [
-        `V1=$(curl https://$SUB_DOMAIN_NAME.$DOMAIN_NAME/version.txt || echo "0")`,
-        `V2=$(cat ./version.txt)`,
-        `if [ "$V1" != "$V2" ]; then aws s3 sync --delete . s3://$SUB_DOMAIN_NAME.$DOMAIN_NAME; fi`,
-      ],
-      rolePolicyStatements: [
-        new PolicyStatement({
-          actions: ["s3:Put*", "s3:Delete*", "s3:Get*", "s3:List*"],
-          resources: ["*"],
         }),
       ],
       primaryOutputDirectory: ".",

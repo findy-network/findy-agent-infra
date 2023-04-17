@@ -1,4 +1,4 @@
-import { RemovalPolicy, Duration } from "aws-cdk-lib";
+import { RemovalPolicy, Duration, DockerImage } from "aws-cdk-lib";
 import { Bucket, BlockPublicAccess } from "aws-cdk-lib/aws-s3";
 import { PolicyStatement } from "aws-cdk-lib/aws-iam";
 import {
@@ -14,6 +14,10 @@ import { ARecord, RecordTarget, HostedZone } from "aws-cdk-lib/aws-route53";
 import { CloudFrontTarget } from "aws-cdk-lib/aws-route53-targets";
 import { Construct } from "constructs";
 import { apiPaths } from "./constants";
+import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
+import { RetentionDays } from "aws-cdk-lib/aws-logs";
+
+import { GRPCPortNumber } from "./constants";
 
 interface FrontendProps {
   rootDomainName: string;
@@ -40,28 +44,30 @@ export class Frontend extends Construct {
     });
 
     // Source bundle
-    // const bundle = s3deploy.Source.asset('../../findy-wallet-pwa', {
-    //   bundling: {
-    //     command: [
-    //       'sh', '-c',
-    //       'npm ci && npm run build && cp -R ./build/ /asset-out'
-    //     ],
-    //     image: DockerImage.fromRegistry('public.ecr.aws/docker/library/node:18.12-alpine3.17'),
-    //     user: 'root',
-    //     environment: {
-    //       REACT_APP_GQL_HOST: bucketName,
-    //       REACT_APP_AUTH_HOST: bucketName,
-    //       REACT_APP_HTTP_SCHEME: 'https',
-    //       REACT_APP_WS_SCHEME: 'wss',
-    //     },
-    //   },
-    // });
+    const srcBundle = s3deploy.Source.asset('../../findy-wallet-pwa', {
+      bundling: {
+        command: [
+          'sh', '-c',
+          'npm ci && npm run build && ' +
+          'apk add bash && ' +
+          `./create-set-env.sh "./tools/env-docker/set-env.sh" "${bucketName}" "${process.env.API_SUB_DOMAIN_NAME}.${process.env.DOMAIN_NAME}" "${GRPCPortNumber}" && ` +
+          'cp -R ./build/. /asset-output/'
+        ],
+        image: DockerImage.fromRegistry('public.ecr.aws/docker/library/node:18.12-alpine3.17'),
+        environment: {
+          REACT_APP_GQL_HOST: bucketName,
+          REACT_APP_AUTH_HOST: bucketName,
+          REACT_APP_HTTP_SCHEME: 'https',
+          REACT_APP_WS_SCHEME: 'wss',
+        },
+      },
+    });
 
-    // new s3deploy.BucketDeployment(this, `${id}-bucket-deployment`, {
-    //   sources: [bundle],
-    //   destinationBucket: bucket,
-    //   logRetention: RetentionDays.ONE_MONTH
-    // });
+    new s3deploy.BucketDeployment(this, `${id}-deployment`, {
+      sources: [srcBundle],
+      destinationBucket: bucket,
+      logRetention: RetentionDays.ONE_MONTH
+    });
 
     // Allow access only from cloudfront
     const bucketOriginAccessIdentity = new OriginAccessIdentity(
