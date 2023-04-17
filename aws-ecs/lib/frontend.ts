@@ -40,28 +40,28 @@ export class Frontend extends Construct {
     });
 
     // Source bundle
-    const bundle = s3deploy.Source.asset('../../findy-wallet-pwa', {
-      bundling: {
-        command: [
-          'sh', '-c',
-          'npm ci && npm run build && cp -R ./build/ /asset-out'
-        ],
-        image: DockerImage.fromRegistry('public.ecr.aws/docker/library/node:18.12-alpine3.17'),
-        user: 'root',
-        environment: {
-          REACT_APP_GQL_HOST: bucketName,
-          REACT_APP_AUTH_HOST: bucketName,
-          REACT_APP_HTTP_SCHEME: 'https',
-          REACT_APP_WS_SCHEME: 'wss',
-        },
-      },
-    });
+    // const bundle = s3deploy.Source.asset('../../findy-wallet-pwa', {
+    //   bundling: {
+    //     command: [
+    //       'sh', '-c',
+    //       'npm ci && npm run build && cp -R ./build/ /asset-out'
+    //     ],
+    //     image: DockerImage.fromRegistry('public.ecr.aws/docker/library/node:18.12-alpine3.17'),
+    //     user: 'root',
+    //     environment: {
+    //       REACT_APP_GQL_HOST: bucketName,
+    //       REACT_APP_AUTH_HOST: bucketName,
+    //       REACT_APP_HTTP_SCHEME: 'https',
+    //       REACT_APP_WS_SCHEME: 'wss',
+    //     },
+    //   },
+    // });
 
-    new s3deploy.BucketDeployment(this, `${id}-bucket-deployment`, {
-      sources: [bundle],
-      destinationBucket: bucket,
-      logRetention: RetentionDays.ONE_MONTH
-    });
+    // new s3deploy.BucketDeployment(this, `${id}-bucket-deployment`, {
+    //   sources: [bundle],
+    //   destinationBucket: bucket,
+    //   logRetention: RetentionDays.ONE_MONTH
+    // });
 
     // Allow access only from cloudfront
     const bucketOriginAccessIdentity = new OriginAccessIdentity(
