@@ -33,7 +33,7 @@ Object {
         "Handler": "index.handler",
         "Layers": Array [
           Object {
-            "Ref": "MyTestFrontendMyTestFrontendbucketdeploymentAwsCliLayer02752A57",
+            "Ref": "MyTestFrontendMyTestFrontenddeploymentAwsCliLayerCBC876C2",
           },
         ],
         "Role": Object {
@@ -380,7 +380,7 @@ Object {
             "Value": "true",
           },
           Object {
-            "Key": "aws-cdk:cr-owned:12559e8a",
+            "Key": "aws-cdk:cr-owned:beb1c0d3",
             "Value": "true",
           },
         ],
@@ -513,39 +513,6 @@ Object {
       },
       "Type": "AWS::S3::BucketPolicy",
     },
-    "MyTestFrontendMyTestFrontendbucketdeploymentAwsCliLayer02752A57": Object {
-      "Properties": Object {
-        "Content": Object {
-          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
-          "S3Key": "68b22621fff135f9e3f225bad7ff80fdf2f45c3d9910af601206a0d9b279933a.zip",
-        },
-        "Description": "/opt/awscli/aws",
-      },
-      "Type": "AWS::Lambda::LayerVersion",
-    },
-    "MyTestFrontendMyTestFrontendbucketdeploymentCustomResource4DD00497": Object {
-      "DeletionPolicy": "Delete",
-      "Properties": Object {
-        "DestinationBucketName": Object {
-          "Ref": "MyTestFrontendMyTestFrontendbucketE6268FCD",
-        },
-        "Prune": true,
-        "ServiceToken": Object {
-          "Fn::GetAtt": Array [
-            "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536",
-            "Arn",
-          ],
-        },
-        "SourceBucketNames": Array [
-          "cdk-hnb659fds-assets-123456789012-us-east-1",
-        ],
-        "SourceObjectKeys": Array [
-          "18a4731269f44daf7dedea411dd9cac790206fada2e0bc5e11c65ce27ef1dfdc.zip",
-        ],
-      },
-      "Type": "Custom::CDKBucketDeployment",
-      "UpdateReplacePolicy": "Delete",
-    },
     "MyTestFrontendMyTestFrontendcertificateCertificateRequestorFunction822D86CA": Object {
       "DependsOn": Array [
         "MyTestFrontendMyTestFrontendcertificateCertificateRequestorFunctionServiceRoleDefaultPolicy1719F132",
@@ -675,6 +642,39 @@ Object {
         },
       },
       "Type": "AWS::CloudFormation::CustomResource",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "MyTestFrontendMyTestFrontenddeploymentAwsCliLayerCBC876C2": Object {
+      "Properties": Object {
+        "Content": Object {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
+          "S3Key": "68b22621fff135f9e3f225bad7ff80fdf2f45c3d9910af601206a0d9b279933a.zip",
+        },
+        "Description": "/opt/awscli/aws",
+      },
+      "Type": "AWS::Lambda::LayerVersion",
+    },
+    "MyTestFrontendMyTestFrontenddeploymentCustomResourceA40EDCAE": Object {
+      "DeletionPolicy": "Delete",
+      "Properties": Object {
+        "DestinationBucketName": Object {
+          "Ref": "MyTestFrontendMyTestFrontendbucketE6268FCD",
+        },
+        "Prune": true,
+        "ServiceToken": Object {
+          "Fn::GetAtt": Array [
+            "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536",
+            "Arn",
+          ],
+        },
+        "SourceBucketNames": Array [
+          "cdk-hnb659fds-assets-123456789012-us-east-1",
+        ],
+        "SourceObjectKeys": Array [
+          "717e5fe9e377f51df2e1be2179db60a1b8499453e3061d571cd86ac472a2da2d.zip",
+        ],
+      },
+      "Type": "Custom::CDKBucketDeployment",
       "UpdateReplacePolicy": "Delete",
     },
     "MyTestFrontendMyTestFrontenddistributionCFDistributionE6F8BA69": Object {

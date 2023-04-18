@@ -4,7 +4,7 @@ import { Template } from "aws-cdk-lib/assertions";
 import { Backend } from "../lib/backend";
 
 test("Backend Created", () => {
-  const app = new cdk.App();
+  const app = new cdk.App({ context: { 'aws:cdk:bundling-stacks': [] } });
   const stack = new cdk.Stack(app, "MyTestStack", {
     env: { account: "123456789012", region: "us-east-1" },
   });

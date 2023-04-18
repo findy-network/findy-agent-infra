@@ -366,7 +366,7 @@ export class Backend extends Construct {
 
     // Load Balancer exposes default HTTPS-port and GRPC-port to outside world
     // TODO: disable default listener on port 80
-    const loadBalancer = lbService.loadBalancers[0];
+    const loadBalancer = lbService.loadBalancer;
     loadBalancer.setAttribute("idle_timeout.timeout_seconds", "3600");
     const httpsListener = loadBalancer.addListener(`${id}HTTPSListener`, {
       protocol: ApplicationProtocol.HTTPS,
