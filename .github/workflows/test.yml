@@ -13,6 +13,8 @@ jobs:
           node-version: "18.x"
       - name: Install CDK and typescript
         run: npm install -g aws-cdk typescript
+      - name: create dummy folder for assets
+        run: mkdir -p ../../findy-wallet-pwa
       - name: install deps
         run: npm ci
       - name: test

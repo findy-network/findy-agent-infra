@@ -62,7 +62,7 @@ import {
   Secret as ManagerSecret,
 } from "aws-cdk-lib/aws-secretsmanager";
 import { Construct } from "constructs";
-import { mkdirSync, writeFileSync, readFileSync } from "fs";
+import { mkdirSync, writeFileSync } from "fs";
 import {
   GRPCPort,
   GRPCPortNumber,
