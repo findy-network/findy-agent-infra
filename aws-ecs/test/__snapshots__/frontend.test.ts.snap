@@ -671,7 +671,7 @@ Object {
           "cdk-hnb659fds-assets-123456789012-us-east-1",
         ],
         "SourceObjectKeys": Array [
-          "717e5fe9e377f51df2e1be2179db60a1b8499453e3061d571cd86ac472a2da2d.zip",
+          "0.zip",
         ],
       },
       "Type": "Custom::CDKBucketDeployment",

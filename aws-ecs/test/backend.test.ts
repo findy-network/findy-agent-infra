@@ -3,6 +3,8 @@ import * as cdk from "aws-cdk-lib";
 import { Template } from "aws-cdk-lib/assertions";
 import { Backend } from "../lib/backend";
 
+import templateToJson from './json'
+
 test("Backend Created", () => {
   const app = new cdk.App({ context: { 'aws:cdk:bundling-stacks': [] } });
   const stack = new cdk.Stack(app, "MyTestStack", {
@@ -27,12 +29,5 @@ test("Backend Created", () => {
     LaunchType: "FARGATE",
   });
 
-  // TODO: avoid SourceObjectKeys hash changes
-  const bucketDeploymentObject = template.findResources('Custom::CDKBucketDeployment');
-  const bucketDeploymentKey = Object.keys(bucketDeploymentObject)[0]
-  const json = template.toJSON()
-  json.Resources[bucketDeploymentKey].Properties.SourceObjectKeys =
-    json.Resources[bucketDeploymentKey].Properties.SourceObjectKeys.map((_: string, index: number) => `${index}.zip`)
-
-  expect(json).toMatchSnapshot();
+  expect(templateToJson(template)).toMatchSnapshot();
 });

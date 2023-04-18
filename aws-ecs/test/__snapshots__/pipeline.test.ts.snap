@@ -1531,7 +1531,7 @@ Object {
     },
     \\"build\\": {
       \\"commands\\": [
-        \\"cdk-assets --path \\\\\\"assembly-MyTestStack-Deploy/MyTestStackDeployFindyAgencyInfraStack72B2F4FE.assets.json\\\\\\" --verbose publish \\\\\\"24271c0de071667c9a411f041c4eb966b1494f26f1108693f6b22102ea9f982e:123456789012-us-east-1\\\\\\"\\"
+        \\"cdk-assets --path \\\\\\"assembly-MyTestStack-Deploy/MyTestStackDeployFindyAgencyInfraStack72B2F4FE.assets.json\\\\\\" --verbose publish \\\\\\"b084daf3ba4fff940f74fafc378ff4d38b430425179961662b63645c82ed23fa:123456789012-us-east-1\\\\\\"\\"
       ]
     }
   }
