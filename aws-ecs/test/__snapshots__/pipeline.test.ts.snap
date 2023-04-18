@@ -585,7 +585,7 @@ Object {
                   "Version": "1",
                 },
                 "Configuration": Object {
-                  "EnvironmentVariables": "[{\\"name\\":\\"_PROJECT_CONFIG_HASH\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"f6495e86d24f25b87ab86e87d57c9f84a24ebf85cfe38e8d762077643806f9c0\\"}]",
+                  "EnvironmentVariables": "[{\\"name\\":\\"_PROJECT_CONFIG_HASH\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"8874cdb73cd49e4e63c82783565992e26109bd81fdc31672cfc669ba6ea7711c\\"}]",
                   "PrimarySource": "findy_network_findy_agent_infra_Source",
                   "ProjectName": Object {
                     "Ref": "PipelineBuildSynthStepCdkBuildProject7FBB5116",
@@ -1690,7 +1690,7 @@ Object {
           ],
           "Image": "aws/codebuild/standard:6.0",
           "ImagePullCredentialsType": "CODEBUILD",
-          "PrivilegedMode": false,
+          "PrivilegedMode": true,
           "Type": "LINUX_CONTAINER",
         },
         "ServiceRole": Object {
@@ -1715,6 +1715,13 @@ Object {
     \\"build\\": {
       \\"commands\\": [
         \\"cd aws-ecs\\",
+        \\"cp ./tools/create-set-env.sh ../../findy-wallet-pwa/create-set-env.sh\\",
+        \\"docker pull ghcr.io/findy-network/findy-agent:latest\\",
+        \\"docker save ghcr.io/findy-network/findy-agent:latest -o findy-agent.tar\\",
+        \\"docker pull ghcr.io/findy-network/findy-agent-auth:latest\\",
+        \\"docker save ghcr.io/findy-network/findy-agent-auth:latest -o findy-agent-auth.tar\\",
+        \\"docker pull ghcr.io/findy-network/findy-agent-vault:latest\\",
+        \\"docker save ghcr.io/findy-network/findy-agent-vault:latest -o findy-agent-vault.tar\\",
         \\"echo \\\\\\"$CDK_CONTEXT_JSON\\\\\\" > cdk.context.json\\",
         \\"cat cdk.context.json\\",
         \\"npm ci\\",
