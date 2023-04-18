@@ -152,6 +152,8 @@ export class InfraPipelineStack extends cdk.Stack {
   ) {
     const pipeline = new CodePipeline(this, "Pipeline", {
       pipelineName: "FindyAgencyPipeline",
+      dockerEnabledForSynth: true,
+      // Override synth step with custom commands
       synth: new CodeBuildStep("SynthStep", {
         input: infraInput,
         additionalInputs: {
@@ -189,6 +191,19 @@ export class InfraPipelineStack extends cdk.Stack {
         },
         commands: [
           "cd aws-ecs",
+
+          // Prepare frontend build env
+          "cp ./tools/create-set-env.sh ../../findy-wallet-pwa/create-set-env.sh",
+
+          // Save backend images as tarballs
+          "docker pull ghcr.io/findy-network/findy-agent:latest",
+          "docker save ghcr.io/findy-network/findy-agent:latest -o findy-agent.tar",
+          "docker pull ghcr.io/findy-network/findy-agent-auth:latest",
+          "docker save ghcr.io/findy-network/findy-agent-auth:latest -o findy-agent-auth.tar",
+          "docker pull ghcr.io/findy-network/findy-agent-vault:latest",
+          "docker save ghcr.io/findy-network/findy-agent-vault:latest -o findy-agent-vault.tar",
+
+          // Do cdk synth with context stored in params
           `echo "$CDK_CONTEXT_JSON" > cdk.context.json`,
           "cat cdk.context.json",
           "npm ci",
