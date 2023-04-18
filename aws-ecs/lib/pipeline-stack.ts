@@ -84,17 +84,17 @@ export class InfraPipelineStack extends cdk.Stack {
     });
     const deployStage = pipeline.addStage(deploy);
 
-    const ecsUpdateStep = this.createECSUpdateStep(
-      deploy.clusterName,
-      deploy.serviceArn
-    );
-    deployStage.addPost(ecsUpdateStep);
+    // const ecsUpdateStep = this.createECSUpdateStep(
+    //   deploy.clusterName,
+    //   deploy.serviceArn
+    // );
+    // deployStage.addPost(ecsUpdateStep);
 
     // Add admin onboard
     const adminOnboardStep = this.createAdminOnboardTestStep(
       infraInput
     );
-    adminOnboardStep.addStepDependency(ecsUpdateStep)
+    //adminOnboardStep.addStepDependency(ecsUpdateStep)
     deployStage.addPost(adminOnboardStep);
 
     // Add e2e test

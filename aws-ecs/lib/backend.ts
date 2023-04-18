@@ -62,7 +62,7 @@ import {
   Secret as ManagerSecret,
 } from "aws-cdk-lib/aws-secretsmanager";
 import { Construct } from "constructs";
-import { mkdirSync, writeFileSync } from "fs";
+import { mkdirSync, writeFileSync, readFileSync } from "fs";
 import {
   GRPCPort,
   GRPCPortNumber,
@@ -140,7 +140,7 @@ export class Backend extends Construct {
       removalPolicy: RemovalPolicy.DESTROY,
       blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
       encryption: BucketEncryption.S3_MANAGED,
-      //autoDeleteObjects: true
+      autoDeleteObjects: true
     });
 
     const targetFolder = "./.temp/agent";
@@ -206,6 +206,7 @@ export class Backend extends Construct {
 
     const apiAddress = `${props.apiDomainPrefix}.${props.rootDomainName}`;
     const useFileLedger = props.genesisTransactions === 'no_genesis_needed';
+    const coreVersion = readFileSync('../../findy-agent/VERSION').toString()
 
     // core container
     const coreProps = {
@@ -237,7 +238,7 @@ export class Backend extends Construct {
         },
         secretSource: secret,
       },
-      imageURL: "ghcr.io/findy-network/findy-agent",
+      imageURL: `ghcr.io/findy-network/findy-agent:${coreVersion}`,
       ports: [8080, GRPCPortNumber],
       volumeContainerPath: "/root",
       healthCheck: {
@@ -276,6 +277,7 @@ export class Backend extends Construct {
       securityGroups: [dbSecurityGroup],
     });
     const dbHost = db.dbInstanceEndpointAddress;
+    const vaultVersion = readFileSync('../../findy-agent-vault/VERSION').toString()
     const vaultProps = {
       task,
       vpc,
@@ -294,7 +296,7 @@ export class Backend extends Construct {
         },
         secretSource: secret,
       },
-      imageURL: "ghcr.io/findy-network/findy-agent-vault",
+      imageURL: `ghcr.io/findy-network/findy-agent-vault:${vaultVersion}`,
       ports: [8085],
       dependencies: [
         {
@@ -303,10 +305,11 @@ export class Backend extends Construct {
         },
       ],
     };
-    const vault = this.addContainer(scope, vaultProps);
+    this.addContainer(scope, vaultProps);
 
     // auth container
     const appDomain = `${props.appDomainPrefix}.${props.rootDomainName}`;
+    const authVersion = readFileSync('../../findy-agent-auth/VERSION').toString()
     const authProps = {
       task,
       vpc,
@@ -326,7 +329,7 @@ export class Backend extends Construct {
         },
         secretSource: secret,
       },
-      imageURL: "ghcr.io/findy-network/findy-agent-auth",
+      imageURL: `ghcr.io/findy-network/findy-agent-auth:${authVersion}`,
       ports: [8888],
       volumeContainerPath: "/data",
       dependencies: [
