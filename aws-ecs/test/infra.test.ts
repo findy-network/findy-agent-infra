@@ -3,7 +3,7 @@ import { Template, Match } from "aws-cdk-lib/assertions";
 import * as Infra from "../lib/infra-stack";
 
 test("Infra Stack Created", () => {
-  const app = new cdk.App();
+  const app = new cdk.App({ context: { 'aws:cdk:bundling-stacks': [] } });
   const stack = new Infra.InfraStack(app, "MyTestStack", {
     env: { account: "123456789012", region: "us-east-1" },
   });

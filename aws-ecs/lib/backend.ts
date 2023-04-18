@@ -140,6 +140,7 @@ export class Backend extends Construct {
       removalPolicy: RemovalPolicy.DESTROY,
       blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
       encryption: BucketEncryption.S3_MANAGED,
+      autoDeleteObjects: true
     });
 
     const targetFolder = "./.temp/agent";
@@ -236,7 +237,7 @@ export class Backend extends Construct {
         },
         secretSource: secret,
       },
-      imageURL: "ghcr.io/findy-network/findy-agent",
+      imageURL: `ghcr.io/findy-network/findy-agent`,
       ports: [8080, GRPCPortNumber],
       volumeContainerPath: "/root",
       healthCheck: {
@@ -293,7 +294,7 @@ export class Backend extends Construct {
         },
         secretSource: secret,
       },
-      imageURL: "ghcr.io/findy-network/findy-agent-vault",
+      imageURL: `ghcr.io/findy-network/findy-agent-vault`,
       ports: [8085],
       dependencies: [
         {
@@ -302,7 +303,7 @@ export class Backend extends Construct {
         },
       ],
     };
-    const vault = this.addContainer(scope, vaultProps);
+    this.addContainer(scope, vaultProps);
 
     // auth container
     const appDomain = `${props.appDomainPrefix}.${props.rootDomainName}`;
@@ -325,7 +326,7 @@ export class Backend extends Construct {
         },
         secretSource: secret,
       },
-      imageURL: "ghcr.io/findy-network/findy-agent-auth",
+      imageURL: `ghcr.io/findy-network/findy-agent-auth`,
       ports: [8888],
       volumeContainerPath: "/data",
       dependencies: [
@@ -414,8 +415,8 @@ export class Backend extends Construct {
       ],
     });
 
-    fgService.connections.allowFrom(lbService.loadBalancer, GRPCPort);
-    lbService.loadBalancer.connections.allowTo(fgService, GRPCPort);
+    fgService.connections.allowFrom(loadBalancer, GRPCPort);
+    loadBalancer.connections.allowTo(fgService, GRPCPort);
 
     // HTTPS target
     this.addHttpsTarget(`${id}Agent`, httpsListener, lbService, {

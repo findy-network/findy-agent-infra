@@ -58,7 +58,7 @@ export class InfraPipelineStack extends cdk.Stack {
     );
     const infraInput = CodePipelineSource.connection(
       "findy-network/findy-agent-infra",
-      props.env?.region === 'eu-north-1' ? 'master' : 'use-assets-for-frontend',
+      "master",
       {
         connectionArn: githubConnectionArn, // Created using the AWS console
       }
@@ -84,21 +84,12 @@ export class InfraPipelineStack extends cdk.Stack {
     });
     const deployStage = pipeline.addStage(deploy);
 
+    // Use custom step to update with custom healthy settings
     const ecsUpdateStep = this.createECSUpdateStep(
       deploy.clusterName,
       deploy.serviceArn
     );
     deployStage.addPost(ecsUpdateStep);
-
-    // Add frontend build step
-    const frontBuildStep = this.createFrontendBuildStep(frontendInput, infraInput);
-    deployStage.addPost(frontBuildStep);
-
-    // Add frontend deploy step
-    const frontDeployStep = this.createFrontendDeployStep(
-      frontBuildStep.primaryOutput
-    );
-    deployStage.addPost(frontDeployStep);
 
     // Add admin onboard
     const adminOnboardStep = this.createAdminOnboardTestStep(
@@ -195,14 +186,6 @@ export class InfraPipelineStack extends cdk.Stack {
           // Prepare frontend build env
           "cp ./tools/create-set-env.sh ../../findy-wallet-pwa/create-set-env.sh",
 
-          // Save backend images as tarballs
-          "docker pull ghcr.io/findy-network/findy-agent:latest",
-          "docker save ghcr.io/findy-network/findy-agent:latest -o findy-agent.tar",
-          "docker pull ghcr.io/findy-network/findy-agent-auth:latest",
-          "docker save ghcr.io/findy-network/findy-agent-auth:latest -o findy-agent-auth.tar",
-          "docker pull ghcr.io/findy-network/findy-agent-vault:latest",
-          "docker save ghcr.io/findy-network/findy-agent-vault:latest -o findy-agent-vault.tar",
-
           // Do cdk synth with context stored in params
           `echo "$CDK_CONTEXT_JSON" > cdk.context.json`,
           "cat cdk.context.json",
@@ -249,62 +232,6 @@ export class InfraPipelineStack extends cdk.Stack {
           resources: [
             `arn:aws:ecs:${this.region}:${this.account}:service/*FindyAgency*`,
           ],
-        }),
-      ],
-      primaryOutputDirectory: ".",
-    });
-  }
-
-  createFrontendBuildStep(frontendInput: CodePipelineSource, infraInput: CodePipelineSource) {
-    const host = `${process.env.SUB_DOMAIN_NAME}.${process.env.DOMAIN_NAME}`;
-    return new CodeBuildStep("FindyAgencyBuildFrontendStep", {
-      projectName: "FindyAgencyBuildFrontend",
-      input: frontendInput,
-      additionalInputs: {
-        "../findy-agent-infra": infraInput
-      },
-      commands: [
-        "apk add bash",
-        "npm ci",
-        "npm run build",
-        `../findy-agent-infra/aws-ecs/tools/create-set-env.sh "./tools/env-docker/set-env.sh" "${host}" "${process.env.API_SUB_DOMAIN_NAME}.${process.env.DOMAIN_NAME}" "${GRPCPortNumber}"`
-      ],
-      buildEnvironment: {
-        buildImage: codebuild.LinuxBuildImage.fromDockerRegistry(
-          "public.ecr.aws/docker/library/node:18.12-alpine3.17"
-        ),
-        environmentVariables: {
-          REACT_APP_GQL_HOST: {
-            value: host,
-          },
-          REACT_APP_AUTH_HOST: {
-            value: host,
-          },
-          REACT_APP_HTTP_SCHEME: {
-            value: "https",
-          },
-          REACT_APP_WS_SCHEME: {
-            value: "wss",
-          },
-        },
-      },
-      primaryOutputDirectory: "./build",
-    });
-  }
-
-  createFrontendDeployStep(input: cdk.pipelines.FileSet | undefined) {
-    return new CodeBuildStep("FindyAgencyDeployFrontendStep", {
-      input,
-      projectName: "FindyAgencyDeployFrontend",
-      commands: [
-        `V1=$(curl https://$SUB_DOMAIN_NAME.$DOMAIN_NAME/version.txt || echo "0")`,
-        `V2=$(cat ./version.txt)`,
-        `if [ "$V1" != "$V2" ]; then aws s3 sync --delete . s3://$SUB_DOMAIN_NAME.$DOMAIN_NAME; fi`,
-      ],
-      rolePolicyStatements: [
-        new PolicyStatement({
-          actions: ["s3:Put*", "s3:Delete*", "s3:Get*", "s3:List*"],
-          resources: ["*"],
         }),
       ],
       primaryOutputDirectory: ".",
@@ -363,6 +290,10 @@ export class InfraPipelineStack extends cdk.Stack {
         "full_version=$(google-chrome --product-version)",
         'chrome_version=$(echo "${full_version%.*.*.*}")',
         "npm install chromedriver@$chrome_version",
+
+        // if we use seed, make sure that cred def is always available
+        // otherwise schema creation fails as public DID is the same for all onboarded agents
+        `if [ -z "$E2E_ORG_SEED" ]; then echo "no seed"; else export E2E_CRED_DEF_ID=$(aws ssm get-parameter --name "/findy-agency-e2e/cred-def-id" 2> /dev/null | jq -r .Parameter.Value); fi`,
 
         // onboard new user and agent
         "npm run test:e2e",

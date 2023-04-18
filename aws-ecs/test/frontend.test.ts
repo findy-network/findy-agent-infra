@@ -3,8 +3,10 @@ import * as cdk from "aws-cdk-lib";
 import { Template } from "aws-cdk-lib/assertions";
 import { Frontend } from "../lib/frontend";
 
+import templateToJson from './json'
+
 test("Frontend Created", () => {
-  const app = new cdk.App();
+  const app = new cdk.App({ context: { 'aws:cdk:bundling-stacks': [] } });
   const stack = new cdk.Stack(app, "MyTestStack", {
     env: { account: "123456789012", region: "us-east-1" },
   });
@@ -40,5 +42,5 @@ test("Frontend Created", () => {
     },
   });
 
-  expect(template).toMatchSnapshot();
+  expect(templateToJson(template)).toMatchSnapshot();
 });
