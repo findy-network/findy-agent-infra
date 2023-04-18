@@ -291,6 +291,10 @@ export class InfraPipelineStack extends cdk.Stack {
         'chrome_version=$(echo "${full_version%.*.*.*}")',
         "npm install chromedriver@$chrome_version",
 
+        // if we use seed, make sure that cred def is always available
+        // otherwise schema creation fails as public DID is the same for all onboarded agents
+        `if [ -z "$E2E_ORG_SEED" ]; then echo "no seed"; else export E2E_CRED_DEF_ID=$(aws ssm get-parameter --name "/findy-agency-e2e/cred-def-id" 2> /dev/null | jq -r .Parameter.Value); fi`,
+
         // onboard new user and agent
         "npm run test:e2e",
 
