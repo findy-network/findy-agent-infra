@@ -206,7 +206,6 @@ export class Backend extends Construct {
 
     const apiAddress = `${props.apiDomainPrefix}.${props.rootDomainName}`;
     const useFileLedger = props.genesisTransactions === 'no_genesis_needed';
-    const coreVersion = readFileSync('../../findy-agent/VERSION').toString()
 
     // core container
     const coreProps = {
@@ -238,7 +237,7 @@ export class Backend extends Construct {
         },
         secretSource: secret,
       },
-      imageURL: `ghcr.io/findy-network/findy-agent:${coreVersion}`,
+      imageURL: `ghcr.io/findy-network/findy-agent`,
       ports: [8080, GRPCPortNumber],
       volumeContainerPath: "/root",
       healthCheck: {
@@ -277,7 +276,6 @@ export class Backend extends Construct {
       securityGroups: [dbSecurityGroup],
     });
     const dbHost = db.dbInstanceEndpointAddress;
-    const vaultVersion = readFileSync('../../findy-agent-vault/VERSION').toString()
     const vaultProps = {
       task,
       vpc,
@@ -296,7 +294,7 @@ export class Backend extends Construct {
         },
         secretSource: secret,
       },
-      imageURL: `ghcr.io/findy-network/findy-agent-vault:${vaultVersion}`,
+      imageURL: `ghcr.io/findy-network/findy-agent-vault`,
       ports: [8085],
       dependencies: [
         {
@@ -309,7 +307,6 @@ export class Backend extends Construct {
 
     // auth container
     const appDomain = `${props.appDomainPrefix}.${props.rootDomainName}`;
-    const authVersion = readFileSync('../../findy-agent-auth/VERSION').toString()
     const authProps = {
       task,
       vpc,
@@ -329,7 +326,7 @@ export class Backend extends Construct {
         },
         secretSource: secret,
       },
-      imageURL: `ghcr.io/findy-network/findy-agent-auth:${authVersion}`,
+      imageURL: `ghcr.io/findy-network/findy-agent-auth`,
       ports: [8888],
       volumeContainerPath: "/data",
       dependencies: [
@@ -369,7 +366,7 @@ export class Backend extends Construct {
 
     // Load Balancer exposes default HTTPS-port and GRPC-port to outside world
     // TODO: disable default listener on port 80
-    const loadBalancer = lbService.loadBalancer;
+    const loadBalancer = lbService.loadBalancers[0];
     loadBalancer.setAttribute("idle_timeout.timeout_seconds", "3600");
     const httpsListener = loadBalancer.addListener(`${id}HTTPSListener`, {
       protocol: ApplicationProtocol.HTTPS,
@@ -418,8 +415,8 @@ export class Backend extends Construct {
       ],
     });
 
-    fgService.connections.allowFrom(lbService.loadBalancer, GRPCPort);
-    lbService.loadBalancer.connections.allowTo(fgService, GRPCPort);
+    fgService.connections.allowFrom(loadBalancer, GRPCPort);
+    loadBalancer.connections.allowTo(fgService, GRPCPort);
 
     // HTTPS target
     this.addHttpsTarget(`${id}Agent`, httpsListener, lbService, {

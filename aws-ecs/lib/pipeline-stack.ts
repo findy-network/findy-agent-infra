@@ -84,17 +84,18 @@ export class InfraPipelineStack extends cdk.Stack {
     });
     const deployStage = pipeline.addStage(deploy);
 
-    // const ecsUpdateStep = this.createECSUpdateStep(
-    //   deploy.clusterName,
-    //   deploy.serviceArn
-    // );
-    // deployStage.addPost(ecsUpdateStep);
+    // Use custom step to update with custom healthy settings
+    const ecsUpdateStep = this.createECSUpdateStep(
+      deploy.clusterName,
+      deploy.serviceArn
+    );
+    deployStage.addPost(ecsUpdateStep);
 
     // Add admin onboard
     const adminOnboardStep = this.createAdminOnboardTestStep(
       infraInput
     );
-    //adminOnboardStep.addStepDependency(ecsUpdateStep)
+    adminOnboardStep.addStepDependency(ecsUpdateStep)
     deployStage.addPost(adminOnboardStep);
 
     // Add e2e test
@@ -184,14 +185,6 @@ export class InfraPipelineStack extends cdk.Stack {
 
           // Prepare frontend build env
           "cp ./tools/create-set-env.sh ../../findy-wallet-pwa/create-set-env.sh",
-
-          // Save backend images as tarballs
-          "docker pull ghcr.io/findy-network/findy-agent:latest",
-          "docker save ghcr.io/findy-network/findy-agent:latest -o findy-agent.tar",
-          "docker pull ghcr.io/findy-network/findy-agent-auth:latest",
-          "docker save ghcr.io/findy-network/findy-agent-auth:latest -o findy-agent-auth.tar",
-          "docker pull ghcr.io/findy-network/findy-agent-vault:latest",
-          "docker save ghcr.io/findy-network/findy-agent-vault:latest -o findy-agent-vault.tar",
 
           // Do cdk synth with context stored in params
           `echo "$CDK_CONTEXT_JSON" > cdk.context.json`,
