@@ -519,7 +519,7 @@ Object {
                   "Version": "1",
                 },
                 "Configuration": Object {
-                  "BranchName": "use-assets-for-frontend",
+                  "BranchName": "master",
                   "ConnectionArn": Object {
                     "Ref": "SsmParameterValuefindyagencygithubconnectionarnC96584B6F00A464EAD1953AFF4B05118Parameter",
                   },
