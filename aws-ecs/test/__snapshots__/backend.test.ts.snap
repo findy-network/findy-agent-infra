@@ -3,14 +3,6 @@
 exports[`Backend Created 1`] = `
 Object {
   "Outputs": Object {
-    "MyTestBackendCertArn7C9A964B": Object {
-      "Value": Object {
-        "Fn::GetAtt": Array [
-          "MyTestBackendCertificateCertificateRequestorResource6C144387",
-          "Arn",
-        ],
-      },
-    },
     "MyTestBackendClusterNameE66AC51F": Object {
       "Value": Object {
         "Ref": "MyTestBackendECSClusterD1C89047",

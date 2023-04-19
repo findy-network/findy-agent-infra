@@ -126,7 +126,6 @@ const mapSecrets = (
 export class Backend extends Construct {
   public readonly clusterName: CfnOutput;
   public readonly serviceArn: CfnOutput;
-  public readonly certArn: CfnOutput;
   constructor(scope: Construct, id: string, props: BackendProps) {
     super(scope, id);
 
@@ -451,9 +450,6 @@ export class Backend extends Construct {
     });
     this.serviceArn = new CfnOutput(this, "ServiceArn", {
       value: lbService.service.serviceArn,
-    });
-    this.certArn = new CfnOutput(this, "CertArn", {
-      value: certificate.certificateArn,
     });
   }
 
