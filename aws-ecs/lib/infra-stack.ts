@@ -7,7 +7,6 @@ import { Frontend } from "./frontend";
 export class InfraStack extends Stack {
   public readonly clusterName: CfnOutput;
   public readonly serviceArn: CfnOutput;
-  public readonly certArn: CfnOutput;
 
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
@@ -27,6 +26,5 @@ export class InfraStack extends Stack {
 
     this.clusterName = backend.clusterName;
     this.serviceArn = backend.serviceArn;
-    this.certArn = backend.certArn;
   }
 }
