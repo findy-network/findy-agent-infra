@@ -316,9 +316,6 @@ export class InfraPipelineStack extends cdk.Stack {
       primaryOutputDirectory: "./tests_output",
       buildEnvironment: {
         environmentVariables: {
-          AGENCY_TLS_PATH: {
-            value: "./e2e/cert",
-          },
           AGENCY_URL: {
             value: `https://${process.env.SUB_DOMAIN_NAME}.${process.env.DOMAIN_NAME}`,
           },
