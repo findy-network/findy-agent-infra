@@ -2962,11 +2962,6 @@ Object {
               "Value": "FindyAgency:findy-agency-admin-authn-key",
             },
             Object {
-              "Name": "AGENCY_TLS_PATH",
-              "Type": "PLAINTEXT",
-              "Value": "./e2e/cert",
-            },
-            Object {
               "Name": "AGENCY_URL",
               "Type": "PLAINTEXT",
               "Value": "https://undefined.undefined",
