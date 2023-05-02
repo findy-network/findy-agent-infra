@@ -281,19 +281,9 @@ export class InfraPipelineStack extends cdk.Stack {
         "chmod a+x install.sh",
         "sudo ./install.sh -b /bin",
 
-        // save certificate
-        "echo Connecting to $AGENCY_API_URL",
-        "./e2e/dl-cert.sh",
-
-        // install needed deps
-        "npm install nightwatch@2.6.15",
-        "full_version=$(google-chrome --product-version)",
-        'chrome_version=$(echo "${full_version%.*.*.*}")',
-        "npm install chromedriver@$chrome_version",
-
         // if we use seed, make sure that cred def is always available
         // otherwise schema creation fails as public DID is the same for all onboarded agents
-        `if [ -z "$E2E_ORG_SEED" ]; then echo "no seed"; else export E2E_CRED_DEF_ID=$(aws ssm get-parameter --name "/findy-agency-e2e/cred-def-id" 2> /dev/null | jq -r .Parameter.Value); fi`,
+        `if [ -z "$E2E_ORG_SEED" ]; then echo "no seed"; else export E2E_SCHEMA_ID=$(aws ssm get-parameter --name "/findy-agency-e2e/schema-id" 2> /dev/null | jq -r .Parameter.Value); fi`,
 
         // onboard new user and agent
         "npm run test:e2e",
@@ -303,6 +293,7 @@ export class InfraPipelineStack extends cdk.Stack {
         "aws ssm put-parameter --name \"/findy-agency-e2e/org-name\" --value $(jq -r '.organisation' ./e2e/e2e.user.json) --type String 2>&1 > /dev/null | true",
         "aws ssm put-parameter --name \"/findy-agency-e2e/default-key\" --value $(jq -r '.key' ./e2e/e2e.user.json) --type String 2>&1 > /dev/null | true",
         "aws ssm put-parameter --name \"/findy-agency-e2e/cred-def-id\" --value $(jq -r '.credDefId' ./e2e/e2e.user.json) --type String 2>&1 > /dev/null | true",
+        "aws ssm put-parameter --name \"/findy-agency-e2e/schema-id\" --value $(jq -r '.schemaId' ./e2e/e2e.user.json) --type String 2>&1 > /dev/null | true",
 
         // existing user, new organisation
         'export E2E_USER=$(aws ssm get-parameter --name "/findy-agency-e2e/user-name" | jq -r .Parameter.Value)',
