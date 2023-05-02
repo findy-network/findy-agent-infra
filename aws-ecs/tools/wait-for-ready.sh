@@ -18,7 +18,7 @@ printf "Wait until agency is ready"
 while ! getReadyStatus; do
   printf "."
   waitTime=$(($SECONDS - $NOW))
-  if ((${waitTime} >= 600)); then
+  if ((${waitTime} >= 1200)); then
     printf "\nAgency failed to start.\n"
     exit 1
   fi
