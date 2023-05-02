@@ -69,7 +69,7 @@ jobs:
           npm run test:e2e
         env:
           AGENCY_REGISTER_WAIT_TIME: "60"
-          AGENCY_TLS_PATH: "../cert"
+          AGENCY_TLS_PATH: "${{ github.workspace }}/docker-compose/cert"
 
       - name: Collect docker logs
         if: ${{ failure() }}
