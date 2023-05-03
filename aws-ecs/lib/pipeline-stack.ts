@@ -289,11 +289,11 @@ export class InfraPipelineStack extends cdk.Stack {
         "npm run test:e2e",
 
         // these may fail if values are already saved
-        "aws ssm put-parameter --name \"/findy-agency-e2e/user-name\" --value $(jq -r '.user' ./e2e/e2e.user.json) --type String 2>&1 > /dev/null | true",
-        "aws ssm put-parameter --name \"/findy-agency-e2e/org-name\" --value $(jq -r '.organisation' ./e2e/e2e.user.json) --type String 2>&1 > /dev/null | true",
-        "aws ssm put-parameter --name \"/findy-agency-e2e/default-key\" --value $(jq -r '.key' ./e2e/e2e.user.json) --type String 2>&1 > /dev/null | true",
-        "aws ssm put-parameter --name \"/findy-agency-e2e/cred-def-id\" --value $(jq -r '.credDefId' ./e2e/e2e.user.json) --type String 2>&1 > /dev/null | true",
-        "aws ssm put-parameter --name \"/findy-agency-e2e/schema-id\" --value $(jq -r '.schemaId' ./e2e/e2e.user.json) --type String 2>&1 > /dev/null | true",
+        "aws ssm put-parameter --name \"/findy-agency-e2e/user-name\" --value $(jq -r '.user' ./e2e/test/test/e2e.user.json) --type String 2>&1 > /dev/null | true",
+        "aws ssm put-parameter --name \"/findy-agency-e2e/org-name\" --value $(jq -r '.organisation' ./e2e/test/test/e2e.user.json) --type String 2>&1 > /dev/null | true",
+        "aws ssm put-parameter --name \"/findy-agency-e2e/default-key\" --value $(jq -r '.key' ./e2e/test/test/e2e.user.json) --type String 2>&1 > /dev/null | true",
+        "aws ssm put-parameter --name \"/findy-agency-e2e/cred-def-id\" --value $(jq -r '.credDefId' ./e2e/test/test/e2e.user.json) --type String 2>&1 > /dev/null | true",
+        "aws ssm put-parameter --name \"/findy-agency-e2e/schema-id\" --value $(jq -r '.schemaId' ./e2e/test/test/e2e.user.json) --type String 2>&1 > /dev/null | true",
 
         // existing user, new organisation
         'export E2E_USER=$(aws ssm get-parameter --name "/findy-agency-e2e/user-name" | jq -r .Parameter.Value)',
@@ -313,7 +313,7 @@ export class InfraPipelineStack extends cdk.Stack {
           ],
         }),
       ],
-      primaryOutputDirectory: "./tests_output",
+      primaryOutputDirectory: "./e2e/test/tests_output/",
       buildEnvironment: {
         environmentVariables: {
           AGENCY_URL: {
