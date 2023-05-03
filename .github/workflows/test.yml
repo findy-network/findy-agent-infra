@@ -75,11 +75,11 @@ jobs:
         if: ${{ failure() }}
         uses: jwalton/gh-docker-logs@v2
         with:
-          dest: './findy-wallet-pwa/tests_output/docker-logs'
+          dest: './findy-wallet-pwa/e2e/test/tests_output/docker-logs'
 
       - name: archive logs
         if: ${{ failure() }}
         uses: actions/upload-artifact@v3
         with:
           name: e2e-logs
-          path: ./findy-wallet-pwa/tests_output
+          path: ./findy-wallet-pwa/e2e/test/tests_output/
