@@ -3017,7 +3017,7 @@ Object {
         \\"aws ssm put-parameter --name \\\\\\"/findy-agency-e2e/cred-def-id\\\\\\" --value $(jq -r '.credDefId' ./e2e/test/test/e2e.user.json) --type String 2>&1 > /dev/null | true\\",
         \\"aws ssm put-parameter --name \\\\\\"/findy-agency-e2e/schema-id\\\\\\" --value $(jq -r '.schemaId' ./e2e/test/test/e2e.user.json) --type String 2>&1 > /dev/null | true\\",
         \\"export E2E_USER=$(aws ssm get-parameter --name \\\\\\"/findy-agency-e2e/user-name\\\\\\" | jq -r .Parameter.Value)\\",
-        \\"export E2E_KEY=$(aws ssm get-parameter --name \\\\\\"/findy-agency-e2e/default-key\\\\\\" | jq -r .Parameter.Value)\\",
+        \\"export FCLI_KEY=$(aws ssm get-parameter --name \\\\\\"/findy-agency-e2e/default-key\\\\\\" | jq -r .Parameter.Value)\\",
         \\"npm run test:e2e\\",
         \\"export E2E_ORG=$(aws ssm get-parameter --name \\\\\\"/findy-agency-e2e/org-name\\\\\\" | jq -r .Parameter.Value)\\",
         \\"export E2E_CRED_DEF_ID=$(aws ssm get-parameter --name \\\\\\"/findy-agency-e2e/cred-def-id\\\\\\" | jq -r .Parameter.Value)\\",
