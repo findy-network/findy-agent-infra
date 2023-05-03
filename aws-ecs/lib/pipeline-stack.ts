@@ -297,7 +297,7 @@ export class InfraPipelineStack extends cdk.Stack {
 
         // existing user, new organisation
         'export E2E_USER=$(aws ssm get-parameter --name "/findy-agency-e2e/user-name" | jq -r .Parameter.Value)',
-        'export E2E_KEY=$(aws ssm get-parameter --name "/findy-agency-e2e/default-key" | jq -r .Parameter.Value)',
+        'export FCLI_KEY=$(aws ssm get-parameter --name "/findy-agency-e2e/default-key" | jq -r .Parameter.Value)',
         "npm run test:e2e",
 
         // existing user, existing organisation
