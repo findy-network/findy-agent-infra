@@ -8,9 +8,8 @@ getReadyStatus() {
     if ((${resCode} != 503)); then
       return 0
     fi
-  else
-    return 1
   fi
+  return 1
 }
 
 NOW=${SECONDS}
