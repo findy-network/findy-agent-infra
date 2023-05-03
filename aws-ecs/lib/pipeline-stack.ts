@@ -221,6 +221,8 @@ export class InfraPipelineStack extends cdk.Stack {
       projectName: "FindyAgencyDeployBackend",
       commands: [
         `aws ecs update-service --cluster "$CLUSTER_NAME" --service "$SERVICE_NAME" --force-new-deployment --deployment-configuration="deploymentCircuitBreaker={enable=false,rollback=false},maximumPercent=100,minimumHealthyPercent=0"`,
+        // Make sure load balancer deregisters targets before continuing to the next step
+        `sleep 60`
       ],
       envFromCfnOutputs: {
         CLUSTER_NAME: clusterName,
