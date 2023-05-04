@@ -2693,7 +2693,7 @@ Object {
     \\"build\\": {
       \\"commands\\": [
         \\"aws ecs update-service --cluster \\\\\\"$CLUSTER_NAME\\\\\\" --service \\\\\\"$SERVICE_NAME\\\\\\" --force-new-deployment --deployment-configuration=\\\\\\"deploymentCircuitBreaker={enable=false,rollback=false},maximumPercent=100,minimumHealthyPercent=0\\\\\\"\\",
-        \\"sleep 60\\"
+        \\"sleep 120\\"
       ]
     }
   },
