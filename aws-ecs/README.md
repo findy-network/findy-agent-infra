@@ -1,19 +1,30 @@
 # Findy Agency deployment to AWS ECS
 
-This cdk script sets up agency to AWS:
+## Background
 
-- microservice backend auth, vault, core to ECS with load balancer
-- pwa wallet app to s3
-- cloudfront as proxy to redirect requests from public internet to s3 or load balancer
-- pipeline to update agency deployment on new releases to agency services
+You can read more about this deployment project from Findy Agency blog:
+
+* [Agency's IaC Journey](https://findy-network.github.io/blog/2023/04/25/agencys-iac-journey/)
+* [Deploying with CDK Pipeline](https://findy-network.github.io/blog/2023/05/08/deploying-with-cdk-pipeline/)
+
+or watch the presentation on YouTube: <https://www.youtube.com/watch?v=Dj_Z5ReqCwc>
+
+## Setup
+
+This CDK script sets up agency to AWS:
+
+* microservice backend auth, vault, core to ECS with load balancer
+* pwa wallet app to s3
+* cloudfront as proxy to redirect requests from public internet to s3 or load balancer
+* pipeline to update agency deployment on new releases to agency services
 
 ![overview](./docs/arch.png)
 
 **Assumptions:**
 
-- steward seed and DID is known (if using indy ledger)
-- genesis-file is available (if using indy ledger)
-- AWS Route53 managed zone
+* steward seed and DID is known (if using indy ledger)
+* genesis-file is available (if using indy ledger)
+* AWS Route53 managed zone
 
 Note! This setup is intended for development time testing scenarios.
 Production setup would need another iteration with additional security,
@@ -52,10 +63,10 @@ if you don't have them already.
 
 1. You should have a domain available for the installation
 
-    - If you have an existing domain, [create a public hosted zone to AWS Route53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingHostedZone.html),
+    * If you have an existing domain, [create a public hosted zone to AWS Route53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingHostedZone.html),
     and store the hosted zone nameservers to your domain settings
       (via the domain registrar UI).
-    - If you [buy the domain via AWS](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-register.html),
+    * If you [buy the domain via AWS](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-register.html),
       AWS will create the needed hosted zone for you automatically.
 
 1. [Create GitHub codestar connection](https://docs.aws.amazon.com/dtconsole/latest/userguide/connections-create-github.html)
@@ -181,7 +192,7 @@ Now you should be ready to run the samples.
 
 **TODO:**
 
-- disabling default HTTP listener
-- auth/core services lock bolt dbs while execution and thus
+* disabling default HTTP listener
+* auth/core services lock bolt dbs while execution and thus
 updates bring currently the whole system down
-- load balancer has performance issues with GRPC-listener TLS termination
+* load balancer has performance issues with GRPC-listener TLS termination

@@ -50,7 +50,8 @@ export class Frontend extends Construct {
           'sh', '-c',
           'npm ci && npm run build && ' +
           'apk add bash && ' +
-          `./create-set-env.sh "./tools/env-docker/set-env.sh" "${bucketName}" "${process.env.API_SUB_DOMAIN_NAME}.${process.env.DOMAIN_NAME}" "${GRPCPortNumber}" && ` +
+          `./create-set-env.sh "./tools/env-docker/set-env.sh" "./build/set-env.sh" "${bucketName}" "${process.env.API_SUB_DOMAIN_NAME}.${process.env.DOMAIN_NAME}" "${GRPCPortNumber}" && ` +
+          `./create-set-env.sh "./tools/env-docker/set-env-cli.sh" "./build/set-env-cli.sh" "${bucketName}" "${process.env.API_SUB_DOMAIN_NAME}.${process.env.DOMAIN_NAME}" "${GRPCPortNumber}" && ` +
           'cp -R ./build/. /asset-output/'
         ],
         image: DockerImage.fromRegistry('public.ecr.aws/docker/library/node:18.12-alpine3.17'),
