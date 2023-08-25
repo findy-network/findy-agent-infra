@@ -80,7 +80,7 @@ Object {
       },
       "Type": "AWS::SNS::TopicPolicy",
     },
-    "LogRetention103EB917A4C": Object {
+    "LogRetention1027446A576": Object {
       "Properties": Object {
         "LogGroupName": Object {
           "Fn::Join": Array [
@@ -103,7 +103,7 @@ Object {
       },
       "Type": "Custom::LogRetention",
     },
-    "LogRetention116FE23FC8D": Object {
+    "LogRetention115D89EC29A": Object {
       "Properties": Object {
         "LogGroupName": Object {
           "Fn::Join": Array [
@@ -126,7 +126,7 @@ Object {
       },
       "Type": "Custom::LogRetention",
     },
-    "LogRetention118F88C9BF5": Object {
+    "LogRetention1172A57695F": Object {
       "Properties": Object {
         "LogGroupName": Object {
           "Fn::Join": Array [
@@ -149,7 +149,7 @@ Object {
       },
       "Type": "Custom::LogRetention",
     },
-    "LogRetention120745C3FD8": Object {
+    "LogRetention119AF74358C": Object {
       "Properties": Object {
         "LogGroupName": Object {
           "Fn::Join": Array [
@@ -172,7 +172,7 @@ Object {
       },
       "Type": "Custom::LogRetention",
     },
-    "LogRetention122A2AC03C4": Object {
+    "LogRetention121D3D6A843": Object {
       "Properties": Object {
         "LogGroupName": Object {
           "Fn::Join": Array [
@@ -195,7 +195,7 @@ Object {
       },
       "Type": "Custom::LogRetention",
     },
-    "LogRetention124EF4E2097": Object {
+    "LogRetention1238E0A2B49": Object {
       "Properties": Object {
         "LogGroupName": Object {
           "Fn::Join": Array [
@@ -218,7 +218,7 @@ Object {
       },
       "Type": "Custom::LogRetention",
     },
-    "LogRetention126749643DA": Object {
+    "LogRetention125654DDC4C": Object {
       "Properties": Object {
         "LogGroupName": Object {
           "Fn::Join": Array [
@@ -227,29 +227,6 @@ Object {
               "/aws/codebuild/",
               Object {
                 "Ref": "PipelineAssetsFileAsset669C72F3C",
-              },
-            ],
-          ],
-        },
-        "RetentionInDays": 30,
-        "ServiceToken": Object {
-          "Fn::GetAtt": Array [
-            "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A",
-            "Arn",
-          ],
-        },
-      },
-      "Type": "Custom::LogRetention",
-    },
-    "LogRetention1288FF0878A": Object {
-      "Properties": Object {
-        "LogGroupName": Object {
-          "Fn::Join": Array [
-            "",
-            Array [
-              "/aws/codebuild/",
-              Object {
-                "Ref": "PipelineAssetsFileAsset7A51C54D0",
               },
             ],
           ],
@@ -287,7 +264,7 @@ Object {
       },
       "Type": "Custom::LogRetention",
     },
-    "LogRetention69D8D9EE5F": Object {
+    "LogRetention687FE85218": Object {
       "Properties": Object {
         "LogGroupName": Object {
           "Fn::Join": Array [
@@ -310,7 +287,7 @@ Object {
       },
       "Type": "Custom::LogRetention",
     },
-    "LogRetention7772374D38": Object {
+    "LogRetention7669ADAD62": Object {
       "Properties": Object {
         "LogGroupName": Object {
           "Fn::Join": Array [
@@ -333,7 +310,7 @@ Object {
       },
       "Type": "Custom::LogRetention",
     },
-    "LogRetention85DCF0E934": Object {
+    "LogRetention844C009874": Object {
       "Properties": Object {
         "LogGroupName": Object {
           "Fn::Join": Array [
@@ -830,32 +807,6 @@ Object {
                   },
                 ],
                 "Name": "FileAsset6",
-                "RoleArn": Object {
-                  "Fn::GetAtt": Array [
-                    "PipelineCodeBuildActionRole226DB0CB",
-                    "Arn",
-                  ],
-                },
-                "RunOrder": 1,
-              },
-              Object {
-                "ActionTypeId": Object {
-                  "Category": "Build",
-                  "Owner": "AWS",
-                  "Provider": "CodeBuild",
-                  "Version": "1",
-                },
-                "Configuration": Object {
-                  "ProjectName": Object {
-                    "Ref": "PipelineAssetsFileAsset7A51C54D0",
-                  },
-                },
-                "InputArtifacts": Array [
-                  Object {
-                    "Name": "SynthStep_Output",
-                  },
-                ],
-                "Name": "FileAsset7",
                 "RoleArn": Object {
                   "Fn::GetAtt": Array [
                     "PipelineCodeBuildActionRole226DB0CB",
@@ -1480,68 +1431,6 @@ Object {
           "Type": "NO_CACHE",
         },
         "Description": "Pipeline step MyTestStack/Pipeline/Assets/FileAsset6",
-        "EncryptionKey": "alias/aws/s3",
-        "Environment": Object {
-          "ComputeType": "BUILD_GENERAL1_SMALL",
-          "EnvironmentVariables": Array [
-            Object {
-              "Name": "DOMAIN_NAME",
-              "Type": "PARAMETER_STORE",
-              "Value": "/findy-agency/domain-name",
-            },
-            Object {
-              "Name": "SUB_DOMAIN_NAME",
-              "Type": "PARAMETER_STORE",
-              "Value": "/findy-agency/sub-domain-name",
-            },
-            Object {
-              "Name": "API_SUB_DOMAIN_NAME",
-              "Type": "PARAMETER_STORE",
-              "Value": "/findy-agency/api-sub-domain-name",
-            },
-            Object {
-              "Name": "GENESIS_TRANSACTIONS",
-              "Type": "PARAMETER_STORE",
-              "Value": "/findy-agency/genesis",
-            },
-            Object {
-              "Name": "ADMIN_ID",
-              "Type": "SECRETS_MANAGER",
-              "Value": "FindyAgency:findy-agency-admin-id",
-            },
-            Object {
-              "Name": "ADMIN_AUTHN_KEY",
-              "Type": "SECRETS_MANAGER",
-              "Value": "FindyAgency:findy-agency-admin-authn-key",
-            },
-          ],
-          "Image": "aws/codebuild/standard:7.0",
-          "ImagePullCredentialsType": "CODEBUILD",
-          "PrivilegedMode": false,
-          "Type": "LINUX_CONTAINER",
-        },
-        "ServiceRole": Object {
-          "Fn::GetAtt": Array [
-            "PipelineAssetsFileRole59943A77",
-            "Arn",
-          ],
-        },
-        "Source": Object {
-          "BuildSpec": "{}",
-          "Type": "CODEPIPELINE",
-        },
-      },
-      "Type": "AWS::CodeBuild::Project",
-    },
-    "PipelineAssetsFileAsset7A51C54D0": Object {
-      "Properties": Object {
-        "Artifacts": Object {
-          "Type": "CODEPIPELINE",
-        },
-        "Cache": Object {
-          "Type": "NO_CACHE",
-        },
-        "Description": "Pipeline step MyTestStack/Pipeline/Assets/FileAsset7",
         "EncryptionKey": "alias/aws/s3",
         "Environment": Object {
           "ComputeType": "BUILD_GENERAL1_SMALL",
@@ -2258,20 +2147,6 @@ Object {
               "Resource": Object {
                 "Fn::GetAtt": Array [
                   "PipelineAssetsFileAsset669C72F3C",
-                  "Arn",
-                ],
-              },
-            },
-            Object {
-              "Action": Array [
-                "codebuild:BatchGetBuilds",
-                "codebuild:StartBuild",
-                "codebuild:StopBuild",
-              ],
-              "Effect": "Allow",
-              "Resource": Object {
-                "Fn::GetAtt": Array [
-                  "PipelineAssetsFileAsset7A51C54D0",
                   "Arn",
                 ],
               },
