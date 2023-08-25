@@ -129,41 +129,11 @@ export class Backend extends Construct {
   constructor(scope: Construct, id: string, props: BackendProps) {
     super(scope, id);
 
-    // Create config bucket
-    const bucketUniquePrefix = `${props.appDomainPrefix}${props.rootDomainName}`;
-    const bucketResourceName = `${bucketUniquePrefix.replace(/\./g, "").replace(/-/g, "")}BackendConfig`;
-    const bucketName = bucketResourceName.toLowerCase();
-
-    const bucket = new Bucket(scope, bucketName, {
-      bucketName: bucketName,
-      removalPolicy: RemovalPolicy.DESTROY,
-      blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
-      encryption: BucketEncryption.S3_MANAGED,
-      autoDeleteObjects: true
-    });
-
-    const targetFolder = "./.temp/agent";
-    mkdirSync(targetFolder, { recursive: true });
-    writeFileSync(
-      `${targetFolder}/genesis_transactions`,
-      props.genesisTransactions
-    );
-
-    // just dummy file since agency start script expects to find the folder
-    const certTargetFolder = "./.temp/grpc";
-    mkdirSync(certTargetFolder, { recursive: true });
-    writeFileSync(`${certTargetFolder}/placeholder.txt`, "no tls");
-
-    new BucketDeployment(scope, `${bucketName}Deployment`, {
-      sources: [Source.asset("./.temp")],
-      destinationBucket: bucket,
-    });
 
     // Create task definition
     const taskRole = new Role(scope, `${id}ECSTaskRole`, {
       assumedBy: new ServicePrincipal("ecs-tasks.amazonaws.com"),
     });
-    bucket.grantRead(taskRole); // grant read to config files
 
     const executionRole = new Role(scope, `${id}ECSExecutionRole`, {
       assumedBy: new ServicePrincipal("ecs-tasks.amazonaws.com"),
@@ -217,7 +187,7 @@ export class Backend extends Construct {
           FCLI_AGENCY_HOST_ADDRESS: apiAddress,
           FCLI_AGENCY_HOST_SCHEME: "https",
           FCLI_LOGGING: "-logtostderr=true -v=6",
-          STARTUP_FILE_STORAGE_S3: bucketName,
+          GENESIS_TRANSACTIONS: !useFileLedger ? props.genesisTransactions : '',
           FCLI_IMPORT_WALLET_FILE: "",
           FCLI_IMPORT_WALLET_NAME: "",
           FCLI_POOL_GENESIS_TXN_FILE: !useFileLedger ? '/agent/genesis_transactions' : '',
