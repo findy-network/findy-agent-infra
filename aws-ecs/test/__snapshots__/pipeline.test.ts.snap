@@ -364,7 +364,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
-          "S3Key": "f5b6a6d08a8206e67d0b54e2a29abd7e0472d835abc71037de3a93545b5edacc.zip",
+          "S3Key": "5cc92ed0cea39e2b8de2dbc527dfb5980a3af9564bd1084d840b9787c7d0467e.zip",
         },
         "Handler": "index.handler",
         "Role": Object {
@@ -373,7 +373,7 @@ Object {
             "Arn",
           ],
         },
-        "Runtime": "nodejs14.x",
+        "Runtime": "nodejs18.x",
       },
       "Type": "AWS::Lambda::Function",
     },
@@ -608,7 +608,7 @@ Object {
                   "Version": "1",
                 },
                 "Configuration": Object {
-                  "EnvironmentVariables": "[{\\"name\\":\\"_PROJECT_CONFIG_HASH\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"6f6026e806d602d4629bc2f5e8a974e3eef2b992bf1b5c8cd135e2a2ff9efb63\\"}]",
+                  "EnvironmentVariables": "[{\\"name\\":\\"_PROJECT_CONFIG_HASH\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"dd1feca4dd2d6e88d6a417572ff0a95ceb6378141991ff2858eb4c3097976cde\\"}]",
                   "PrimarySource": "findy_network_findy_agent_infra_Source",
                   "ProjectName": Object {
                     "Ref": "PipelineBuildSynthStepCdkBuildProject7FBB5116",
@@ -658,7 +658,7 @@ Object {
                   "Version": "1",
                 },
                 "Configuration": Object {
-                  "EnvironmentVariables": "[{\\"name\\":\\"_PROJECT_CONFIG_HASH\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"17cb53e892312789bf60a4e6356d5f5c11fc560e8fceab4abdda2b9ae97eea56\\"}]",
+                  "EnvironmentVariables": "[{\\"name\\":\\"_PROJECT_CONFIG_HASH\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"edb993dad2c10756ae9d75a3708ff6a6aadcb7486ac6ba145c175d40b69ec08d\\"}]",
                   "ProjectName": Object {
                     "Ref": "PipelineUpdatePipelineSelfMutationDAA41400",
                   },
@@ -1205,7 +1205,7 @@ Object {
               "Value": "FindyAgency:findy-agency-admin-authn-key",
             },
           ],
-          "Image": "aws/codebuild/standard:6.0",
+          "Image": "aws/codebuild/standard:7.0",
           "ImagePullCredentialsType": "CODEBUILD",
           "PrivilegedMode": false,
           "Type": "LINUX_CONTAINER",
@@ -1267,7 +1267,7 @@ Object {
               "Value": "FindyAgency:findy-agency-admin-authn-key",
             },
           ],
-          "Image": "aws/codebuild/standard:6.0",
+          "Image": "aws/codebuild/standard:7.0",
           "ImagePullCredentialsType": "CODEBUILD",
           "PrivilegedMode": false,
           "Type": "LINUX_CONTAINER",
@@ -1329,7 +1329,7 @@ Object {
               "Value": "FindyAgency:findy-agency-admin-authn-key",
             },
           ],
-          "Image": "aws/codebuild/standard:6.0",
+          "Image": "aws/codebuild/standard:7.0",
           "ImagePullCredentialsType": "CODEBUILD",
           "PrivilegedMode": false,
           "Type": "LINUX_CONTAINER",
@@ -1391,7 +1391,7 @@ Object {
               "Value": "FindyAgency:findy-agency-admin-authn-key",
             },
           ],
-          "Image": "aws/codebuild/standard:6.0",
+          "Image": "aws/codebuild/standard:7.0",
           "ImagePullCredentialsType": "CODEBUILD",
           "PrivilegedMode": false,
           "Type": "LINUX_CONTAINER",
@@ -1453,7 +1453,7 @@ Object {
               "Value": "FindyAgency:findy-agency-admin-authn-key",
             },
           ],
-          "Image": "aws/codebuild/standard:6.0",
+          "Image": "aws/codebuild/standard:7.0",
           "ImagePullCredentialsType": "CODEBUILD",
           "PrivilegedMode": false,
           "Type": "LINUX_CONTAINER",
@@ -1515,7 +1515,7 @@ Object {
               "Value": "FindyAgency:findy-agency-admin-authn-key",
             },
           ],
-          "Image": "aws/codebuild/standard:6.0",
+          "Image": "aws/codebuild/standard:7.0",
           "ImagePullCredentialsType": "CODEBUILD",
           "PrivilegedMode": false,
           "Type": "LINUX_CONTAINER",
@@ -1577,7 +1577,7 @@ Object {
               "Value": "FindyAgency:findy-agency-admin-authn-key",
             },
           ],
-          "Image": "aws/codebuild/standard:6.0",
+          "Image": "aws/codebuild/standard:7.0",
           "ImagePullCredentialsType": "CODEBUILD",
           "PrivilegedMode": false,
           "Type": "LINUX_CONTAINER",
@@ -1853,7 +1853,7 @@ Object {
               "Value": "/findy-agency/cdk-context",
             },
           ],
-          "Image": "aws/codebuild/standard:6.0",
+          "Image": "aws/codebuild/standard:7.0",
           "ImagePullCredentialsType": "CODEBUILD",
           "PrivilegedMode": true,
           "Type": "LINUX_CONTAINER",
@@ -2130,23 +2130,12 @@ Object {
           "Statement": Array [
             Object {
               "Action": "sts:AssumeRole",
-              "Condition": Object {
-                "Bool": Object {
-                  "aws:ViaAWSService": "codepipeline.amazonaws.com",
-                },
-              },
               "Effect": "Allow",
               "Principal": Object {
                 "AWS": Object {
-                  "Fn::Join": Array [
-                    "",
-                    Array [
-                      "arn:",
-                      Object {
-                        "Ref": "AWS::Partition",
-                      },
-                      ":iam::123456789012:root",
-                    ],
+                  "Fn::GetAtt": Array [
+                    "PipelineRoleB27FAA37",
+                    "Arn",
                   ],
                 },
               },
@@ -2385,7 +2374,7 @@ Object {
               "Value": "FindyAgency:findy-agency-admin-authn-key",
             },
           ],
-          "Image": "aws/codebuild/standard:6.0",
+          "Image": "aws/codebuild/standard:7.0",
           "ImagePullCredentialsType": "CODEBUILD",
           "PrivilegedMode": false,
           "Type": "LINUX_CONTAINER",
@@ -2674,7 +2663,7 @@ Object {
               "Value": "FindyAgency:findy-agency-admin-authn-key",
             },
           ],
-          "Image": "aws/codebuild/standard:6.0",
+          "Image": "aws/codebuild/standard:7.0",
           "ImagePullCredentialsType": "CODEBUILD",
           "PrivilegedMode": false,
           "Type": "LINUX_CONTAINER",
@@ -2983,7 +2972,7 @@ Object {
               "Value": "FindyAgency:findy-agency-e2e-org-seed",
             },
           ],
-          "Image": "aws/codebuild/standard:6.0",
+          "Image": "aws/codebuild/standard:7.0",
           "ImagePullCredentialsType": "CODEBUILD",
           "PrivilegedMode": false,
           "Type": "LINUX_CONTAINER",
@@ -3986,7 +3975,7 @@ Object {
               "Value": "FindyAgency:findy-agency-admin-authn-key",
             },
           ],
-          "Image": "aws/codebuild/standard:6.0",
+          "Image": "aws/codebuild/standard:7.0",
           "ImagePullCredentialsType": "CODEBUILD",
           "PrivilegedMode": false,
           "Type": "LINUX_CONTAINER",
