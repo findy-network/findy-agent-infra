@@ -35,6 +35,8 @@ RUN echo "[net]" >> ~/.cargo/config.toml && \
 
 FROM ubuntu:22.04
 
+LABEL org.opencontainers.image.source https://github.com/findy-network/findy-agent-infra
+
 ARG INDY_LIB_VERSION="1.16.0"
 
 # install indy deps and files from build phase
