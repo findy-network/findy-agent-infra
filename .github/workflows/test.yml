@@ -7,7 +7,7 @@ jobs:
       run:
         working-directory: ./aws-ecs
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           node-version: "18.x"
@@ -28,7 +28,7 @@ jobs:
       run:
         working-directory: ./aws-ecs
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           node-version: "18.x"
@@ -43,12 +43,12 @@ jobs:
       run:
         working-directory: ./docker-compose
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: setup env
         run: make up-d
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           repository: 'findy-network/findy-wallet-pwa'
           path: 'findy-wallet-pwa'
