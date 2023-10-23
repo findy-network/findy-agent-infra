@@ -38,6 +38,10 @@ const environmentVariables: Record<string, codebuild.BuildEnvironmentVariable> =
     type: codebuild.BuildEnvironmentVariableType.PARAMETER_STORE,
     value: "/findy-agency/genesis",
   },
+  APPLE_ASSOCIATED_APPS: {
+    type: codebuild.BuildEnvironmentVariableType.PARAMETER_STORE,
+    value: "/findy-agency/apple-associated-apps",
+  },
   ADMIN_ID: {
     type: codebuild.BuildEnvironmentVariableType.SECRETS_MANAGER,
     value: "FindyAgency:findy-agency-admin-id",

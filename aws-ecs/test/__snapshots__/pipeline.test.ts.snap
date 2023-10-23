@@ -586,7 +586,7 @@ Object {
                   "Version": "1",
                 },
                 "Configuration": Object {
-                  "EnvironmentVariables": "[{\\"name\\":\\"_PROJECT_CONFIG_HASH\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"dd1feca4dd2d6e88d6a417572ff0a95ceb6378141991ff2858eb4c3097976cde\\"}]",
+                  "EnvironmentVariables": "[{\\"name\\":\\"_PROJECT_CONFIG_HASH\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"87dffae732f083c54abe47426eb5e049edf83ab962fd3389823723d4c339513b\\"}]",
                   "PrimarySource": "findy_network_findy_agent_infra_Source",
                   "ProjectName": Object {
                     "Ref": "PipelineBuildSynthStepCdkBuildProject7FBB5116",
@@ -636,7 +636,7 @@ Object {
                   "Version": "1",
                 },
                 "Configuration": Object {
-                  "EnvironmentVariables": "[{\\"name\\":\\"_PROJECT_CONFIG_HASH\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"edb993dad2c10756ae9d75a3708ff6a6aadcb7486ac6ba145c175d40b69ec08d\\"}]",
+                  "EnvironmentVariables": "[{\\"name\\":\\"_PROJECT_CONFIG_HASH\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"2d1c49496b1ae1a2ae1b465fab6f546dc3da8dee7a77e7c4e40590fc95d3d34b\\"}]",
                   "ProjectName": Object {
                     "Ref": "PipelineUpdatePipelineSelfMutationDAA41400",
                   },
@@ -1147,6 +1147,11 @@ Object {
               "Value": "/findy-agency/genesis",
             },
             Object {
+              "Name": "APPLE_ASSOCIATED_APPS",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/apple-associated-apps",
+            },
+            Object {
               "Name": "ADMIN_ID",
               "Type": "SECRETS_MANAGER",
               "Value": "FindyAgency:findy-agency-admin-id",
@@ -1207,6 +1212,11 @@ Object {
               "Name": "GENESIS_TRANSACTIONS",
               "Type": "PARAMETER_STORE",
               "Value": "/findy-agency/genesis",
+            },
+            Object {
+              "Name": "APPLE_ASSOCIATED_APPS",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/apple-associated-apps",
             },
             Object {
               "Name": "ADMIN_ID",
@@ -1271,6 +1281,11 @@ Object {
               "Value": "/findy-agency/genesis",
             },
             Object {
+              "Name": "APPLE_ASSOCIATED_APPS",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/apple-associated-apps",
+            },
+            Object {
               "Name": "ADMIN_ID",
               "Type": "SECRETS_MANAGER",
               "Value": "FindyAgency:findy-agency-admin-id",
@@ -1331,6 +1346,11 @@ Object {
               "Name": "GENESIS_TRANSACTIONS",
               "Type": "PARAMETER_STORE",
               "Value": "/findy-agency/genesis",
+            },
+            Object {
+              "Name": "APPLE_ASSOCIATED_APPS",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/apple-associated-apps",
             },
             Object {
               "Name": "ADMIN_ID",
@@ -1395,6 +1415,11 @@ Object {
               "Value": "/findy-agency/genesis",
             },
             Object {
+              "Name": "APPLE_ASSOCIATED_APPS",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/apple-associated-apps",
+            },
+            Object {
               "Name": "ADMIN_ID",
               "Type": "SECRETS_MANAGER",
               "Value": "FindyAgency:findy-agency-admin-id",
@@ -1455,6 +1480,11 @@ Object {
               "Name": "GENESIS_TRANSACTIONS",
               "Type": "PARAMETER_STORE",
               "Value": "/findy-agency/genesis",
+            },
+            Object {
+              "Name": "APPLE_ASSOCIATED_APPS",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/apple-associated-apps",
             },
             Object {
               "Name": "ADMIN_ID",
@@ -1634,6 +1664,18 @@ Object {
                     ],
                   ],
                 },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/apple-associated-apps",
+                    ],
+                  ],
+                },
               ],
             },
             Object {
@@ -1726,6 +1768,11 @@ Object {
               "Name": "GENESIS_TRANSACTIONS",
               "Type": "PARAMETER_STORE",
               "Value": "/findy-agency/genesis",
+            },
+            Object {
+              "Name": "APPLE_ASSOCIATED_APPS",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/apple-associated-apps",
             },
             Object {
               "Name": "ADMIN_ID",
@@ -1860,6 +1907,18 @@ Object {
                         "Ref": "AWS::Partition",
                       },
                       ":ssm:us-east-1:123456789012:parameter/findy-agency/genesis",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/apple-associated-apps",
                     ],
                   ],
                 },
@@ -2240,6 +2299,11 @@ Object {
               "Value": "/findy-agency/genesis",
             },
             Object {
+              "Name": "APPLE_ASSOCIATED_APPS",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/apple-associated-apps",
+            },
+            Object {
               "Name": "ADMIN_ID",
               "Type": "SECRETS_MANAGER",
               "Value": "FindyAgency:findy-agency-admin-id",
@@ -2358,6 +2422,18 @@ Object {
                         "Ref": "AWS::Partition",
                       },
                       ":ssm:us-east-1:123456789012:parameter/findy-agency/genesis",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/apple-associated-apps",
                     ],
                   ],
                 },
@@ -2529,6 +2605,11 @@ Object {
               "Value": "/findy-agency/genesis",
             },
             Object {
+              "Name": "APPLE_ASSOCIATED_APPS",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/apple-associated-apps",
+            },
+            Object {
               "Name": "ADMIN_ID",
               "Type": "SECRETS_MANAGER",
               "Value": "FindyAgency:findy-agency-admin-id",
@@ -2642,6 +2723,18 @@ Object {
                         "Ref": "AWS::Partition",
                       },
                       ":ssm:us-east-1:123456789012:parameter/findy-agency/genesis",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/apple-associated-apps",
                     ],
                   ],
                 },
@@ -2818,6 +2911,11 @@ Object {
               "Value": "/findy-agency/genesis",
             },
             Object {
+              "Name": "APPLE_ASSOCIATED_APPS",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/apple-associated-apps",
+            },
+            Object {
               "Name": "ADMIN_ID",
               "Type": "SECRETS_MANAGER",
               "Value": "FindyAgency:findy-agency-admin-id",
@@ -2971,6 +3069,18 @@ Object {
                         "Ref": "AWS::Partition",
                       },
                       ":ssm:us-east-1:123456789012:parameter/findy-agency/genesis",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/apple-associated-apps",
                     ],
                   ],
                 },
@@ -3841,6 +3951,11 @@ Object {
               "Value": "/findy-agency/genesis",
             },
             Object {
+              "Name": "APPLE_ASSOCIATED_APPS",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/apple-associated-apps",
+            },
+            Object {
               "Name": "ADMIN_ID",
               "Type": "SECRETS_MANAGER",
               "Value": "FindyAgency:findy-agency-admin-id",
@@ -3954,6 +4069,18 @@ Object {
                         "Ref": "AWS::Partition",
                       },
                       ":ssm:us-east-1:123456789012:parameter/findy-agency/genesis",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/apple-associated-apps",
                     ],
                   ],
                 },
