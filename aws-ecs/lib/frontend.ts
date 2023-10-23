@@ -60,6 +60,7 @@ export class Frontend extends Construct {
           REACT_APP_AUTH_HOST: bucketName,
           REACT_APP_HTTP_SCHEME: 'https',
           REACT_APP_WS_SCHEME: 'wss',
+          ASSOCIATED_APPS: process.env.APPLE_ASSOCIATED_APPS || ''
         },
       },
     });
