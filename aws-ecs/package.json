@@ -17,7 +17,7 @@
     "@types/jest": "^27.5.2",
     "@types/node": "20.8.10",
     "@types/prettier": "3.0.0",
-    "aws-cdk": "2.103.1",
+    "aws-cdk": "2.104.0",
     "jest": "^27.5.1",
     "js-green-licenses": "^4.0.0",
     "ts-jest": "^27.1.4",
