@@ -1414,6 +1414,8 @@ Object {
               "Values": Array [
                 "/register/*",
                 "/login/*",
+                "/attestation/*",
+                "/assertion/*",
               ],
             },
           },

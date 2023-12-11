@@ -1,7 +1,7 @@
 import { Port } from "aws-cdk-lib/aws-ec2";
 
 export const apiPaths = {
-  authPaths: ["/register/*", "/login/*"],
+  authPaths: ["/register/*", "/login/*", "/attestation/*", "/assertion/*"],
   corePaths: ["/api/*", "/ca-api/*", "/ca-apiws/*", "/a2a/*"],
   vaultPaths: ["/query*"],
 };
