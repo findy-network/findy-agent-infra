@@ -952,6 +952,62 @@ Object {
                 ],
                 "QueryString": true,
               },
+              "PathPattern": "/attestation/*",
+              "TargetOriginId": "origin2",
+              "ViewerProtocolPolicy": "redirect-to-https",
+            },
+            Object {
+              "AllowedMethods": Array [
+                "DELETE",
+                "GET",
+                "HEAD",
+                "OPTIONS",
+                "PATCH",
+                "POST",
+                "PUT",
+              ],
+              "CachedMethods": Array [
+                "GET",
+                "HEAD",
+              ],
+              "Compress": true,
+              "ForwardedValues": Object {
+                "Cookies": Object {
+                  "Forward": "all",
+                },
+                "Headers": Array [
+                  "*",
+                ],
+                "QueryString": true,
+              },
+              "PathPattern": "/assertion/*",
+              "TargetOriginId": "origin2",
+              "ViewerProtocolPolicy": "redirect-to-https",
+            },
+            Object {
+              "AllowedMethods": Array [
+                "DELETE",
+                "GET",
+                "HEAD",
+                "OPTIONS",
+                "PATCH",
+                "POST",
+                "PUT",
+              ],
+              "CachedMethods": Array [
+                "GET",
+                "HEAD",
+              ],
+              "Compress": true,
+              "ForwardedValues": Object {
+                "Cookies": Object {
+                  "Forward": "all",
+                },
+                "Headers": Array [
+                  "*",
+                ],
+                "QueryString": true,
+              },
               "PathPattern": "/query*",
               "TargetOriginId": "origin2",
               "ViewerProtocolPolicy": "redirect-to-https",
