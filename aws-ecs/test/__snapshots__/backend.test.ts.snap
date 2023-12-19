@@ -105,7 +105,7 @@ Object {
       "Properties": Object {
         "Code": Object {
           "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
-          "S3Key": "d4c47643615e33c32aac58169698a692fa1d1f3e0da0dd6c4bf1c0e6af68d757.zip",
+          "S3Key": "b073cebcf4d61fb152a30f5a5e57a94df7f980a549fdf1a79a0b18c5750522d8.zip",
         },
         "Handler": "index.certificateRequestHandler",
         "Role": Object {
