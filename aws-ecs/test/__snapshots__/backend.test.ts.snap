@@ -1250,7 +1250,6 @@ Object {
             "Value": "3600",
           },
         ],
-        "Name": "LB",
         "Scheme": "internet-facing",
         "SecurityGroups": Array [
           Object {
