@@ -15,6 +15,18 @@ if [ -z "$APPLE_ASSOCIATED_APPS" ]; then
   echo "WARNING: No Apple associated apps defined"
 fi
 
+if [ -z "$ANDROID_PACKAGE_NAME" ]; then
+  echo "WARNING: No Android package name defined"
+fi
+
+if [ -z "$ANDROID_PACKAGE_DOMAIN" ]; then
+  echo "WARNING: No Android domain defined"
+fi
+
+if [ -z "$ANDROID_PACKAGE_FINGERPRINT" ]; then
+  echo "WARNING: No Android fingerprint defined"
+fi
+
 if [ -z "$GITHUB_CONNECTION_ARN" ]; then
   echo "ERROR: Define env variable GITHUB_CONNECTION_ARN"
   exit 1

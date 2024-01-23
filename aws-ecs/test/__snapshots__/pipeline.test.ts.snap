@@ -586,7 +586,7 @@ Object {
                   "Version": "1",
                 },
                 "Configuration": Object {
-                  "EnvironmentVariables": "[{\\"name\\":\\"_PROJECT_CONFIG_HASH\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"87dffae732f083c54abe47426eb5e049edf83ab962fd3389823723d4c339513b\\"}]",
+                  "EnvironmentVariables": "[{\\"name\\":\\"_PROJECT_CONFIG_HASH\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"3e2c7ed46796689d1f61de89193c6bffce64838e53d8cfe0eeaad22b8eea0292\\"}]",
                   "PrimarySource": "findy_network_findy_agent_infra_Source",
                   "ProjectName": Object {
                     "Ref": "PipelineBuildSynthStepCdkBuildProject7FBB5116",
@@ -636,7 +636,7 @@ Object {
                   "Version": "1",
                 },
                 "Configuration": Object {
-                  "EnvironmentVariables": "[{\\"name\\":\\"_PROJECT_CONFIG_HASH\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"2d1c49496b1ae1a2ae1b465fab6f546dc3da8dee7a77e7c4e40590fc95d3d34b\\"}]",
+                  "EnvironmentVariables": "[{\\"name\\":\\"_PROJECT_CONFIG_HASH\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"86e50257e15d9196af9a3fe69800c9a8ba7e1ddea4cb870a2c8256f5389c4050\\"}]",
                   "ProjectName": Object {
                     "Ref": "PipelineUpdatePipelineSelfMutationDAA41400",
                   },
@@ -1152,6 +1152,21 @@ Object {
               "Value": "/findy-agency/apple-associated-apps",
             },
             Object {
+              "Name": "ANDROID_PACKAGE_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-name",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_DOMAIN",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-domain",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_FINGERPRINT",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-fingerprint",
+            },
+            Object {
               "Name": "ADMIN_ID",
               "Type": "SECRETS_MANAGER",
               "Value": "FindyAgency:findy-agency-admin-id",
@@ -1217,6 +1232,21 @@ Object {
               "Name": "APPLE_ASSOCIATED_APPS",
               "Type": "PARAMETER_STORE",
               "Value": "/findy-agency/apple-associated-apps",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-name",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_DOMAIN",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-domain",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_FINGERPRINT",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-fingerprint",
             },
             Object {
               "Name": "ADMIN_ID",
@@ -1286,6 +1316,21 @@ Object {
               "Value": "/findy-agency/apple-associated-apps",
             },
             Object {
+              "Name": "ANDROID_PACKAGE_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-name",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_DOMAIN",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-domain",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_FINGERPRINT",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-fingerprint",
+            },
+            Object {
               "Name": "ADMIN_ID",
               "Type": "SECRETS_MANAGER",
               "Value": "FindyAgency:findy-agency-admin-id",
@@ -1351,6 +1396,21 @@ Object {
               "Name": "APPLE_ASSOCIATED_APPS",
               "Type": "PARAMETER_STORE",
               "Value": "/findy-agency/apple-associated-apps",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-name",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_DOMAIN",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-domain",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_FINGERPRINT",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-fingerprint",
             },
             Object {
               "Name": "ADMIN_ID",
@@ -1420,6 +1480,21 @@ Object {
               "Value": "/findy-agency/apple-associated-apps",
             },
             Object {
+              "Name": "ANDROID_PACKAGE_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-name",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_DOMAIN",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-domain",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_FINGERPRINT",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-fingerprint",
+            },
+            Object {
               "Name": "ADMIN_ID",
               "Type": "SECRETS_MANAGER",
               "Value": "FindyAgency:findy-agency-admin-id",
@@ -1485,6 +1560,21 @@ Object {
               "Name": "APPLE_ASSOCIATED_APPS",
               "Type": "PARAMETER_STORE",
               "Value": "/findy-agency/apple-associated-apps",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-name",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_DOMAIN",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-domain",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_FINGERPRINT",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-fingerprint",
             },
             Object {
               "Name": "ADMIN_ID",
@@ -1676,6 +1766,42 @@ Object {
                     ],
                   ],
                 },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/android-package-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/android-package-domain",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/android-package-fingerprint",
+                    ],
+                  ],
+                },
               ],
             },
             Object {
@@ -1773,6 +1899,21 @@ Object {
               "Name": "APPLE_ASSOCIATED_APPS",
               "Type": "PARAMETER_STORE",
               "Value": "/findy-agency/apple-associated-apps",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-name",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_DOMAIN",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-domain",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_FINGERPRINT",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-fingerprint",
             },
             Object {
               "Name": "ADMIN_ID",
@@ -1919,6 +2060,42 @@ Object {
                         "Ref": "AWS::Partition",
                       },
                       ":ssm:us-east-1:123456789012:parameter/findy-agency/apple-associated-apps",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/android-package-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/android-package-domain",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/android-package-fingerprint",
                     ],
                   ],
                 },
@@ -2304,6 +2481,21 @@ Object {
               "Value": "/findy-agency/apple-associated-apps",
             },
             Object {
+              "Name": "ANDROID_PACKAGE_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-name",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_DOMAIN",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-domain",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_FINGERPRINT",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-fingerprint",
+            },
+            Object {
               "Name": "ADMIN_ID",
               "Type": "SECRETS_MANAGER",
               "Value": "FindyAgency:findy-agency-admin-id",
@@ -2434,6 +2626,42 @@ Object {
                         "Ref": "AWS::Partition",
                       },
                       ":ssm:us-east-1:123456789012:parameter/findy-agency/apple-associated-apps",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/android-package-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/android-package-domain",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/android-package-fingerprint",
                     ],
                   ],
                 },
@@ -2610,6 +2838,21 @@ Object {
               "Value": "/findy-agency/apple-associated-apps",
             },
             Object {
+              "Name": "ANDROID_PACKAGE_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-name",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_DOMAIN",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-domain",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_FINGERPRINT",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-fingerprint",
+            },
+            Object {
               "Name": "ADMIN_ID",
               "Type": "SECRETS_MANAGER",
               "Value": "FindyAgency:findy-agency-admin-id",
@@ -2735,6 +2978,42 @@ Object {
                         "Ref": "AWS::Partition",
                       },
                       ":ssm:us-east-1:123456789012:parameter/findy-agency/apple-associated-apps",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/android-package-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/android-package-domain",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/android-package-fingerprint",
                     ],
                   ],
                 },
@@ -2916,6 +3195,21 @@ Object {
               "Value": "/findy-agency/apple-associated-apps",
             },
             Object {
+              "Name": "ANDROID_PACKAGE_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-name",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_DOMAIN",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-domain",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_FINGERPRINT",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-fingerprint",
+            },
+            Object {
               "Name": "ADMIN_ID",
               "Type": "SECRETS_MANAGER",
               "Value": "FindyAgency:findy-agency-admin-id",
@@ -3081,6 +3375,42 @@ Object {
                         "Ref": "AWS::Partition",
                       },
                       ":ssm:us-east-1:123456789012:parameter/findy-agency/apple-associated-apps",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/android-package-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/android-package-domain",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/android-package-fingerprint",
                     ],
                   ],
                 },
@@ -3956,6 +4286,21 @@ Object {
               "Value": "/findy-agency/apple-associated-apps",
             },
             Object {
+              "Name": "ANDROID_PACKAGE_NAME",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-name",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_DOMAIN",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-domain",
+            },
+            Object {
+              "Name": "ANDROID_PACKAGE_FINGERPRINT",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-package-fingerprint",
+            },
+            Object {
               "Name": "ADMIN_ID",
               "Type": "SECRETS_MANAGER",
               "Value": "FindyAgency:findy-agency-admin-id",
@@ -4081,6 +4426,42 @@ Object {
                         "Ref": "AWS::Partition",
                       },
                       ":ssm:us-east-1:123456789012:parameter/findy-agency/apple-associated-apps",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/android-package-name",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/android-package-domain",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/android-package-fingerprint",
                     ],
                   ],
                 },
