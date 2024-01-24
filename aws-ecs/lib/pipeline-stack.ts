@@ -42,6 +42,18 @@ const environmentVariables: Record<string, codebuild.BuildEnvironmentVariable> =
     type: codebuild.BuildEnvironmentVariableType.PARAMETER_STORE,
     value: "/findy-agency/apple-associated-apps",
   },
+  ANDROID_PACKAGE_NAME: {
+    type: codebuild.BuildEnvironmentVariableType.PARAMETER_STORE,
+    value: "/findy-agency/android-package-name",
+  },
+  ANDROID_PACKAGE_DOMAIN: {
+    type: codebuild.BuildEnvironmentVariableType.PARAMETER_STORE,
+    value: "/findy-agency/android-package-domain",
+  },
+  ANDROID_PACKAGE_FINGERPRINT: {
+    type: codebuild.BuildEnvironmentVariableType.PARAMETER_STORE,
+    value: "/findy-agency/android-package-fingerprint",
+  },
   ADMIN_ID: {
     type: codebuild.BuildEnvironmentVariableType.SECRETS_MANAGER,
     value: "FindyAgency:findy-agency-admin-id",

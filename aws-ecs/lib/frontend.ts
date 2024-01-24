@@ -60,7 +60,10 @@ export class Frontend extends Construct {
           REACT_APP_AUTH_HOST: bucketName,
           REACT_APP_HTTP_SCHEME: 'https',
           REACT_APP_WS_SCHEME: 'wss',
-          ASSOCIATED_APPS: process.env.APPLE_ASSOCIATED_APPS || ''
+          ASSOCIATED_APPS: process.env.APPLE_ASSOCIATED_APPS || '',
+          ANDROID_PACKAGE_NAME: process.env.ANDROID_PACKAGE_NAME || '',
+          ANDROID_PACKAGE_DOMAIN: process.env.ANDROID_PACKAGE_DOMAIN || '',
+          ANDROID_PACKAGE_FINGERPRINT: process.env.ANDROID_PACKAGE_FINGERPRINT || ''
         },
       },
     });
