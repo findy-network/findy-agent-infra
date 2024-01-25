@@ -52,17 +52,10 @@ import {
 import { ARecord, HostedZone, RecordTarget } from "aws-cdk-lib/aws-route53";
 import { LoadBalancerTarget } from "aws-cdk-lib/aws-route53-targets";
 import {
-  BlockPublicAccess,
-  Bucket,
-  BucketEncryption,
-} from "aws-cdk-lib/aws-s3";
-import { BucketDeployment, Source } from "aws-cdk-lib/aws-s3-deployment";
-import {
   ISecret,
   Secret as ManagerSecret,
 } from "aws-cdk-lib/aws-secretsmanager";
 import { Construct } from "constructs";
-import { mkdirSync, writeFileSync } from "fs";
 import {
   GRPCPort,
   GRPCPortNumber,
@@ -78,6 +71,7 @@ interface BackendProps {
   rootDomainName: string;
   appDomainPrefix: string;
   apiDomainPrefix: string;
+  androidAppOrigin: string;
   genesisTransactions: string;
 }
 
@@ -276,6 +270,7 @@ export class Backend extends Construct {
 
     // auth container
     const appDomain = `${props.appDomainPrefix}.${props.rootDomainName}`;
+    const origins = `https://${appDomain}${props.androidAppOrigin ? `,${props.androidAppOrigin}` : ''}`;
     const authProps = {
       task,
       vpc,
@@ -284,7 +279,7 @@ export class Backend extends Construct {
         plainValues: {
           FAA_AGENCY_ADDR: "localhost",
           FAA_DOMAIN: appDomain,
-          FAA_ORIGIN: `https://${appDomain}`,
+          FAA_ORIGIN: origins,
           FAA_CERT_PATH: "",
           FAA_AGENCY_INSECURE: "true",
         },

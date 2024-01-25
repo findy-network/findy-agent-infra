@@ -974,7 +974,7 @@ Object {
               },
               Object {
                 "Name": "FAA_ORIGIN",
-                "Value": "https://app.example.com",
+                "Value": "https://app.example.com,android-origin",
               },
               Object {
                 "Name": "FAA_CERT_PATH",

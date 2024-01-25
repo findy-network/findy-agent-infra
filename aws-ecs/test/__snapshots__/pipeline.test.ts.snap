@@ -586,7 +586,7 @@ Object {
                   "Version": "1",
                 },
                 "Configuration": Object {
-                  "EnvironmentVariables": "[{\\"name\\":\\"_PROJECT_CONFIG_HASH\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"3e2c7ed46796689d1f61de89193c6bffce64838e53d8cfe0eeaad22b8eea0292\\"}]",
+                  "EnvironmentVariables": "[{\\"name\\":\\"_PROJECT_CONFIG_HASH\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"3548553e5c2c1a859c39b6bc0d8eae42c8f7cb006f078a36cca4861bd92e3c49\\"}]",
                   "PrimarySource": "findy_network_findy_agent_infra_Source",
                   "ProjectName": Object {
                     "Ref": "PipelineBuildSynthStepCdkBuildProject7FBB5116",
@@ -636,7 +636,7 @@ Object {
                   "Version": "1",
                 },
                 "Configuration": Object {
-                  "EnvironmentVariables": "[{\\"name\\":\\"_PROJECT_CONFIG_HASH\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"86e50257e15d9196af9a3fe69800c9a8ba7e1ddea4cb870a2c8256f5389c4050\\"}]",
+                  "EnvironmentVariables": "[{\\"name\\":\\"_PROJECT_CONFIG_HASH\\",\\"type\\":\\"PLAINTEXT\\",\\"value\\":\\"bba0a0a12a9f0510efea395d1c8f4d5cc6fa3102822541238eb72027eee4a5b7\\"}]",
                   "ProjectName": Object {
                     "Ref": "PipelineUpdatePipelineSelfMutationDAA41400",
                   },
@@ -1167,6 +1167,11 @@ Object {
               "Value": "/findy-agency/android-package-fingerprint",
             },
             Object {
+              "Name": "ANDROID_APP_ORIGIN",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-app-origin",
+            },
+            Object {
               "Name": "ADMIN_ID",
               "Type": "SECRETS_MANAGER",
               "Value": "FindyAgency:findy-agency-admin-id",
@@ -1247,6 +1252,11 @@ Object {
               "Name": "ANDROID_PACKAGE_FINGERPRINT",
               "Type": "PARAMETER_STORE",
               "Value": "/findy-agency/android-package-fingerprint",
+            },
+            Object {
+              "Name": "ANDROID_APP_ORIGIN",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-app-origin",
             },
             Object {
               "Name": "ADMIN_ID",
@@ -1331,6 +1341,11 @@ Object {
               "Value": "/findy-agency/android-package-fingerprint",
             },
             Object {
+              "Name": "ANDROID_APP_ORIGIN",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-app-origin",
+            },
+            Object {
               "Name": "ADMIN_ID",
               "Type": "SECRETS_MANAGER",
               "Value": "FindyAgency:findy-agency-admin-id",
@@ -1411,6 +1426,11 @@ Object {
               "Name": "ANDROID_PACKAGE_FINGERPRINT",
               "Type": "PARAMETER_STORE",
               "Value": "/findy-agency/android-package-fingerprint",
+            },
+            Object {
+              "Name": "ANDROID_APP_ORIGIN",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-app-origin",
             },
             Object {
               "Name": "ADMIN_ID",
@@ -1495,6 +1515,11 @@ Object {
               "Value": "/findy-agency/android-package-fingerprint",
             },
             Object {
+              "Name": "ANDROID_APP_ORIGIN",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-app-origin",
+            },
+            Object {
               "Name": "ADMIN_ID",
               "Type": "SECRETS_MANAGER",
               "Value": "FindyAgency:findy-agency-admin-id",
@@ -1575,6 +1600,11 @@ Object {
               "Name": "ANDROID_PACKAGE_FINGERPRINT",
               "Type": "PARAMETER_STORE",
               "Value": "/findy-agency/android-package-fingerprint",
+            },
+            Object {
+              "Name": "ANDROID_APP_ORIGIN",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-app-origin",
             },
             Object {
               "Name": "ADMIN_ID",
@@ -1802,6 +1832,18 @@ Object {
                     ],
                   ],
                 },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/android-app-origin",
+                    ],
+                  ],
+                },
               ],
             },
             Object {
@@ -1914,6 +1956,11 @@ Object {
               "Name": "ANDROID_PACKAGE_FINGERPRINT",
               "Type": "PARAMETER_STORE",
               "Value": "/findy-agency/android-package-fingerprint",
+            },
+            Object {
+              "Name": "ANDROID_APP_ORIGIN",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-app-origin",
             },
             Object {
               "Name": "ADMIN_ID",
@@ -2096,6 +2143,18 @@ Object {
                         "Ref": "AWS::Partition",
                       },
                       ":ssm:us-east-1:123456789012:parameter/findy-agency/android-package-fingerprint",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/android-app-origin",
                     ],
                   ],
                 },
@@ -2496,6 +2555,11 @@ Object {
               "Value": "/findy-agency/android-package-fingerprint",
             },
             Object {
+              "Name": "ANDROID_APP_ORIGIN",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-app-origin",
+            },
+            Object {
               "Name": "ADMIN_ID",
               "Type": "SECRETS_MANAGER",
               "Value": "FindyAgency:findy-agency-admin-id",
@@ -2662,6 +2726,18 @@ Object {
                         "Ref": "AWS::Partition",
                       },
                       ":ssm:us-east-1:123456789012:parameter/findy-agency/android-package-fingerprint",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/android-app-origin",
                     ],
                   ],
                 },
@@ -2853,6 +2929,11 @@ Object {
               "Value": "/findy-agency/android-package-fingerprint",
             },
             Object {
+              "Name": "ANDROID_APP_ORIGIN",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-app-origin",
+            },
+            Object {
               "Name": "ADMIN_ID",
               "Type": "SECRETS_MANAGER",
               "Value": "FindyAgency:findy-agency-admin-id",
@@ -3014,6 +3095,18 @@ Object {
                         "Ref": "AWS::Partition",
                       },
                       ":ssm:us-east-1:123456789012:parameter/findy-agency/android-package-fingerprint",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/android-app-origin",
                     ],
                   ],
                 },
@@ -3208,6 +3301,11 @@ Object {
               "Name": "ANDROID_PACKAGE_FINGERPRINT",
               "Type": "PARAMETER_STORE",
               "Value": "/findy-agency/android-package-fingerprint",
+            },
+            Object {
+              "Name": "ANDROID_APP_ORIGIN",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-app-origin",
             },
             Object {
               "Name": "ADMIN_ID",
@@ -3411,6 +3509,18 @@ Object {
                         "Ref": "AWS::Partition",
                       },
                       ":ssm:us-east-1:123456789012:parameter/findy-agency/android-package-fingerprint",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/android-app-origin",
                     ],
                   ],
                 },
@@ -4301,6 +4411,11 @@ Object {
               "Value": "/findy-agency/android-package-fingerprint",
             },
             Object {
+              "Name": "ANDROID_APP_ORIGIN",
+              "Type": "PARAMETER_STORE",
+              "Value": "/findy-agency/android-app-origin",
+            },
+            Object {
               "Name": "ADMIN_ID",
               "Type": "SECRETS_MANAGER",
               "Value": "FindyAgency:findy-agency-admin-id",
@@ -4462,6 +4577,18 @@ Object {
                         "Ref": "AWS::Partition",
                       },
                       ":ssm:us-east-1:123456789012:parameter/findy-agency/android-package-fingerprint",
+                    ],
+                  ],
+                },
+                Object {
+                  "Fn::Join": Array [
+                    "",
+                    Array [
+                      "arn:",
+                      Object {
+                        "Ref": "AWS::Partition",
+                      },
+                      ":ssm:us-east-1:123456789012:parameter/findy-agency/android-app-origin",
                     ],
                   ],
                 },

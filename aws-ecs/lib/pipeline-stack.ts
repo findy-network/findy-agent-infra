@@ -54,6 +54,10 @@ const environmentVariables: Record<string, codebuild.BuildEnvironmentVariable> =
     type: codebuild.BuildEnvironmentVariableType.PARAMETER_STORE,
     value: "/findy-agency/android-package-fingerprint",
   },
+  ANDROID_APP_ORIGIN: {
+    type: codebuild.BuildEnvironmentVariableType.PARAMETER_STORE,
+    value: "/findy-agency/android-app-origin",
+  },
   ADMIN_ID: {
     type: codebuild.BuildEnvironmentVariableType.SECRETS_MANAGER,
     value: "FindyAgency:findy-agency-admin-id",

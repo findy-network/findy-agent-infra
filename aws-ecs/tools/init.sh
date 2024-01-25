@@ -27,6 +27,10 @@ if [ -z "$ANDROID_PACKAGE_FINGERPRINT" ]; then
   echo "WARNING: No Android fingerprint defined"
 fi
 
+if [ -z "$ANDROID_APP_ORIGIN" ]; then
+  echo "WARNING: No Android app origin defined"
+fi
+
 if [ -z "$GITHUB_CONNECTION_ARN" ]; then
   echo "ERROR: Define env variable GITHUB_CONNECTION_ARN"
   exit 1
