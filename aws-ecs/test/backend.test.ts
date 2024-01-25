@@ -15,6 +15,7 @@ test("Backend Created", () => {
     rootDomainName: "example.com",
     appDomainPrefix: "app",
     apiDomainPrefix: "app-api",
+    androidAppOrigin: "android-origin",
     genesisTransactions: "genesis",
   });
 
