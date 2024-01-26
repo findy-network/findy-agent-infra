@@ -225,7 +225,7 @@ export class Backend extends Construct {
     // https://docs.aws.amazon.com/AmazonRDS/latest/PostgreSQLReleaseNotes/postgresql-versions.html
     const db = new DatabaseInstance(scope, `${id}VaultRDS`, {
       engine: DatabaseInstanceEngine.postgres({
-        version: PostgresEngineVersion.VER_16_1,
+        version: PostgresEngineVersion.VER_13_13,
       }),
       instanceType: InstanceType.of(InstanceClass.T3, InstanceSize.MICRO),
       vpc,
