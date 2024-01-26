@@ -1797,7 +1797,7 @@ exports[`Backend Created 1`] = `
           "Ref": "MyTestBackendVaultRDSSubnetGroupB931280F",
         },
         "Engine": "postgres",
-        "EngineVersion": "16.1",
+        "EngineVersion": "13.13",
         "MasterUserPassword": {
           "Fn::Join": [
             "",
