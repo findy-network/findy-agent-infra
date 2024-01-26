@@ -1,48 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Frontend Created 1`] = `
-Object {
-  "Mappings": Object {
-    "AWSCloudFrontPartitionHostedZoneIdMap": Object {
-      "aws": Object {
+{
+  "Mappings": {
+    "AWSCloudFrontPartitionHostedZoneIdMap": {
+      "aws": {
         "zoneId": "Z2FDTNDATAQYW2",
       },
-      "aws-cn": Object {
+      "aws-cn": {
         "zoneId": "Z3RFFRIM2A3IF5",
       },
     },
   },
-  "Parameters": Object {
-    "BootstrapVersion": Object {
+  "Parameters": {
+    "BootstrapVersion": {
       "Default": "/cdk-bootstrap/hnb659fds/version",
       "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
       "Type": "AWS::SSM::Parameter::Value<String>",
     },
   },
-  "Resources": Object {
-    "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536": Object {
-      "DependsOn": Array [
+  "Resources": {
+    "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536": {
+      "DependsOn": [
         "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF",
         "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265",
       ],
-      "Properties": Object {
-        "Code": Object {
+      "Properties": {
+        "Code": {
           "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
           "S3Key": "e976a796f036a5efbf44b99e44cfb5a961df08d8dbf7cd37e60bf216fb982a00.zip",
         },
-        "Environment": Object {
-          "Variables": Object {
+        "Environment": {
+          "Variables": {
             "AWS_CA_BUNDLE": "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem",
           },
         },
         "Handler": "index.handler",
-        "Layers": Array [
-          Object {
+        "Layers": [
+          {
             "Ref": "MyTestFrontendMyTestFrontenddeploymentAwsCliLayerCBC876C2",
           },
         ],
-        "Role": Object {
-          "Fn::GetAtt": Array [
+        "Role": {
+          "Fn::GetAtt": [
             "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265",
             "Arn",
           ],
@@ -52,22 +52,22 @@ Object {
       },
       "Type": "AWS::Lambda::Function",
     },
-    "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CLogRetention1948627D": Object {
-      "Properties": Object {
-        "LogGroupName": Object {
-          "Fn::Join": Array [
+    "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CLogRetention1948627D": {
+      "Properties": {
+        "LogGroupName": {
+          "Fn::Join": [
             "",
-            Array [
+            [
               "/aws/lambda/",
-              Object {
+              {
                 "Ref": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536",
               },
             ],
           ],
         },
         "RetentionInDays": 30,
-        "ServiceToken": Object {
-          "Fn::GetAtt": Array [
+        "ServiceToken": {
+          "Fn::GetAtt": [
             "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A",
             "Arn",
           ],
@@ -75,27 +75,27 @@ Object {
       },
       "Type": "Custom::LogRetention",
     },
-    "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265": Object {
-      "Properties": Object {
-        "AssumeRolePolicyDocument": Object {
-          "Statement": Array [
-            Object {
+    "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
               "Action": "sts:AssumeRole",
               "Effect": "Allow",
-              "Principal": Object {
+              "Principal": {
                 "Service": "lambda.amazonaws.com",
               },
             },
           ],
           "Version": "2012-10-17",
         },
-        "ManagedPolicyArns": Array [
-          Object {
-            "Fn::Join": Array [
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
               "",
-              Array [
+              [
                 "arn:",
-                Object {
+                {
                   "Ref": "AWS::Partition",
                 },
                 ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
@@ -106,36 +106,36 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF": Object {
-      "Properties": Object {
-        "PolicyDocument": Object {
-          "Statement": Array [
-            Object {
-              "Action": Array [
+    "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
                 "s3:GetObject*",
                 "s3:GetBucket*",
                 "s3:List*",
               ],
               "Effect": "Allow",
-              "Resource": Array [
-                Object {
-                  "Fn::Join": Array [
+              "Resource": [
+                {
+                  "Fn::Join": [
                     "",
-                    Array [
+                    [
                       "arn:",
-                      Object {
+                      {
                         "Ref": "AWS::Partition",
                       },
                       ":s3:::cdk-hnb659fds-assets-123456789012-us-east-1",
                     ],
                   ],
                 },
-                Object {
-                  "Fn::Join": Array [
+                {
+                  "Fn::Join": [
                     "",
-                    Array [
+                    [
                       "arn:",
-                      Object {
+                      {
                         "Ref": "AWS::Partition",
                       },
                       ":s3:::cdk-hnb659fds-assets-123456789012-us-east-1/*",
@@ -144,8 +144,8 @@ Object {
                 },
               ],
             },
-            Object {
-              "Action": Array [
+            {
+              "Action": [
                 "s3:GetObject*",
                 "s3:GetBucket*",
                 "s3:List*",
@@ -158,19 +158,19 @@ Object {
                 "s3:Abort*",
               ],
               "Effect": "Allow",
-              "Resource": Array [
-                Object {
-                  "Fn::GetAtt": Array [
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
                     "MyTestFrontendMyTestFrontendbucketE6268FCD",
                     "Arn",
                   ],
                 },
-                Object {
-                  "Fn::Join": Array [
+                {
+                  "Fn::Join": [
                     "",
-                    Array [
-                      Object {
-                        "Fn::GetAtt": Array [
+                    [
+                      {
+                        "Fn::GetAtt": [
                           "MyTestFrontendMyTestFrontendbucketE6268FCD",
                           "Arn",
                         ],
@@ -185,29 +185,29 @@ Object {
           "Version": "2012-10-17",
         },
         "PolicyName": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF",
-        "Roles": Array [
-          Object {
+        "Roles": [
+          {
             "Ref": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265",
           },
         ],
       },
       "Type": "AWS::IAM::Policy",
     },
-    "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": Object {
-      "DependsOn": Array [
+    "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": {
+      "DependsOn": [
         "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
       ],
-      "Properties": Object {
-        "Code": Object {
+      "Properties": {
+        "Code": {
           "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
           "S3Key": "b7f33614a69548d6bafe224d751a7ef238cde19097415e553fe8b63a4c8fd8a6.zip",
         },
-        "Description": Object {
-          "Fn::Join": Array [
+        "Description": {
+          "Fn::Join": [
             "",
-            Array [
+            [
               "Lambda function for auto-deleting objects in ",
-              Object {
+              {
                 "Ref": "MyTestFrontendMyTestFrontendbucketE6268FCD",
               },
               " S3 bucket.",
@@ -216,8 +216,8 @@ Object {
         },
         "Handler": "index.handler",
         "MemorySize": 128,
-        "Role": Object {
-          "Fn::GetAtt": Array [
+        "Role": {
+          "Fn::GetAtt": [
             "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
             "Arn",
           ],
@@ -227,41 +227,41 @@ Object {
       },
       "Type": "AWS::Lambda::Function",
     },
-    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": Object {
-      "Properties": Object {
-        "AssumeRolePolicyDocument": Object {
-          "Statement": Array [
-            Object {
+    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
               "Action": "sts:AssumeRole",
               "Effect": "Allow",
-              "Principal": Object {
+              "Principal": {
                 "Service": "lambda.amazonaws.com",
               },
             },
           ],
           "Version": "2012-10-17",
         },
-        "ManagedPolicyArns": Array [
-          Object {
+        "ManagedPolicyArns": [
+          {
             "Fn::Sub": "arn:\${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
           },
         ],
       },
       "Type": "AWS::IAM::Role",
     },
-    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A": Object {
-      "DependsOn": Array [
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A": {
+      "DependsOn": [
         "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
         "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
       ],
-      "Properties": Object {
-        "Code": Object {
+      "Properties": {
+        "Code": {
           "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
           "S3Key": "4e26bf2d0a26f2097fb2b261f22bb51e3f6b4b52635777b1e54edbd8e2d58c35.zip",
         },
         "Handler": "index.handler",
-        "Role": Object {
-          "Fn::GetAtt": Array [
+        "Role": {
+          "Fn::GetAtt": [
             "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
             "Arn",
           ],
@@ -271,27 +271,27 @@ Object {
       },
       "Type": "AWS::Lambda::Function",
     },
-    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB": Object {
-      "Properties": Object {
-        "AssumeRolePolicyDocument": Object {
-          "Statement": Array [
-            Object {
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
               "Action": "sts:AssumeRole",
               "Effect": "Allow",
-              "Principal": Object {
+              "Principal": {
                 "Service": "lambda.amazonaws.com",
               },
             },
           ],
           "Version": "2012-10-17",
         },
-        "ManagedPolicyArns": Array [
-          Object {
-            "Fn::Join": Array [
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
               "",
-              Array [
+              [
                 "arn:",
-                Object {
+                {
                   "Ref": "AWS::Partition",
                 },
                 ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
@@ -302,12 +302,12 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB": Object {
-      "Properties": Object {
-        "PolicyDocument": Object {
-          "Statement": Array [
-            Object {
-              "Action": Array [
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
                 "logs:PutRetentionPolicy",
                 "logs:DeleteRetentionPolicy",
               ],
@@ -318,27 +318,27 @@ Object {
           "Version": "2012-10-17",
         },
         "PolicyName": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
-        "Roles": Array [
-          Object {
+        "Roles": [
+          {
             "Ref": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
           },
         ],
       },
       "Type": "AWS::IAM::Policy",
     },
-    "MyTestFrontendMyTestFrontendarecord2122C282": Object {
-      "Properties": Object {
-        "AliasTarget": Object {
-          "DNSName": Object {
-            "Fn::GetAtt": Array [
+    "MyTestFrontendMyTestFrontendarecord2122C282": {
+      "Properties": {
+        "AliasTarget": {
+          "DNSName": {
+            "Fn::GetAtt": [
               "MyTestFrontendMyTestFrontenddistributionCFDistributionE6F8BA69",
               "DomainName",
             ],
           },
-          "HostedZoneId": Object {
-            "Fn::FindInMap": Array [
+          "HostedZoneId": {
+            "Fn::FindInMap": [
               "AWSCloudFrontPartitionHostedZoneIdMap",
-              Object {
+              {
                 "Ref": "AWS::Partition",
               },
               "zoneId",
@@ -351,17 +351,17 @@ Object {
       },
       "Type": "AWS::Route53::RecordSet",
     },
-    "MyTestFrontendMyTestFrontendbucketAutoDeleteObjectsCustomResourceCDB9341B": Object {
+    "MyTestFrontendMyTestFrontendbucketAutoDeleteObjectsCustomResourceCDB9341B": {
       "DeletionPolicy": "Delete",
-      "DependsOn": Array [
+      "DependsOn": [
         "MyTestFrontendMyTestFrontendbucketPolicyEBF483A8",
       ],
-      "Properties": Object {
-        "BucketName": Object {
+      "Properties": {
+        "BucketName": {
           "Ref": "MyTestFrontendMyTestFrontendbucketE6268FCD",
         },
-        "ServiceToken": Object {
-          "Fn::GetAtt": Array [
+        "ServiceToken": {
+          "Fn::GetAtt": [
             "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
             "Arn",
           ],
@@ -370,27 +370,27 @@ Object {
       "Type": "Custom::S3AutoDeleteObjects",
       "UpdateReplacePolicy": "Delete",
     },
-    "MyTestFrontendMyTestFrontendbucketE6268FCD": Object {
+    "MyTestFrontendMyTestFrontendbucketE6268FCD": {
       "DeletionPolicy": "Delete",
-      "Properties": Object {
+      "Properties": {
         "BucketName": "myapp.example.com",
-        "PublicAccessBlockConfiguration": Object {
+        "PublicAccessBlockConfiguration": {
           "BlockPublicAcls": true,
           "BlockPublicPolicy": true,
           "IgnorePublicAcls": true,
           "RestrictPublicBuckets": true,
         },
-        "Tags": Array [
-          Object {
+        "Tags": [
+          {
             "Key": "aws-cdk:auto-delete-objects",
             "Value": "true",
           },
-          Object {
+          {
             "Key": "aws-cdk:cr-owned:beb1c0d3",
             "Value": "true",
           },
         ],
-        "WebsiteConfiguration": Object {
+        "WebsiteConfiguration": {
           "ErrorDocument": "index.html",
           "IndexDocument": "index.html",
         },
@@ -398,42 +398,42 @@ Object {
       "Type": "AWS::S3::Bucket",
       "UpdateReplacePolicy": "Delete",
     },
-    "MyTestFrontendMyTestFrontendbucketPolicyEBF483A8": Object {
-      "Properties": Object {
-        "Bucket": Object {
+    "MyTestFrontendMyTestFrontendbucketPolicyEBF483A8": {
+      "Properties": {
+        "Bucket": {
           "Ref": "MyTestFrontendMyTestFrontendbucketE6268FCD",
         },
-        "PolicyDocument": Object {
-          "Statement": Array [
-            Object {
-              "Action": Array [
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
                 "s3:PutBucketPolicy",
                 "s3:GetBucket*",
                 "s3:List*",
                 "s3:DeleteObject*",
               ],
               "Effect": "Allow",
-              "Principal": Object {
-                "AWS": Object {
-                  "Fn::GetAtt": Array [
+              "Principal": {
+                "AWS": {
+                  "Fn::GetAtt": [
                     "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
                     "Arn",
                   ],
                 },
               },
-              "Resource": Array [
-                Object {
-                  "Fn::GetAtt": Array [
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
                     "MyTestFrontendMyTestFrontendbucketE6268FCD",
                     "Arn",
                   ],
                 },
-                Object {
-                  "Fn::Join": Array [
+                {
+                  "Fn::Join": [
                     "",
-                    Array [
-                      Object {
-                        "Fn::GetAtt": Array [
+                    [
+                      {
+                        "Fn::GetAtt": [
                           "MyTestFrontendMyTestFrontendbucketE6268FCD",
                           "Arn",
                         ],
@@ -444,23 +444,23 @@ Object {
                 },
               ],
             },
-            Object {
+            {
               "Action": "s3:GetObject*",
               "Effect": "Allow",
-              "Principal": Object {
-                "CanonicalUser": Object {
-                  "Fn::GetAtt": Array [
+              "Principal": {
+                "CanonicalUser": {
+                  "Fn::GetAtt": [
                     "MyTestFrontendMyTestFrontendoriginaccessidentity60A8D7A4",
                     "S3CanonicalUserId",
                   ],
                 },
               },
-              "Resource": Object {
-                "Fn::Join": Array [
+              "Resource": {
+                "Fn::Join": [
                   "",
-                  Array [
-                    Object {
-                      "Fn::GetAtt": Array [
+                  [
+                    {
+                      "Fn::GetAtt": [
                         "MyTestFrontendMyTestFrontendbucketE6268FCD",
                         "Arn",
                       ],
@@ -470,41 +470,41 @@ Object {
                 ],
               },
             },
-            Object {
+            {
               "Action": "s3:ListBucket",
               "Effect": "Allow",
-              "Principal": Object {
-                "CanonicalUser": Object {
-                  "Fn::GetAtt": Array [
+              "Principal": {
+                "CanonicalUser": {
+                  "Fn::GetAtt": [
                     "MyTestFrontendMyTestFrontendoriginaccessidentity60A8D7A4",
                     "S3CanonicalUserId",
                   ],
                 },
               },
-              "Resource": Object {
-                "Fn::GetAtt": Array [
+              "Resource": {
+                "Fn::GetAtt": [
                   "MyTestFrontendMyTestFrontendbucketE6268FCD",
                   "Arn",
                 ],
               },
             },
-            Object {
+            {
               "Action": "s3:GetObject",
               "Effect": "Allow",
-              "Principal": Object {
-                "CanonicalUser": Object {
-                  "Fn::GetAtt": Array [
+              "Principal": {
+                "CanonicalUser": {
+                  "Fn::GetAtt": [
                     "MyTestFrontendMyTestFrontendoriginaccessidentity60A8D7A4",
                     "S3CanonicalUserId",
                   ],
                 },
               },
-              "Resource": Object {
-                "Fn::Join": Array [
+              "Resource": {
+                "Fn::Join": [
                   "",
-                  Array [
-                    Object {
-                      "Fn::GetAtt": Array [
+                  [
+                    {
+                      "Fn::GetAtt": [
                         "MyTestFrontendMyTestFrontendbucketE6268FCD",
                         "Arn",
                       ],
@@ -520,19 +520,19 @@ Object {
       },
       "Type": "AWS::S3::BucketPolicy",
     },
-    "MyTestFrontendMyTestFrontendcertificateCertificateRequestorFunction822D86CA": Object {
-      "DependsOn": Array [
+    "MyTestFrontendMyTestFrontendcertificateCertificateRequestorFunction822D86CA": {
+      "DependsOn": [
         "MyTestFrontendMyTestFrontendcertificateCertificateRequestorFunctionServiceRoleDefaultPolicy1719F132",
         "MyTestFrontendMyTestFrontendcertificateCertificateRequestorFunctionServiceRole586510A7",
       ],
-      "Properties": Object {
-        "Code": Object {
+      "Properties": {
+        "Code": {
           "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
           "S3Key": "b073cebcf4d61fb152a30f5a5e57a94df7f980a549fdf1a79a0b18c5750522d8.zip",
         },
         "Handler": "index.certificateRequestHandler",
-        "Role": Object {
-          "Fn::GetAtt": Array [
+        "Role": {
+          "Fn::GetAtt": [
             "MyTestFrontendMyTestFrontendcertificateCertificateRequestorFunctionServiceRole586510A7",
             "Arn",
           ],
@@ -542,27 +542,27 @@ Object {
       },
       "Type": "AWS::Lambda::Function",
     },
-    "MyTestFrontendMyTestFrontendcertificateCertificateRequestorFunctionServiceRole586510A7": Object {
-      "Properties": Object {
-        "AssumeRolePolicyDocument": Object {
-          "Statement": Array [
-            Object {
+    "MyTestFrontendMyTestFrontendcertificateCertificateRequestorFunctionServiceRole586510A7": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
               "Action": "sts:AssumeRole",
               "Effect": "Allow",
-              "Principal": Object {
+              "Principal": {
                 "Service": "lambda.amazonaws.com",
               },
             },
           ],
           "Version": "2012-10-17",
         },
-        "ManagedPolicyArns": Array [
-          Object {
-            "Fn::Join": Array [
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
               "",
-              Array [
+              [
                 "arn:",
-                Object {
+                {
                   "Ref": "AWS::Partition",
                 },
                 ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
@@ -573,12 +573,12 @@ Object {
       },
       "Type": "AWS::IAM::Role",
     },
-    "MyTestFrontendMyTestFrontendcertificateCertificateRequestorFunctionServiceRoleDefaultPolicy1719F132": Object {
-      "Properties": Object {
-        "PolicyDocument": Object {
-          "Statement": Array [
-            Object {
-              "Action": Array [
+    "MyTestFrontendMyTestFrontendcertificateCertificateRequestorFunctionServiceRoleDefaultPolicy1719F132": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
                 "acm:RequestCertificate",
                 "acm:DescribeCertificate",
                 "acm:DeleteCertificate",
@@ -587,35 +587,35 @@ Object {
               "Effect": "Allow",
               "Resource": "*",
             },
-            Object {
+            {
               "Action": "route53:GetChange",
               "Effect": "Allow",
               "Resource": "*",
             },
-            Object {
+            {
               "Action": "route53:changeResourceRecordSets",
-              "Condition": Object {
-                "ForAllValues:StringEquals": Object {
-                  "route53:ChangeResourceRecordSetsActions": Array [
+              "Condition": {
+                "ForAllValues:StringEquals": {
+                  "route53:ChangeResourceRecordSetsActions": [
                     "UPSERT",
                   ],
-                  "route53:ChangeResourceRecordSetsRecordTypes": Array [
+                  "route53:ChangeResourceRecordSetsRecordTypes": [
                     "CNAME",
                   ],
                 },
-                "ForAllValues:StringLike": Object {
-                  "route53:ChangeResourceRecordSetsNormalizedRecordNames": Array [
+                "ForAllValues:StringLike": {
+                  "route53:ChangeResourceRecordSetsNormalizedRecordNames": [
                     "*.myapp.example.com",
                   ],
                 },
               },
               "Effect": "Allow",
-              "Resource": Object {
-                "Fn::Join": Array [
+              "Resource": {
+                "Fn::Join": [
                   "",
-                  Array [
+                  [
                     "arn:",
-                    Object {
+                    {
                       "Ref": "AWS::Partition",
                     },
                     ":route53:::hostedzone/DUMMY",
@@ -627,22 +627,22 @@ Object {
           "Version": "2012-10-17",
         },
         "PolicyName": "MyTestFrontendMyTestFrontendcertificateCertificateRequestorFunctionServiceRoleDefaultPolicy1719F132",
-        "Roles": Array [
-          Object {
+        "Roles": [
+          {
             "Ref": "MyTestFrontendMyTestFrontendcertificateCertificateRequestorFunctionServiceRole586510A7",
           },
         ],
       },
       "Type": "AWS::IAM::Policy",
     },
-    "MyTestFrontendMyTestFrontendcertificateCertificateRequestorResource3D675D18": Object {
+    "MyTestFrontendMyTestFrontendcertificateCertificateRequestorResource3D675D18": {
       "DeletionPolicy": "Delete",
-      "Properties": Object {
+      "Properties": {
         "DomainName": "myapp.example.com",
         "HostedZoneId": "DUMMY",
         "Region": "us-east-1",
-        "ServiceToken": Object {
-          "Fn::GetAtt": Array [
+        "ServiceToken": {
+          "Fn::GetAtt": [
             "MyTestFrontendMyTestFrontendcertificateCertificateRequestorFunction822D86CA",
             "Arn",
           ],
@@ -651,59 +651,59 @@ Object {
       "Type": "AWS::CloudFormation::CustomResource",
       "UpdateReplacePolicy": "Delete",
     },
-    "MyTestFrontendMyTestFrontenddeploymentAwsCliLayerCBC876C2": Object {
-      "Properties": Object {
-        "Content": Object {
+    "MyTestFrontendMyTestFrontenddeploymentAwsCliLayerCBC876C2": {
+      "Properties": {
+        "Content": {
           "S3Bucket": "cdk-hnb659fds-assets-123456789012-us-east-1",
-          "S3Key": "3fb6287214999ddeafa7cd0e3e58bc5144c8678bb720f3b5e45e8fd32f333eb3.zip",
+          "S3Key": "3322b7049fb0ed2b7cbb644a2ada8d1116ff80c32dca89e6ada846b5de26f961.zip",
         },
         "Description": "/opt/awscli/aws",
       },
       "Type": "AWS::Lambda::LayerVersion",
     },
-    "MyTestFrontendMyTestFrontenddeploymentCustomResourceA40EDCAE": Object {
+    "MyTestFrontendMyTestFrontenddeploymentCustomResourceA40EDCAE": {
       "DeletionPolicy": "Delete",
-      "Properties": Object {
-        "DestinationBucketName": Object {
+      "Properties": {
+        "DestinationBucketName": {
           "Ref": "MyTestFrontendMyTestFrontendbucketE6268FCD",
         },
         "Prune": true,
-        "ServiceToken": Object {
-          "Fn::GetAtt": Array [
+        "ServiceToken": {
+          "Fn::GetAtt": [
             "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536",
             "Arn",
           ],
         },
-        "SourceBucketNames": Array [
+        "SourceBucketNames": [
           "cdk-hnb659fds-assets-123456789012-us-east-1",
         ],
-        "SourceObjectKeys": Array [
+        "SourceObjectKeys": [
           "0.zip",
         ],
       },
       "Type": "Custom::CDKBucketDeployment",
       "UpdateReplacePolicy": "Delete",
     },
-    "MyTestFrontendMyTestFrontenddistributionCFDistributionE6F8BA69": Object {
-      "Properties": Object {
-        "DistributionConfig": Object {
-          "Aliases": Array [
+    "MyTestFrontendMyTestFrontenddistributionCFDistributionE6F8BA69": {
+      "Properties": {
+        "DistributionConfig": {
+          "Aliases": [
             "myapp.example.com",
           ],
-          "CacheBehaviors": Array [
-            Object {
-              "AllowedMethods": Array [
+          "CacheBehaviors": [
+            {
+              "AllowedMethods": [
                 "GET",
                 "HEAD",
               ],
-              "CachedMethods": Array [
+              "CachedMethods": [
                 "GET",
                 "HEAD",
               ],
               "Compress": true,
               "DefaultTTL": 0,
-              "ForwardedValues": Object {
-                "Cookies": Object {
+              "ForwardedValues": {
+                "Cookies": {
                   "Forward": "none",
                 },
                 "QueryString": false,
@@ -714,19 +714,19 @@ Object {
               "TargetOriginId": "origin1",
               "ViewerProtocolPolicy": "redirect-to-https",
             },
-            Object {
-              "AllowedMethods": Array [
+            {
+              "AllowedMethods": [
                 "GET",
                 "HEAD",
               ],
-              "CachedMethods": Array [
+              "CachedMethods": [
                 "GET",
                 "HEAD",
               ],
               "Compress": true,
               "DefaultTTL": 0,
-              "ForwardedValues": Object {
-                "Cookies": Object {
+              "ForwardedValues": {
+                "Cookies": {
                   "Forward": "none",
                 },
                 "QueryString": false,
@@ -737,19 +737,19 @@ Object {
               "TargetOriginId": "origin1",
               "ViewerProtocolPolicy": "redirect-to-https",
             },
-            Object {
-              "AllowedMethods": Array [
+            {
+              "AllowedMethods": [
                 "GET",
                 "HEAD",
               ],
-              "CachedMethods": Array [
+              "CachedMethods": [
                 "GET",
                 "HEAD",
               ],
               "Compress": true,
               "DefaultTTL": 0,
-              "ForwardedValues": Object {
-                "Cookies": Object {
+              "ForwardedValues": {
+                "Cookies": {
                   "Forward": "none",
                 },
                 "QueryString": false,
@@ -760,8 +760,8 @@ Object {
               "TargetOriginId": "origin1",
               "ViewerProtocolPolicy": "redirect-to-https",
             },
-            Object {
-              "AllowedMethods": Array [
+            {
+              "AllowedMethods": [
                 "DELETE",
                 "GET",
                 "HEAD",
@@ -770,16 +770,16 @@ Object {
                 "POST",
                 "PUT",
               ],
-              "CachedMethods": Array [
+              "CachedMethods": [
                 "GET",
                 "HEAD",
               ],
               "Compress": true,
-              "ForwardedValues": Object {
-                "Cookies": Object {
+              "ForwardedValues": {
+                "Cookies": {
                   "Forward": "all",
                 },
-                "Headers": Array [
+                "Headers": [
                   "*",
                 ],
                 "QueryString": true,
@@ -788,8 +788,8 @@ Object {
               "TargetOriginId": "origin2",
               "ViewerProtocolPolicy": "redirect-to-https",
             },
-            Object {
-              "AllowedMethods": Array [
+            {
+              "AllowedMethods": [
                 "DELETE",
                 "GET",
                 "HEAD",
@@ -798,16 +798,16 @@ Object {
                 "POST",
                 "PUT",
               ],
-              "CachedMethods": Array [
+              "CachedMethods": [
                 "GET",
                 "HEAD",
               ],
               "Compress": true,
-              "ForwardedValues": Object {
-                "Cookies": Object {
+              "ForwardedValues": {
+                "Cookies": {
                   "Forward": "all",
                 },
-                "Headers": Array [
+                "Headers": [
                   "*",
                 ],
                 "QueryString": true,
@@ -816,8 +816,8 @@ Object {
               "TargetOriginId": "origin2",
               "ViewerProtocolPolicy": "redirect-to-https",
             },
-            Object {
-              "AllowedMethods": Array [
+            {
+              "AllowedMethods": [
                 "DELETE",
                 "GET",
                 "HEAD",
@@ -826,16 +826,16 @@ Object {
                 "POST",
                 "PUT",
               ],
-              "CachedMethods": Array [
+              "CachedMethods": [
                 "GET",
                 "HEAD",
               ],
               "Compress": true,
-              "ForwardedValues": Object {
-                "Cookies": Object {
+              "ForwardedValues": {
+                "Cookies": {
                   "Forward": "all",
                 },
-                "Headers": Array [
+                "Headers": [
                   "*",
                 ],
                 "QueryString": true,
@@ -844,8 +844,8 @@ Object {
               "TargetOriginId": "origin2",
               "ViewerProtocolPolicy": "redirect-to-https",
             },
-            Object {
-              "AllowedMethods": Array [
+            {
+              "AllowedMethods": [
                 "DELETE",
                 "GET",
                 "HEAD",
@@ -854,16 +854,16 @@ Object {
                 "POST",
                 "PUT",
               ],
-              "CachedMethods": Array [
+              "CachedMethods": [
                 "GET",
                 "HEAD",
               ],
               "Compress": true,
-              "ForwardedValues": Object {
-                "Cookies": Object {
+              "ForwardedValues": {
+                "Cookies": {
                   "Forward": "all",
                 },
-                "Headers": Array [
+                "Headers": [
                   "*",
                 ],
                 "QueryString": true,
@@ -872,8 +872,8 @@ Object {
               "TargetOriginId": "origin2",
               "ViewerProtocolPolicy": "redirect-to-https",
             },
-            Object {
-              "AllowedMethods": Array [
+            {
+              "AllowedMethods": [
                 "DELETE",
                 "GET",
                 "HEAD",
@@ -882,16 +882,16 @@ Object {
                 "POST",
                 "PUT",
               ],
-              "CachedMethods": Array [
+              "CachedMethods": [
                 "GET",
                 "HEAD",
               ],
               "Compress": true,
-              "ForwardedValues": Object {
-                "Cookies": Object {
+              "ForwardedValues": {
+                "Cookies": {
                   "Forward": "all",
                 },
-                "Headers": Array [
+                "Headers": [
                   "*",
                 ],
                 "QueryString": true,
@@ -900,8 +900,8 @@ Object {
               "TargetOriginId": "origin2",
               "ViewerProtocolPolicy": "redirect-to-https",
             },
-            Object {
-              "AllowedMethods": Array [
+            {
+              "AllowedMethods": [
                 "DELETE",
                 "GET",
                 "HEAD",
@@ -910,16 +910,16 @@ Object {
                 "POST",
                 "PUT",
               ],
-              "CachedMethods": Array [
+              "CachedMethods": [
                 "GET",
                 "HEAD",
               ],
               "Compress": true,
-              "ForwardedValues": Object {
-                "Cookies": Object {
+              "ForwardedValues": {
+                "Cookies": {
                   "Forward": "all",
                 },
-                "Headers": Array [
+                "Headers": [
                   "*",
                 ],
                 "QueryString": true,
@@ -928,8 +928,8 @@ Object {
               "TargetOriginId": "origin2",
               "ViewerProtocolPolicy": "redirect-to-https",
             },
-            Object {
-              "AllowedMethods": Array [
+            {
+              "AllowedMethods": [
                 "DELETE",
                 "GET",
                 "HEAD",
@@ -938,16 +938,16 @@ Object {
                 "POST",
                 "PUT",
               ],
-              "CachedMethods": Array [
+              "CachedMethods": [
                 "GET",
                 "HEAD",
               ],
               "Compress": true,
-              "ForwardedValues": Object {
-                "Cookies": Object {
+              "ForwardedValues": {
+                "Cookies": {
                   "Forward": "all",
                 },
-                "Headers": Array [
+                "Headers": [
                   "*",
                 ],
                 "QueryString": true,
@@ -956,8 +956,8 @@ Object {
               "TargetOriginId": "origin2",
               "ViewerProtocolPolicy": "redirect-to-https",
             },
-            Object {
-              "AllowedMethods": Array [
+            {
+              "AllowedMethods": [
                 "DELETE",
                 "GET",
                 "HEAD",
@@ -966,16 +966,16 @@ Object {
                 "POST",
                 "PUT",
               ],
-              "CachedMethods": Array [
+              "CachedMethods": [
                 "GET",
                 "HEAD",
               ],
               "Compress": true,
-              "ForwardedValues": Object {
-                "Cookies": Object {
+              "ForwardedValues": {
+                "Cookies": {
                   "Forward": "all",
                 },
-                "Headers": Array [
+                "Headers": [
                   "*",
                 ],
                 "QueryString": true,
@@ -984,8 +984,8 @@ Object {
               "TargetOriginId": "origin2",
               "ViewerProtocolPolicy": "redirect-to-https",
             },
-            Object {
-              "AllowedMethods": Array [
+            {
+              "AllowedMethods": [
                 "DELETE",
                 "GET",
                 "HEAD",
@@ -994,16 +994,16 @@ Object {
                 "POST",
                 "PUT",
               ],
-              "CachedMethods": Array [
+              "CachedMethods": [
                 "GET",
                 "HEAD",
               ],
               "Compress": true,
-              "ForwardedValues": Object {
-                "Cookies": Object {
+              "ForwardedValues": {
+                "Cookies": {
                   "Forward": "all",
                 },
-                "Headers": Array [
+                "Headers": [
                   "*",
                 ],
                 "QueryString": true,
@@ -1013,26 +1013,26 @@ Object {
               "ViewerProtocolPolicy": "redirect-to-https",
             },
           ],
-          "CustomErrorResponses": Array [
-            Object {
+          "CustomErrorResponses": [
+            {
               "ErrorCachingMinTTL": 0,
               "ErrorCode": 404,
               "ResponseCode": 200,
               "ResponsePagePath": "/index.html",
             },
           ],
-          "DefaultCacheBehavior": Object {
-            "AllowedMethods": Array [
+          "DefaultCacheBehavior": {
+            "AllowedMethods": [
               "GET",
               "HEAD",
             ],
-            "CachedMethods": Array [
+            "CachedMethods": [
               "GET",
               "HEAD",
             ],
             "Compress": true,
-            "ForwardedValues": Object {
-              "Cookies": Object {
+            "ForwardedValues": {
+              "Cookies": {
                 "Forward": "none",
               },
               "QueryString": false,
@@ -1044,24 +1044,24 @@ Object {
           "Enabled": true,
           "HttpVersion": "http2",
           "IPV6Enabled": true,
-          "Origins": Array [
-            Object {
+          "Origins": [
+            {
               "ConnectionAttempts": 3,
               "ConnectionTimeout": 10,
-              "DomainName": Object {
-                "Fn::GetAtt": Array [
+              "DomainName": {
+                "Fn::GetAtt": [
                   "MyTestFrontendMyTestFrontendbucketE6268FCD",
                   "RegionalDomainName",
                 ],
               },
               "Id": "origin1",
-              "S3OriginConfig": Object {
-                "OriginAccessIdentity": Object {
-                  "Fn::Join": Array [
+              "S3OriginConfig": {
+                "OriginAccessIdentity": {
+                  "Fn::Join": [
                     "",
-                    Array [
+                    [
                       "origin-access-identity/cloudfront/",
-                      Object {
+                      {
                         "Ref": "MyTestFrontendMyTestFrontendoriginaccessidentity60A8D7A4",
                       },
                     ],
@@ -1069,16 +1069,16 @@ Object {
                 },
               },
             },
-            Object {
+            {
               "ConnectionAttempts": 3,
               "ConnectionTimeout": 10,
-              "CustomOriginConfig": Object {
+              "CustomOriginConfig": {
                 "HTTPPort": 80,
                 "HTTPSPort": 443,
                 "OriginKeepaliveTimeout": 5,
                 "OriginProtocolPolicy": "https-only",
                 "OriginReadTimeout": 30,
-                "OriginSSLProtocols": Array [
+                "OriginSSLProtocols": [
                   "TLSv1.2",
                 ],
               },
@@ -1087,9 +1087,9 @@ Object {
             },
           ],
           "PriceClass": "PriceClass_100",
-          "ViewerCertificate": Object {
-            "AcmCertificateArn": Object {
-              "Fn::GetAtt": Array [
+          "ViewerCertificate": {
+            "AcmCertificateArn": {
+              "Fn::GetAtt": [
                 "MyTestFrontendMyTestFrontendcertificateCertificateRequestorResource3D675D18",
                 "Arn",
               ],
@@ -1101,31 +1101,31 @@ Object {
       },
       "Type": "AWS::CloudFront::Distribution",
     },
-    "MyTestFrontendMyTestFrontendoriginaccessidentity60A8D7A4": Object {
-      "Properties": Object {
-        "CloudFrontOriginAccessIdentityConfig": Object {
+    "MyTestFrontendMyTestFrontendoriginaccessidentity60A8D7A4": {
+      "Properties": {
+        "CloudFrontOriginAccessIdentityConfig": {
           "Comment": "Access bucket myapp.example.com only from Cloudfront",
         },
       },
       "Type": "AWS::CloudFront::CloudFrontOriginAccessIdentity",
     },
   },
-  "Rules": Object {
-    "CheckBootstrapVersion": Object {
-      "Assertions": Array [
-        Object {
-          "Assert": Object {
-            "Fn::Not": Array [
-              Object {
-                "Fn::Contains": Array [
-                  Array [
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
                     "1",
                     "2",
                     "3",
                     "4",
                     "5",
                   ],
-                  Object {
+                  {
                     "Ref": "BootstrapVersion",
                   },
                 ],
