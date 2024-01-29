@@ -184,7 +184,7 @@ export class Backend extends Construct {
           GENESIS_TRANSACTIONS: !useFileLedger ? props.genesisTransactions : '',
           FCLI_IMPORT_WALLET_FILE: "",
           FCLI_IMPORT_WALLET_NAME: "",
-          FCLI_POOL_GENESIS_TXN_FILE: !useFileLedger ? '/agent/genesis_transactions' : '',
+          FCLI_POOL_GENESIS_TXN_FILE: !useFileLedger ? '/genesis_transactions' : '',
           FCLI_POOL_NAME: !useFileLedger ? 'findy' : 'FINDY_FILE_LEDGER',
           FCLI_STEWARD_POOL_NAME: !useFileLedger ? 'findy' : 'FINDY_FILE_LEDGER',
           FCLI_AGENCY_POOL_NAME: !useFileLedger ? 'FINDY_LEDGER,findy,FINDY_MEM_LEDGER,cache' : 'FINDY_FILE_LEDGER'
