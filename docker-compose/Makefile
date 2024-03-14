@@ -1,5 +1,3 @@
-VON_NETWORK_VERSION:=3826aca3b69b31365b73222ad056fa748c2e0532
-
 up: down von-up agency
 up-d: down von-up agency-d
 
@@ -17,14 +15,10 @@ docker-host:
 clone:
 	mkdir -p .docker
 	-git clone https://github.com/bcgov/von-network .docker/von-network
-	cd .docker/von-network && git reset --hard $(VON_NETWORK_VERSION)
 
 von-up: clone
-#	cd .docker/von-network && ./manage build && ./manage up
-# TODO: use von-network image when ARM is supported
-	docker pull ghcr.io/lauravuo/von-network:latest
-	-docker tag ghcr.io/lauravuo/von-network:latest von-network-base
-	cd .docker/von-network && ./manage up
+# TODO: ARM
+	cd .docker/von-network && ./manage build && ./manage up
 
 gen-cert: docker-host
 	$(eval IP_ADDRESS=$(shell ./get-cert-host.sh))
