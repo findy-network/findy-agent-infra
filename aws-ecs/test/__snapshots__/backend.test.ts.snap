@@ -697,7 +697,7 @@ exports[`Backend Created 1`] = `
               },
               {
                 "Name": "FCLI_POOL_GENESIS_TXN_FILE",
-                "Value": "/genesis_transactions",
+                "Value": "/agent/genesis_transactions",
               },
               {
                 "Name": "FCLI_POOL_NAME",
@@ -1797,7 +1797,7 @@ exports[`Backend Created 1`] = `
           "Ref": "MyTestBackendVaultRDSSubnetGroupB931280F",
         },
         "Engine": "postgres",
-        "EngineVersion": "13.13",
+        "EngineVersion": "13.6",
         "MasterUserPassword": {
           "Fn::Join": [
             "",
